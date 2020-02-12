@@ -1,12 +1,46 @@
 <% breadcrumb :user_edit, @user %>
-<center><h1 class="mov-naranja">Editar datos de <strong><%= current_user.email%></strong></h1></center>
-<div class="col-md-6">
-  <div class="container_session">
-      <div class="session">
-        <%= simple_form_for current_user, url: edit_user_path do |f| %>
-            <%= f.input :email, required: true, autofocus: true, input_html: {class: "form-control"}%>
-          <%= f.button :submit, "Actualizar datos", class: "btn-primary block full-width m-b" %>
-        <% end %>
-      </div>
+<div class="edit-users">
+  <div class="container">
+    <h2 class="text-center">Editar datos de <%= current_user.nombre%> </h2> <hr />
+    <div class="row">
+        <div class="col-md-6">
+          <%= simple_form_for current_user, url: user_path do |f| %>
+            <div class="row">
+              <div class="col-md-6">
+                  <%= f.input :nombre, required: true, autofocus: true, input_html: {class: "form-control"}%>
+              </div>
+              <div class="col-md-6">
+                  <%= f.input :apellido, required: true, autofocus: true, input_html: {class: "form-control"}%>
+              </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <%= f.input :telefono, required: true, autofocus: true, input_html: {class: "number form-control", min:"1", max:"10"}, :limit => 10%>
+                </div>
+                <div class="col-md-6">
+                  <%= f.input :direccion, required: true, autofocus: true, input_html: {class: "form-control"}%>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <%= f.input :documento, required: true, autofocus: true, input_html: {class: "form-control", min:"1"} , :limit => 10%>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+             <%= f.input :descripcion, :as => :text, :input_html => { 'rows' => 8, 'cols' => 80 } %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <%= f.button :submit, "Actualizar datos", class: "btn btn-primary btn-lg " %> <br><br>
+          <div class="col-md-4"></div>
+          <div class="row"></div><br><br>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

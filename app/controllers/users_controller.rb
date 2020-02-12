@@ -4,9 +4,11 @@ class UsersController < ApplicationController
   # before_action :tipo_documento_id
 
   def index
-    @users = User.all
-    if params[:q].present?
-      @users = @users.where("email ilike :q", q: "%#{params[:q]}%")
+    if current_user.has_role? :Admin
+      @users = User.all.includes(:roles).where('roles.name' => "Docente")
+      if params[:q].present?
+        @users = @users.where("email ilike :q", q: "%#{params[:q]}%")
+      end
     end
   end
 
@@ -49,8 +51,14 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email,
+                                 :password,
                                  :current_password,
                                  :password_confirmation,
-                                 :password)
+                                 :nombre,
+                                 :apellido,
+                                 :telefono,
+                                 :direccion,
+                                 :documento,
+                                 :descripcion)
   end
 end

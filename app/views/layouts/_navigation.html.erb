@@ -6,7 +6,7 @@
                     <!-- <img alt="image" class="rounded-circle" src="image_path('profile_small.jpg') %>"/> -->
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="block m-t-xs font-bold"></span>
-                        <span class="text-muted text-xs block"><%= current_user.email %><b class="caret"></b><br></span>
+                        <span class="text-muted text-xs block"><%= current_user.email %><b class="caret"></b><br><%= current_user.roles.collect(&:name).join(' , ').upcase %></span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                        <li><a class="dropdown-item" href=" <%= edit_user_path %>" class="btn btn-nar">Mi Perfil</a></li>
@@ -25,31 +25,39 @@
                 <i class="fa fa-diamond"></i> <span class="nav-label" data-i18n="nav.layouts">Inicio</span>
                 <% end %>
             </li>
-            <li class="<%= 'active' if current_page?('/users') %>">
-                <%= link_to users_path do %>
-                <i class="fa fa-laptop"></i> <span class="nav-label">Usuarios</span>
-                <% end %>
-            </li>
+            <% if current_user.has_role? :Admin %>
+              <li class="<%= 'active' if current_page?('/users') %>">
+                  <%= link_to users_path do %>
+                  <i class="fa fa-laptop"></i> <span class="nav-label">Usuarios</span>
+                  <% end %>
+              </li>
+            <%end%>
             <li class="<%= 'active' if current_page?('/cursos') %>">
                 <%= link_to cursos_path do %>
                 <i class="fa fa-laptop"></i> <span class="nav-label">Cursos</span>
                 <% end %>
             </li>
-            <li class="<%= 'active' if current_page?('/lineas') %>">
-                <%= link_to lineas_path do %>
-                <i class="fa fa-laptop"></i> <span class="nav-label">lineas de Cursos</span>
-                <% end %>
-            </li>
-            <li class="<%= 'active' if current_page?('/programas') %>">
-                <%= link_to programas_path do %>
-                <i class="fa fa-laptop"></i> <span class="nav-label">Programas</span>
-                <% end %>
-            </li>
+            <% if current_user.has_role? :Admin %>
+              <li class="<%= 'active' if current_page?('/lineas') %>">
+                  <%= link_to lineas_path do %>
+                  <i class="fa fa-laptop"></i> <span class="nav-label">lineas de Cursos</span>
+                  <% end %>
+              </li>
+            <%end%>
+            <% if current_user.has_role? :Admin %>
+              <li class="<%= 'active' if current_page?('/programas') %>">
+                  <%= link_to programas_path do %>
+                  <i class="fa fa-laptop"></i> <span class="nav-label">Programas</span>
+                  <% end %>
+              </li>
+            <%end%>
+            <% if current_user.has_role? :Admin %>
             <li class="<%= 'active' if current_page?('/facultades') %>">
                 <%= link_to facultades_path do %>
                 <i class="fa fa-laptop"></i> <span class="nav-label">Facultades</span>
                 <% end %>
             </li>
+            <%end%>
         </ul>
     </div>
 </nav>

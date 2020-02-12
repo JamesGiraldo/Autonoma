@@ -35,6 +35,21 @@
                 <i class="fa fa-laptop"></i> <span class="nav-label">Cursos</span>
                 <% end %>
             </li>
+            <li class="<%= 'active' if current_page?('/lineas') %>">
+                <%= link_to lineas_path do %>
+                <i class="fa fa-laptop"></i> <span class="nav-label">lineas de Cursos</span>
+                <% end %>
+            </li>
+            <li class="<%= 'active' if current_page?('/programas') %>">
+                <%= link_to programas_path do %>
+                <i class="fa fa-laptop"></i> <span class="nav-label">Programas</span>
+                <% end %>
+            </li>
+            <li class="<%= 'active' if current_page?('/facultades') %>">
+                <%= link_to facultades_path do %>
+                <i class="fa fa-laptop"></i> <span class="nav-label">Facultades</span>
+                <% end %>
+            </li>
         </ul>
     </div>
 </nav>

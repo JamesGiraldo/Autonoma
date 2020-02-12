@@ -16,15 +16,20 @@
     <div class="container_box">
        <div class="box">
           <div class="title">
-            <h3 class="title_box"><strong>Facultad</strong></h3>
+            <h3 class="title_box"><strong>Facultades</strong></h3>
           </div>
           <div class="description">
-            <h1 class="description_box"><%= current_user.email %></h1>
+            <h1 class="description_box"><%= Facultad.count %></h1>
           </div>
           <div class="foot">
             <h3 class="foot_box">Universidad Autonoma del caribe</h3>
           </div>
           <div class="ver_mas">
+            <a class="<%= is_active_controller('facultades') %>">
+               <%= link_to facultades_path do %>
+                 <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+               <% end %>
+            </a>
           </div>
        </div>
        <div class="box">
@@ -35,7 +40,7 @@
               <h1 class="description_box"><%= Curso.count%></h1>
           </div>
           <div class="foot">
-              <h3 class="foot_box"><%=current_user.email%> </h3>
+              <h3 class="foot_box">Universidad Autonoma del caribe</h3>
           </div>
           <div class="ver_mas">
             <a class="<%= is_active_controller('cursos') %>">
@@ -50,14 +55,14 @@
             <h3 class="title_box"><strong>Programs</strong></h3>
          </div>
          <div class="description">
-            <h1 class="description_box"><%= Curso.count%></h1>
+            <h1 class="description_box"><%= Programa.count%></h1>
          </div>
          <div class="foot">
-            <h3 class="foot_box"><%= current_user.email %></h3>
+            <h3 class="foot_box">Universidad Autonoma del caribe</h3>
          </div>
          <div class="ver_mas">
            <a class="<%= is_active_controller('users') %>">
-              <%= link_to cursos_path do %>
+              <%= link_to programas_path do %>
                 <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
               <% end %>
            </a>

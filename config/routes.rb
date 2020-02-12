@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :cursos
-
+  resources :lineas
+  resources :programas
+  resources :facultades
 end

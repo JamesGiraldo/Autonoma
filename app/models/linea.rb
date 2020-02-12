@@ -1,0 +1,2 @@
+class Linea < ApplicationRecord
+end

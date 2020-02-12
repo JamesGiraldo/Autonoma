@@ -1,0 +1,20 @@
+<h1 class="text-center mov-naranja">CURSO<strong><%=  @curso.nombre %></strong></h1><hr />
+<div class="usuario">
+  <div class="informacion">
+    <div class="container_details">
+      <div class="info">
+         <p class="details_info"><strong>Nombre: </strong> <%=  @curso.nombre %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<% if current_user.has_role? :Admin%>
+  <div class="botonContainer">
+    <div class="botonSeguimiento">
+      <%= link_to "Editar Curso", edit_curso_path(@curso), class: "botonSeguimientoColor"%>
+    </div>
+    <div class="botonSeguimiento">
+      <%= link_to 'Eliminar', { :action => :destroy, :id => @curso.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar este Curso'} , class: "botonSeguimientoColor"%>
+    </div>
+  </div>
+<%end%>

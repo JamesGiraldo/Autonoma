@@ -14,7 +14,12 @@
         <div id="page-wrapper" class="gray-bg <%= @extra_class %>">
             <!-- Page wrapper -->
             <%= render 'layouts/topnavbar' %>
-            <!-- Main view  -->
+            <!-- Main view  -->            
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <%= breadcrumbs display_single_fragment: true, style: :bootstrap %>
+              </ol>
+            </nav>
             <%= custom_bootstrap_flash %>
             <%= yield %>
             <!-- Footer -->

@@ -32,14 +32,14 @@
               <h3 class="title_box"><strong>Cursos</strong></h3>
           </div>
           <div class="description">
-              <h1 class="description_box"><%= User.count%></h1>
+              <h1 class="description_box"><%= Curso.count%></h1>
           </div>
           <div class="foot">
               <h3 class="foot_box"><%=current_user.email%> </h3>
           </div>
           <div class="ver_mas">
-            <a class="<%= is_active_controller('users') %>">
-               <%= link_to users_path do %>
+            <a class="<%= is_active_controller('cursos') %>">
+               <%= link_to cursos_path do %>
                  <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
                <% end %>
             </a>
@@ -50,12 +50,17 @@
             <h3 class="title_box"><strong>Programs</strong></h3>
          </div>
          <div class="description">
-            <h1 class="description_box"><%= User.count%></h1>
+            <h1 class="description_box"><%= Curso.count%></h1>
          </div>
          <div class="foot">
             <h3 class="foot_box"><%= current_user.email %></h3>
          </div>
          <div class="ver_mas">
+           <a class="<%= is_active_controller('users') %>">
+              <%= link_to cursos_path do %>
+                <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+              <% end %>
+           </a>
          </div>
        </div>
     </div>

@@ -30,6 +30,11 @@
                 <i class="fa fa-laptop"></i> <span class="nav-label">Usuarios</span>
                 <% end %>
             </li>
+            <li class="<%= 'active' if current_page?('/cursos') %>">
+                <%= link_to cursos_path do %>
+                <i class="fa fa-laptop"></i> <span class="nav-label">Cursos</span>
+                <% end %>
+            </li>
         </ul>
     </div>
 </nav>

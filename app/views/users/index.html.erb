@@ -1,0 +1,19 @@
+<h1 class="text-center mov-naranja">LISTA DE <strong>Users</strong></h1>
+<hr />
+<div class="row">
+  <%= form_tag(users_path, class:"navbar-form-custom" , method: :get) do %>
+    <div class="form-group">
+      <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
+    </div>
+  <%end%>
+</div> <br>
+<table class="table table-striped">
+  <tr>
+    <th class="active">Email</th>
+  </tr>
+  <%= render partial: "users", collection: @users, as: :user %>
+</table>
+<hr />
+<div class="text-left">
+  <%= paginate @users, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination-sm" %>
+</div>

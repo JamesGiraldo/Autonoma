@@ -3,14 +3,25 @@
   <head>
     <title>Autonoma</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div id="wrapper" class="<%= params[:controller] %>.<%= params[:action] %>">
+        <!-- Navigation -->
+        <%= render 'layouts/navigation' %>
+        <!-- Page wraper -->
+        <div id="page-wrapper" class="gray-bg <%= @extra_class %>">
+            <!-- Page wrapper -->
+            <%= render 'layouts/topnavbar' %>
+            <!-- Main view  -->
+            <%= custom_bootstrap_flash %>
+            <%= yield %>
+            <!-- Footer -->
+            <%= render 'layouts/footer' %>
+        </div>
+    </div>
+    <%= javascript_include_tag params[:controller] if javascript_exists?(params[:controller]) %>
+    <%= yield :javascript %>
   </body>
 </html>

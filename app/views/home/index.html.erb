@@ -1,2 +1,63 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1 class="text-center mov-naranja">AUTONOMA <strong>Proyect</strong></h1>
+<h2 class="subtitulo mov-naranja"><strong>Informacion</strong></h2>
+<div class="usuario">
+  <div class="informacion">
+    <div class="container_picture">
+         <div class="picture">
+         </div>
+    </div>
+    <div class="container_details">
+      <div class="info">
+         <p class="details_info"><strong>Correo:</strong> <%=  current_user.email %></p>
+      </div>
+    </div>
+  </div>
+  <div class="informacion_general">
+    <div class="container_box">
+       <div class="box">
+          <div class="title">
+            <h3 class="title_box"><strong>Cursos</strong></h3>
+          </div>
+          <div class="description">
+            <h1 class="description_box"><%= current_user.email %></h1>
+          </div>
+          <div class="foot">
+            <h3 class="foot_box">Universidad Autonoma del caribe</h3>
+          </div>
+          <div class="ver_mas">
+          </div>
+       </div>
+       <div class="box">
+          <div class="title">
+              <h3 class="title_box"><strong>Instructores</strong></h3>
+          </div>
+          <div class="description">
+              <h1 class="description_box"><%= User.count%></h1>
+          </div>
+          <div class="foot">
+              <h3 class="foot_box"><%=current_user.email%> </h3>
+          </div>
+          <div class="ver_mas">
+            <a class="<%= is_active_controller('users') %>">
+               <%= link_to users_path do %>
+                 <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+               <% end %>
+            </a>
+          </div>
+       </div>
+       <div class="box">
+         <div class="title">
+            <h3 class="title_box"><strong>Programs</strong></h3>
+         </div>
+         <div class="description">
+            <h1 class="description_box"><%= User.count%></h1>
+         </div>
+         <div class="foot">
+            <h3 class="foot_box"><%= current_user.email %></h3>
+         </div>
+         <div class="ver_mas">
+         </div>
+       </div>
+    </div>
+  </div>
+</div>

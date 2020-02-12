@@ -1,3 +1,11 @@
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.irregular 'user','users'
+  inflect.irregular 'curso','cursos'
+  inflect.irregular 'linea','lineas'
+  inflect.irregular 'programa','programas'
+  inflect.irregular 'facultad','facultades'
+end
+
 # Be sure to restart your server when you modify this file.
 
 # Add new inflection rules using the following format. Inflections

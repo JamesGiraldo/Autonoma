@@ -59,6 +59,7 @@ class UsersController < ApplicationController
                                  :telefono,
                                  :direccion,
                                  :documento,
-                                 :descripcion)
+                                 :descripcion,
+                                 :perfil)
   end
 end

@@ -6,5 +6,6 @@ class AddCamposToUsers < ActiveRecord::Migration[5.1]
     add_column :users, :direccion, :string
     add_column :users, :documento, :bigint
     add_column :users, :descripcion, :string
+    add_column :users, :perfil, :string
   end
 end

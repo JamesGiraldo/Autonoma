@@ -13,16 +13,3 @@
   </tr>
   <%= render partial: "cursos", collection: @cursos, as: :curso %>
 </table>
-<hr />
-<% if current_user.has_role? :Admin%>
-  <!-- <%= link_to "Nuevo Curso", new_curso_path(@curso) , class:"btn-primary  full-width m-b"%>
-  <%= link_to "Nuev Curso", new_curso_path(@curso) , class:"btn-primary  full-width m-b"%> -->
-  <div class="botonContainer">
-    <div class="botonSeguimiento">
-      <%= link_to "Nuevo Curso", new_curso_path(@curso), class: "botonSeguimientoColor"%>
-    </div>
-    <div class="botonSeguimiento">
-      <%= link_to "Nuevo Curso", new_curso_path(@tiponovedad), class: "botonSeguimientoColor"%>
-    </div>
-  </div>
-<%end%>

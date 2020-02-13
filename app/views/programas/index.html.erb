@@ -13,16 +13,3 @@
   </tr>
   <%= render partial: "programas", collection: @programas, as: :programa %>
 </table>
-<hr />
-<% if current_user.has_role? :Admin%>
-  <!-- <%= link_to "Nuevo Programa", new_programa_path(@programa) , class:"btn-primary  full-width m-b"%>
-  <%= link_to "Nuevo Programa", new_programa_path(@programa) , class:"btn-primary  full-width m-b"%> -->
-  <div class="botonContainer">
-    <div class="botonSeguimiento">
-      <%= link_to "Nuevo Programa", new_programa_path(@programa), class: "botonSeguimientoColor"%>
-    </div>
-    <div class="botonSeguimiento">
-      <%= link_to "Nuevo Programa", new_programa_path(@programa), class: "botonSeguimientoColor"%>
-    </div>
-  </div>
-<%end%>

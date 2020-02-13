@@ -13,16 +13,3 @@
   </tr>
   <%= render partial: "lineas", collection: @lineas, as: :linea %>
 </table>
-<hr />
-<% if current_user.has_role? :Admin%>
-  <!-- <%= link_to "Nueva Linea", new_linea_path(@linea) , class:"btn-primary  full-width m-b"%>
-  <%= link_to "Nueva Linea", new_linea_path(@linea) , class:"btn-primary  full-width m-b"%> -->
-  <div class="botonContainer">
-    <div class="botonSeguimiento">
-      <%= link_to "Nueva Linea", new_linea_path(@linea), class: "botonSeguimientoColor"%>
-    </div>
-    <div class="botonSeguimiento">
-      <%= link_to "Nueva Linea", new_linea_path(@linea), class: "botonSeguimientoColor"%>
-    </div>
-  </div>
-<%end%>

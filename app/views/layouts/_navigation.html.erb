@@ -40,7 +40,6 @@
                   </ul>
               </li>
             <%end%>
-            <% if current_user.has_role? :Admin %>
               <li class="<%= 'active' if current_page?('/cursos') %>">
                   <%= link_to cursos_path do %>
                   <i class="fa fa-graduation-cap"></i>
@@ -49,15 +48,29 @@
                   <span class="fa arrow"></span>
                   <% end %>
                   <ul class=" nav nav-second-level #{is_active_controller('curso')">
-                    <li class="<%= 'active' if current_page?('/cursos') %>">
-                      <%= link_to "Lista De Cursos" , cursos_path %>
-                    </li>
-                    <li class="<%= 'active' if current_page?('/cursos') %>">
-                      <%= link_to "Nuevo Curso" , new_curso_path %>
-                    </li>
+                    <% if current_user.has_role? :Admin %>
+                        <li class="<%= 'active' if current_page?('/cursos') %>">
+                          <%= link_to "Lista De Cursos" , cursos_path %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/cursos') %>">
+                          <%= link_to "Nuevo Curso" , new_curso_path %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/lineas') %>">
+                          <%= link_to "Nueva Linea" , new_linea_path %>
+                        </li>
+                     <%else%>
+                        <li class="<%= 'active' if current_page?('/cursos') %>">
+                          <%= link_to "Mis Cursos" , cursos_path %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/cursos') %>">
+                          <%= link_to "Nuevo Curso" , new_curso_path %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/lineas') %>">
+                          <%= link_to "Crear Nueva Linea" , new_linea_path %>
+                        </li>
+                    <% end %>
                   </ul>
               </li>
-            <%end%>
             <% if current_user.has_role? :Admin %>
               <li class="<%= 'active' if current_page?('/lineas') %>">
                   <%= link_to lineas_path do %>
@@ -76,7 +89,7 @@
                   </ul>
               </li>
             <%end%>
-            <% if current_user.has_role? :Admin %>
+
               <li class="<%= 'active' if current_page?('/facultades') %>">
                   <%= link_to facultades_path do %>
                   <i class="fa fa-circle-o"></i>
@@ -85,15 +98,23 @@
                   <span class="fa arrow"></span>
                   <% end %>
                   <ul class=" nav nav-second-level #{is_active_controller('facultad')">
-                    <li class="<%= 'active' if current_page?('/facultades') %>">
-                      <%= link_to "Mis Facultades" , facultades_path %>
-                    </li>
+                    <% if current_user.has_role? :Admin %>
+                      <li class="<%= 'active' if current_page?('/facultades') %>">
+                        <%= link_to "Facultades" , facultades_path %>
+                      </li>
+                    <% else %>
+                      <li class="<%= 'active' if current_page?('/facultades') %>">
+                        <%= link_to "Mis Facultades" , facultades_path %>
+                      </li>
+                    <%end%>
+                    <% if current_user.has_role? :Admin %>
                     <li class="<%= 'active' if current_page?('/facultades') %>">
                       <%= link_to "Nueva Facultad" , new_facultad_path %>
                     </li>
+                    <% end %>
                   </ul>
               </li>
-            <%end%>
+
             <li class="<%= 'active' if current_page?('/users') %>">
                 <%= link_to edit_user_path do %>
                 <i class="fa fa-cogs"></i>

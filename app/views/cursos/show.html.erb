@@ -4,6 +4,11 @@
     <div class="container_details">
       <div class="info">
          <p class="details_info"><strong>Nombre: </strong> <%=  @curso.nombre %></p>
+         <% if @curso.linea.present? %>
+            <p class="details_info"><strong>linea: </strong> <%=  @curso.linea.nombre %></p>
+           <%else%>
+            <p class="details_info"><strong>linea: </strong></p>
+         <%end%>
       </div>
     </div>
   </div>

@@ -65,7 +65,7 @@ class CursosController < ApplicationController
 
   private
   def curso_params
-    params.require(:curso).permit(:nombre)
+    params.require(:curso).permit(:nombre, :linea_id)
   end
 
   def authenticate_role_user

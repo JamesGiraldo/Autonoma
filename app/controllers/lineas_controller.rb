@@ -2,9 +2,9 @@ class LineasController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @lineas = Linea.all
+    @lineas = Linea.all.page params[:page]
     if params[:q].present?
-      @lineas = @lineas.where("nombre ilike :q", q: "%#{params[:q]}%")
+      @lineas = @lineas.where("nombre ilike :q", q: "%#{params[:q]}%").page params[:page]
     end
   end
 

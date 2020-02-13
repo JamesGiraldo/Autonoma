@@ -3,9 +3,9 @@ class FacultadesController < ApplicationController
   before_action :authenticate_role_user, except: [:index , :show]
 
   def index
-    @facultades = Facultad.all
+    @facultades = Facultad.all.page params[:page]
     if params[:q].present?
-      @facultades = @facultades.where("nombre ilike :q", q: "%#{params[:q]}%")
+      @facultades = @facultades.where("nombre ilike :q", q: "%#{params[:q]}%").page params[:page]
     end
   end
 

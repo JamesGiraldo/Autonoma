@@ -7,8 +7,6 @@
          <div class="picture">
             <% if current_user.perfil.thumb.present?%>
               <%= image_tag current_user.perfil.thumb, alt: "Imagen de usuario"%>
-            <%else%>
-              <p>Foto</p>
             <%end%>
          </div>
       <%end%>

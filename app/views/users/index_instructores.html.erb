@@ -17,6 +17,9 @@
       <th class="">APELLIDO</th>
       <th class="">TELEFONO</th>
       <th class="">DIRECCION</th>
+      <% if current_user.has_role? :Admin %>
+        <th class="">ROL</th>
+      <% end %>
     </tr>
     <%= render partial: "users", collection: @users, as: :user %>
   </table>

@@ -35,10 +35,27 @@
                   <% end %>
                   <ul class=" nav nav-second-level #{is_active_controller('user')">
                     <li class="<%= 'active' if current_page?('/users') %>">
-                      <%= link_to "Lista De Docentes" , index_instructores_users_path   %>
+                      <%= link_to "Docentes" , index_instructores_users_path   %>
                     </li>
                     <li class="<%= 'active' if current_page?('/users') %>">
-                      <%= link_to "Lista De Usuarios" , users_path  %>
+                      <%= link_to "Decanos" , decanos_users_path  %>
+                    </li>
+                    <li class="<%= 'active' if current_page?('/users') %>">
+                      <%= link_to "Usuarios" , users_path  %>
+                    </li>
+                  </ul>
+              </li>
+            <% elsif current_user.has_role? :Decano %>
+              <li class="<%= 'active' if current_page?('/users') %>">
+                  <%= link_to users_path do %>
+                  <i class="fa fa-group"></i>
+                  <span class="nav-label">Usuarios</span>
+                  <!-- <span class="label label-info float-right">NEW</span> -->
+                  <span class="fa arrow"></span>
+                  <% end %>
+                  <ul class=" nav nav-second-level #{is_active_controller('user')">
+                    <li class="<%= 'active' if current_page?('/users') %>">
+                      <%= link_to "Docentes" , index_instructores_users_path   %>
                     </li>
                   </ul>
               </li>

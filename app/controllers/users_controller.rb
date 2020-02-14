@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:edit, :cambiar_password, :update_password, :update]
-  # before_action :tipo_documento_id
 
   def index
     if current_user.has_role? :Admin
@@ -11,14 +10,25 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
+  def decanos
+    if current_user.has_role? :Admin
+      @users = User.all.includes(:roles).where('roles.name' => "Decano").page params[:page]
+      if params[:q].present?
+        @users = @users.where("email ilike :q", q: "%#{params[:q]}%").page params[:page]
+      end
+    end
+  end
+
   def index_instructores
     if current_user.has_role? :Admin
       @users = User.all.includes(:roles).where('roles.name' => "Docente").page params[:page]
       if params[:q].present?
         @users = @users.where("email ilike :q", q: "%#{params[:q]}%").page params[:page]
       end
-    end
+    elsif current_user.has_role? :Decano
+        @users = User.all.includes(:roles).where('roles.name' => "Docente").page params[:page]
+      end
   end
 
   def show

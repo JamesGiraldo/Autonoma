@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index] do
     collection do
       get :index_instructores
+      get :decanos
     end
   end
   resource :user, only: [:edit, :destroy, :update , :show] do
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
       get :cambiar_password
       get :show
     end
-  end  
+  end
   resources :cursos
   resources :lineas
   resources :programas

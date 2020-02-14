@@ -1,5 +1,4 @@
-<% breadcrumb :users %>
-<h1 class="text-center mov-naranja"><strong>Usuarios</strong> Del Sistema</h1>
+<h1 class="text-center mov-naranja"><strong>Decanos</strong></h1>
 <hr />
 <div class="row">
   <%= form_tag(users_path, class:"navbar-form-custom" , method: :get) do %>
@@ -18,7 +17,7 @@
       <th class="">TELEFONO</th>
       <th class="">DIRECCION</th>
       <% if current_user.has_role? :Admin %>
-        <th>ROL</th>
+        <th class="">ROL</th>
       <% end %>
     </tr>
     <%= render partial: "users", collection: @users, as: :user %>

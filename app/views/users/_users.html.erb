@@ -1,8 +1,11 @@
 <tr>
-    <td><%= user.documento %></td>
-    <td><%= link_to user.email , user_path(user.id)  %></td>
+    <td><%= link_to user.documento , user_path(user.id)%></td>
+    <td><%= user.email %></td>
     <td><%= user.nombre %></td>
     <td><%= user.apellido %></td>
     <td><%= user.telefono %></td>
     <td><%= user.direccion %></td>
+    <% if current_user.has_role? :Admin %>
+      <td><%= user.roles.collect(&:name).join(' , ').upcase %></td>
+    <% end%>
 </tr>

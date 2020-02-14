@@ -13,7 +13,7 @@
     <div class="card-header">
       <div class="box">
         <% @lineas.each do |linea| %>
-          <%= link_to linea_path(linea.id) do %>
+          <%= link_to linea_cursos_path(linea) do %>
             <div class="full-width post">
               <% if linea.avatar.present? %>
                 <%= image_tag linea.avatar.thumb.url%>

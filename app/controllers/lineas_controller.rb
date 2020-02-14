@@ -34,9 +34,13 @@ class LineasController < ApplicationController
 
   def destroy
       @linea = Linea.find(params[:id])
+    if  @linea.destroy
       flash[:alert]="Linea Eliminada!"
-      @linea.destroy
       redirect_to :action => :index
+    else
+      flash[:info]="No Puede Eliminar Esta Linea Por Que Contiene Cursos Relacionados!"
+      redirect_to :action => :index
+    end
   end
 
   def create

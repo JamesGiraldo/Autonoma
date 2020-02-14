@@ -19,8 +19,6 @@ ActiveRecord::Schema.define(version: 20200213181544) do
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "linea_id"
-    t.index ["linea_id"], name: "index_cursos_on_linea_id"
   end
 
   create_table "facultades", force: :cascade do |t|
@@ -79,5 +77,4 @@ ActiveRecord::Schema.define(version: 20200213181544) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "cursos", "lineas"
 end

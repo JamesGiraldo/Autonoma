@@ -1,0 +1,16 @@
+<% breadcrumb :cursos %>
+<h1 class="text-center mov-naranja">LISTA DE <strong>CURSOS</strong></h1>
+<hr />
+<div class="row">
+  <%= form_tag(cursos_path, class:"navbar-form-custom" , method: :get) do %>
+    <div class="form-group">
+      <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
+    </div>
+  <%end%>
+</div><br>
+<table class="table table-striped">
+  <tr>
+    <th class="active">NOMBRE</th>
+  </tr>
+  <%= render partial: "cursos", collection: @cursos, as: :curso %>
+</table>

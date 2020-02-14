@@ -1,11 +1,11 @@
 class CursosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :authenticate_role_user, except: [:index , :show]
 
   def index
-    @cursos = Curso.all
+    flash[:info]="Si Decea Registrar Un Nuevo Curso Asegurese De Que Tenga Una Linea Su Curso!"
+    @cursos = Curso.all.page params[:page]
     if params[:q].present?
-      @cursos = @cursos.where("nombre ilike :q", q: "%#{params[:q]}%")
+      @cursos = @cursos.where("nombre ilike :q", q: "%#{params[:q]}%").page params[:page]
     end
   end
 
@@ -23,7 +23,6 @@ class CursosController < ApplicationController
 
   #PUT /curso/:id
   def update
-    if @user.has_role? :Admin
       @curso = Curso.find_by id: params[:id]
       if @curso.update(curso_params)
         flash[:success]="Curso Actualizado!"
@@ -32,23 +31,16 @@ class CursosController < ApplicationController
         flash[:alert] = "Problemas con la grabación!"
         render :edit
       end
-    else
-      flash[:info]="No tiene permisos para acceder a esa vista!"
-      render :edit
-    end
   end
 
   def destroy
-    if @user.has_role? :Admin
       @curso = Curso.find(params[:id])
       flash[:alert]="Curso Eliminado!"
       @curso.destroy
       redirect_to :action => :index
-    end
   end
 
   def create
-    if @user.has_role? :Admin
          @curso = Curso.new(curso_params)
       if @curso.save!
         flash[:success]="Curso Registrado!"
@@ -57,23 +49,10 @@ class CursosController < ApplicationController
         flash[:alert]="Problemas con la grabación!"
         render :new
       end
-    else
-      flash[:info]="No tiene permisos para acceder a esa vista!"
-      render :index
-    end
   end
 
   private
   def curso_params
-    params.require(:curso).permit(:nombre)
-  end
-
-  def authenticate_role_user
-    @user = User.find(current_user.id)
-    if @user.has_role? :Admin
-    else
-      flash[:info]="No tiene permisos para acceder a esa vista!"
-      redirect_to cursos_path(@curso)
-    end
+    params.require(:curso).permit(:nombre, :linea_id)
   end
 end

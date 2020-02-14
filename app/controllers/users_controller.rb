@@ -5,6 +5,15 @@ class UsersController < ApplicationController
 
   def index
     if current_user.has_role? :Admin
+      @users = User.all.page params[:page]
+      if params[:q].present?
+        @users = @users.where("email ilike :q", q: "%#{params[:q]}%").page params[:page]
+      end
+    end
+  end
+  
+  def index_instructores
+    if current_user.has_role? :Admin
       @users = User.all.includes(:roles).where('roles.name' => "Docente").page params[:page]
       if params[:q].present?
         @users = @users.where("email ilike :q", q: "%#{params[:q]}%").page params[:page]

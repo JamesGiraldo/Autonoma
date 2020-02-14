@@ -5,6 +5,9 @@ end
 crumb :users do
   link "Usuarios ", users_path
 end
+crumb :users_instructores do
+  link "Docentes ", index_instructores_users_path
+end
 crumb :user_edit do |user|
   link "Editar Perfil: #{user.email}", edit_user_path(user)
 end

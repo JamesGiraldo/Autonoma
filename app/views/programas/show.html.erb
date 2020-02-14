@@ -1,3 +1,4 @@
+<% breadcrumb :programa_show, @programa %>
 <h1 class="text-center mov-naranja">PROGRAMA<strong> <%= @programa.nombre %></strong></h1><hr />
 <div class="usuario">
   <div class="informacion">
@@ -5,16 +6,16 @@
       <div class="info">
          <p class="details_info"><strong>Nombre: </strong> <%= @programa.nombre %></p>
       </div>
+      <% if current_user.has_role? :Admin%>
+        <div class="botonContainer">
+          <div class="botonSeguimiento">
+            <%= link_to "Editar Programa", edit_programa_path(@programa), class: "botonSeguimientoColor"%>
+          </div>
+          <div class="botonSeguimiento">
+            <%= link_to 'Eliminar', { :action => :destroy, :id => @programa.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar esta programa'} , class: "botonSeguimientoColor"%>
+          </div>
+        </div>
+      <%end%>
     </div>
   </div>
 </div>
-<% if current_user.has_role? :Admin%>
-  <div class="botonContainer">
-    <div class="botonSeguimiento">
-      <%= link_to "Editar Programa", edit_programa_path(@programa), class: "botonSeguimientoColor"%>
-    </div>
-    <div class="botonSeguimiento">
-      <%= link_to 'Eliminar', { :action => :destroy, :id => @programa.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar esta programa'} , class: "botonSeguimientoColor"%>
-    </div>
-  </div>
-<%end%>

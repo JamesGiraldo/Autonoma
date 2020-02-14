@@ -1,3 +1,4 @@
+<% breadcrumb :lineas %>
 <h1 class="text-center mov-naranja">LISTA DE <strong>LINEAS</strong></h1>
 <hr />
 <div class="row">
@@ -7,22 +8,25 @@
     </div>
   <%end%>
 </div><br>
-<table class="table table-striped">
-  <tr>
-    <th class="active">NOMBRE</th>
-  </tr>
-  <%= render partial: "lineas", collection: @lineas, as: :linea %>
-</table>
-<hr />
-<% if current_user.has_role? :Admin%>
-  <!-- <%= link_to "Nueva Linea", new_linea_path(@linea) , class:"btn-primary  full-width m-b"%>
-  <%= link_to "Nueva Linea", new_linea_path(@linea) , class:"btn-primary  full-width m-b"%> -->
-  <div class="botonContainer">
-    <div class="botonSeguimiento">
-      <%= link_to "Nueva Linea", new_linea_path(@linea), class: "botonSeguimientoColor"%>
-    </div>
-    <div class="botonSeguimiento">
-      <%= link_to "Nueva Linea", new_linea_path(@linea), class: "botonSeguimientoColor"%>
-    </div>
-  </div>
-<%end%>
+<div class="usuario">
+  <div class="informacion_general">
+    <div class="card-header">
+      <div class="box">
+        <% @lineas.each do |linea| %>
+          <%= link_to linea_path(linea.id) do %>
+            <div class="full-width post">
+              <% if linea.avatar.present? %>
+                <%= image_tag linea.avatar.thumb.url%>
+              <%else%>
+                <p>Aqui va una foto defaul</p>
+              <%end%>
+              <div class="full-width post-info">
+                <p class="full-width post-info-price nom_gru"><%=linea.nombre%></p>
+              </div>
+            <%end%>
+          </div>
+        <%end%>
+       </div>
+     </div>
+   </div>
+</div>

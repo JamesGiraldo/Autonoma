@@ -3,9 +3,9 @@ class ProgramasController < ApplicationController
   before_action :authenticate_role_user, except: [:index , :show]
 
   def index
-    @programas = Programa.all
+    @programas = Programa.all.page params[:page]
     if params[:q].present?
-      @programas = @programas.where("nombre ilike :q", q: "%#{params[:q]}%")
+      @programas = @programas.where("nombre ilike :q", q: "%#{params[:q]}%").page params[:page]
     end
   end
 

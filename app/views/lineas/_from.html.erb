@@ -2,6 +2,7 @@
   <div class="session">
     <%= simple_form_for @linea, html: { class: 'form-horizontal' } do |f| %>
       <%= f.input :nombre , autofocus: true, placeholder:"Nombre De la linea" , autocomplete: "nombre" %>
+      <%= f.input :avatar %>
       <%= f.button :submit, "Registrar Linea",  class: "btn-primary block full-width m-b" %>
     <% end %>
   </div>

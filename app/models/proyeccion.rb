@@ -1,0 +1,2 @@
+class Proyeccion < ApplicationRecord
+end

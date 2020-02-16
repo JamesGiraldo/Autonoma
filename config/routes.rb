@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :lineas
   resources :programas
   resources :facultades
+  resources :proyecciones
 
   resources :lineas, except: [:show] do
     resources :cursos, module: :lineas, except: [:show]

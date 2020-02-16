@@ -109,6 +109,24 @@
                   </ul>
               </li>
             <%end%>
+            <% if current_user.has_role? :Admin %>
+              <li class="<%= 'active' if current_page?('/proyecciones') %>">
+                  <%= link_to proyecciones_path do %>
+                  <i class="fa fa-dashboard"></i>
+                  <span class="nav-label">Futuros Cursos</span>
+                  <!-- <span class="label label-info float-right">NEW</span> -->
+                  <span class="fa arrow"></span>
+                  <% end %>
+                  <ul class=" nav nav-second-level #{is_active_controller('linea')">
+                    <li class="<%= 'active' if current_page?('/proyecciones') %>">
+                      <%= link_to "Cursos" , proyecciones_path %>
+                    </li>
+                    <li class="<%= 'active' if current_page?('/proyecciones') %>">
+                      <%= link_to "Nuevo Curso" , new_proyeccion_path %>
+                    </li>
+                  </ul>
+              </li>
+            <%end%>
 
               <li class="<%= 'active' if current_page?('/facultades') %>">
                   <%= link_to facultades_path do %>

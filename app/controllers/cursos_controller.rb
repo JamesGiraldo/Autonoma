@@ -7,19 +7,18 @@ class CursosController < ApplicationController
     if params[:q].present?
       @cursos = @cursos.where("nombre ilike :q", q: "%#{params[:q]}%").page params[:page]
     end
-    respond_to do |format|
-      format.html
-      format.json
-      format.pdf { render template: 'cursos/cursos' , pdf: 'cursos'}
-    end
-  end
-
-  def new
-    @curso = Curso.new
   end
 
   def show
-    @curso = Curso.find(params[:id])
+    begin
+      @curso = Curso.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to cursos_path
+      flash[:alert] = "Este Curso No Existe"
+    end
+  end
+  def new
+    @curso = Curso.new
   end
 
   def edit
@@ -38,22 +37,22 @@ class CursosController < ApplicationController
       end
   end
 
+    def create
+      @curso = Curso.new(curso_params)
+      if @curso.save
+        flash[:success] = "Curso registrado correctamente"
+        redirect_to cursos_path(@curso)
+      else
+        flash[:alert] = "Problemas con la grabación"
+        render :new
+      end
+    end
+
   def destroy
       @curso = Curso.find(params[:id])
       flash[:alert]="Curso Eliminado!"
       @curso.destroy
       redirect_to :action => :index
-  end
-
-  def create
-         @curso = Curso.new(curso_params)
-      if @curso.save!
-        flash[:success]="Curso Registrado!"
-        render :show
-      else
-        flash[:alert]="Problemas con la grabación!"
-        render :new
-      end
   end
 
   private

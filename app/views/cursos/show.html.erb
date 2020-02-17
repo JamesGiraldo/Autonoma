@@ -5,11 +5,8 @@
     <div class="container_details">
       <div class="info">
          <p class="details_info"><strong>Nombre: </strong> <%=  @curso.nombre %></p>
-         <% if @curso.linea.present? %>
-            <p class="details_info"><strong>linea: </strong> <%=  @curso.linea.nombre %></p>
-           <%else%>
-            <p class="details_info"><strong>linea: </strong></p>
-         <%end%>
+         <p class="details_info"><strong>linea: </strong> <%=  @curso.linea.nombre %></p>
+         <p class="details_info"><strong>Esatdo: </strong> <%= @curso.estado ? "Realizado" : " En Proceso"%></p>
       </div>
       <% if current_user.has_role? :Admin%>
         <div class="botonContainer">

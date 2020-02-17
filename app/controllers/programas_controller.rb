@@ -14,7 +14,12 @@ class ProgramasController < ApplicationController
   end
 
   def show
-    @programa = Programa.find(params[:id])
+    begin
+      @programa = Programa.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to linea_path
+      flash[:alert] = "Este Programa No Existe"
+    end
   end
 
   def edit

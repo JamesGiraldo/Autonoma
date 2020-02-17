@@ -13,7 +13,12 @@ class ProyeccionesController < ApplicationController
   end
 
   def show
-    @proyeccion = Proyeccion.find(params[:id])
+    begin
+      @proyeccion = Proyeccion.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to linea_path
+      flash[:alert] = "Este Proyeccion No Existe"
+    end
   end
 
   def edit

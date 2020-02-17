@@ -87,7 +87,9 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: postgresql
+  ecoding: unicode
+  pool:    <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: Autonoma_production
   username: Autonoma
   password: <%= ENV['AUTONOMA_DATABASE_PASSWORD'] %>

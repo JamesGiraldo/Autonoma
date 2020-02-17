@@ -9,12 +9,16 @@ class CursosController < ApplicationController
     end
   end
 
+  def show
+    begin
+      @curso = Curso.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to cursos_path
+      flash[:alert] = "Este Curso No Existe"
+    end
+  end
   def new
     @curso = Curso.new
-  end
-
-  def show
-    @curso = Curso.find(params[:id])
   end
 
   def edit
@@ -33,22 +37,22 @@ class CursosController < ApplicationController
       end
   end
 
+    def create
+      @curso = Curso.new(curso_params)
+      if @curso.save
+        flash[:success] = "Curso registrado correctamente"
+        redirect_to cursos_path(@curso)
+      else
+        flash[:alert] = "Problemas con la grabación"
+        render :new
+      end
+    end
+
   def destroy
       @curso = Curso.find(params[:id])
       flash[:alert]="Curso Eliminado!"
       @curso.destroy
       redirect_to :action => :index
-  end
-
-  def create
-         @curso = Curso.new(curso_params)
-      if @curso.save!
-        flash[:success]="Curso Registrado!"
-        render :show
-      else
-        flash[:alert]="Problemas con la grabación!"
-        render :new
-      end
   end
 
   private

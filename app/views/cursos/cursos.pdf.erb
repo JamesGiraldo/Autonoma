@@ -1,0 +1,15 @@
+<h1 class="text-center mov-naranja">LISTA DE <strong>CURSOS</strong></h1>
+<table class="table">
+    <tr>
+      <th class="active">Id</th>
+      <th class="active">Nombre</th>
+      <th class="active">Linea</th>
+    </tr>
+    <% @cursos.each do |curso| %>
+        <tr>
+          <td><%=  curso.id %></td>
+          <td><%=  curso.nombre %></td>
+          <td><%=  curso.linea.nombre %></td>
+        </tr>
+     <%end%>
+</table>

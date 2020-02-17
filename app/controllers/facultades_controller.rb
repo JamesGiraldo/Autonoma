@@ -14,7 +14,12 @@ class FacultadesController < ApplicationController
   end
 
   def show
-    @facultad = Facultad.find(params[:id])
+    begin
+      @facultad = Facultad.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to linea_path
+      flash[:alert] = "Este Facultad No Existe"
+    end
   end
 
   def edit

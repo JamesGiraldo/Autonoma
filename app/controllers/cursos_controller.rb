@@ -7,6 +7,11 @@ class CursosController < ApplicationController
     if params[:q].present?
       @cursos = @cursos.where("nombre ilike :q", q: "%#{params[:q]}%").page params[:page]
     end
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf { render template: 'cursos/cursos' , pdf: 'cursos'}
+    end
   end
 
   def new

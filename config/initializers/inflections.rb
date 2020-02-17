@@ -5,6 +5,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'programa','programas'
   inflect.irregular 'facultad','facultades'
   inflect.irregular 'proyeccion','proyecciones'
+  inflect.irregular 'comentario','comentarios'
 end
 
 # Be sure to restart your server when you modify this file.

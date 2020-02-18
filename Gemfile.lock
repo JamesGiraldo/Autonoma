@@ -138,7 +138,6 @@ GEM
       activerecord
       kaminari-core (= 1.2.0)
     kaminari-core (1.2.0)
-    libv8 (3.16.14.19)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -227,7 +226,6 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    ref (2.0.0)
     regexp_parser (1.6.0)
     remotipart (1.4.4)
     responders (3.0.0)
@@ -284,9 +282,6 @@ GEM
       sprockets (>= 3.0.0)
     table_print (1.5.6)
     temple (0.8.2)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thor (1.0.1)
     thread_safe (0.3.6)
     thread_safe (0.3.6-java)
@@ -329,6 +324,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-suppress_range_error (~> 0.1.1)
+  autoprefixer-rails
   boostrap-sass (~> 0.0.2)
   bootstrap (~> 4.3.1)
   bootstrap-kaminari-views
@@ -359,7 +355,6 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   table_print
-  therubyracer
   truncate_html
   turbolinks (~> 5)
   tzinfo-data

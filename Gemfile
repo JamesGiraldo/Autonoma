@@ -61,7 +61,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'simple_form'
 gem 'rolify', '~> 5.2'
 gem 'jquery-rails'
-
+gem 'paperclip'
 gem 'carrierwave'
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 gem 'kaminari'

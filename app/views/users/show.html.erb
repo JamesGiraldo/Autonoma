@@ -2,23 +2,21 @@
 <div class="usuario">
   <div class="informacion">
     <div class="container_picture">
-      <%= link_to edit_user_path do %>
          <div class="picture">
             <% if @user.perfil.thumb.present?%>
-              <%= image_tag current_user.perfil.thumb, alt: "Imagen de usuario"%>
+              <%= image_tag @user.perfil.thumb, alt: "Imagen de usuario"%>
             <%end%>
          </div>
-      <%end%>
     </div>
     <div class="container_details">
       <div class="info">
-         <p class="details_info"><strong>Rol:</strong> <%= current_user.roles.collect(&:name).join(' , ').upcase %></p>
+         <p class="details_info"><strong>Rol:</strong> <%= @user.roles.collect(&:name).join(' , ').upcase %></p>
          <p class="details_info"><strong>Correo:</strong> <%=  @user.email %></p>
          <p class="details_info"><strong>Nombre:</strong> <%=  @user.nombre %></p>
          <p class="details_info"><strong>Apellido:</strong> <%=  @user.apellido %></p>
          <p class="details_info"><strong>Telefono:</strong> <%=  @user.telefono %></p>
          <p class="details_info"><strong>Direccion:</strong> <%=  @user.direccion %></p>
-         <p class="details_info"><strong>Descripcion:</strong> <%=  @user.descripcion %></p>
+         <p class="details_info"><strong>Descripcion:</strong> <%=  @user.descripcion %></p>         
       </div>
     </div>
   </div>

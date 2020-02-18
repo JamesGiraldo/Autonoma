@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root to: "home#index"
   devise_for :users
 
-  resources :users, only: [:index] do
+  resources :users, only: [:index, :ver_datos] do
+    get :ver_datos, on: :member
     collection do
       get :index_instructores
       get :decanos
@@ -13,7 +14,6 @@ Rails.application.routes.draw do
     collection do
       patch 'update_password'
       get :cambiar_password
-      get :show
     end
   end
 

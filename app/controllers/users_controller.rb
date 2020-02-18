@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:edit, :cambiar_password, :update_password, :update]
+  before_action :setiar_user, only: [:ver_datos]
+  before_action :set_user, only: [:edit, :show ,:cambiar_password, :update_password, :update]
 
   def index
     if current_user.has_role? :Admin
@@ -32,10 +33,10 @@ class UsersController < ApplicationController
   end
 
   def show
-  #@user = User.find(params[:id])
-    if current_user.has_role? :Admin
-      @user = current_user
-    end
+  end
+
+  def ver_datos
+    render :template => 'users/show'
   end
 
   def edit
@@ -69,6 +70,10 @@ class UsersController < ApplicationController
   private
   def set_user
     @user = current_user
+  end
+
+  def setiar_user
+    @user = User.find(params[:id])
   end
 
   def user_params

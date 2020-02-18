@@ -1,5 +1,9 @@
 <tr>
-    <td><%= link_to user.documento , user_path%></td>
+    <% if user.documento.present?%>
+      <td><%= link_to user.documento , ver_datos_user_path(user.id)%></td>
+      <% else %>
+      <td><%= link_to user.id , ver_datos_user_path(user.id)%></td>
+    <%end%>
     <td><%= user.email %></td>
     <td><%= user.nombre %></td>
     <td><%= user.apellido %></td>

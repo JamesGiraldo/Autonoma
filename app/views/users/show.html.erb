@@ -5,7 +5,9 @@
          <div class="picture">
            <% if @user.perfil? %>
              <%= image_tag @user.perfil.url(:thumb) %>
-           <% end %>
+             <%else%>
+                <%= image_tag 'autonomacaribe' , class: "imghome"%>
+            <%end%>
          </div>
     </div>
     <div class="container_details">

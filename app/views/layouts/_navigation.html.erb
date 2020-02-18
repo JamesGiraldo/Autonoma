@@ -130,6 +130,22 @@
                   </ul>
               </li>
             <%end%>
+              <li class="<%= 'active' if current_page?('/comentarios') %>">
+                  <%= link_to comentarios_path do %>
+                  <i class="fa fa-circle-o"></i>
+                  <span class="nav-label">Comentarios</span>
+                  <!-- <span class="label label-info float-right">NEW</span> -->
+                  <span class="fa arrow"></span>
+                  <% end %>
+                  <ul class=" nav nav-second-level #{is_active_controller('facultad')">
+                      <li class="<%= 'active' if current_page?('/facultades') %>">
+                        <%= link_to "Comentarios Asignados" , comentarios_path %>
+                      </li>
+                      <li class="<%= 'active' if current_page?('/programas') %>">
+                        <%= link_to "Nuevo Comentario" , new_comentario_path %>
+                      </li>
+                  </ul>
+              </li>
               <li class="<%= 'active' if current_page?('/facultades') %>">
                   <%= link_to facultades_path do %>
                   <i class="fa fa-circle-o"></i>

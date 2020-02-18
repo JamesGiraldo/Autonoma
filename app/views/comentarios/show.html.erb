@@ -1,0 +1,21 @@
+<h1 class="text-center mov-naranja">COMENTARIO<strong><%=  @comentario.titulo %></strong></h1><hr />
+<div class="usuario">
+  <div class="informacion">
+    <div class="container_details">
+      <div class="info">
+         <p class="details_info"><strong>Asunto: </strong> <%=  @comentario.titulo %></p>
+         <textarea name="name" rows="8" cols="80"><%=  @comentario.descripccion %></textarea>
+      </div>
+      <% if current_user.has_role? :Admin%>
+        <div class="botonContainer">
+          <div class="botonSeguimiento">
+            <%= link_to "Editar Curso", edit_comentario_path(@comentario), class: "botonSeguimientoColor"%>
+          </div>
+          <div class="botonSeguimiento">
+            <%= link_to 'Eliminar', { :action => :destroy, :id => @comentario.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar este Curso'} , class: "botonSeguimientoColor"%>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>

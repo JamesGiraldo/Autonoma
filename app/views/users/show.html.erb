@@ -3,9 +3,9 @@
   <div class="informacion">
     <div class="container_picture">
          <div class="picture">
-            <% if @user.perfil.thumb.present?%>
-              <%= image_tag @user.perfil.thumb, alt: "Imagen de usuario"%>
-            <%end%>
+           <% if @user.perfil? %>
+             <%= image_tag @user.perfil.url(:thumb) %>
+           <% end %>
          </div>
     </div>
     <div class="container_details">

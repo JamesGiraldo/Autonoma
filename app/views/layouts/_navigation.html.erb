@@ -17,7 +17,7 @@
                    </ul>
                 </div>
                 <div class="logo-element">
-                    <%=link_to "AU+", root_path %>     
+                    <%=link_to "AU+", root_path %>
                 </div>
             </li>
             <li class="<%= is_active_controller('home') %>">
@@ -188,9 +188,11 @@
                   <li class="<%= 'active' if current_page?('/users') %>">
                     <%= link_to "Cambiar Contraseña" , cambiar_password_user_path %>
                   </li>
-                  <li class="<%= 'active' if current_page?('/users') %>">
-                    <%= link_to "Administracion" , rails_admin_path %>
-                  </li>
+                  <% if current_user.has_role? :Admin %>
+                    <li class="<%= 'active' if current_page?('/users') %>">
+                      <%= link_to "Administracion" , rails_admin_path %>
+                    </li>
+                  <%end%>
                 </ul>
             </li>
         </ul>

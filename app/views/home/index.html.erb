@@ -5,9 +5,9 @@
     <div class="container_picture">
       <%= link_to edit_user_path do %>
          <div class="picture">
-            <% if current_user.perfil? %>
-               <%= image_tag current_user.perfil.url(:thumb), alt: "Imagen de usuario" %>
-             <%end%>
+           <% if current_user.avatar.present? %>
+               <%= image_tag current_user.avatar.thumb.url%>
+           <%end%>
          </div>
       <%end%>
     </div>

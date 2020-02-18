@@ -5,8 +5,8 @@
     <div class="container_picture">
       <%= link_to edit_user_path do %>
          <div class="picture">
-           <% if current_user.avatar.present? %>
-               <%= image_tag current_user.avatar.thumb.url%>
+           <% if current_user.perfil.present? %>
+               <%= image_tag current_user.perfil.thumb.url%>
            <%end%>
          </div>
       <%end%>

@@ -7,6 +7,8 @@
          <div class="picture">
            <% if current_user.perfil.present? %>
                <%= image_tag current_user.perfil.thumb.url%>
+            <%else%>
+               <p>Actualizar Perfil</p>
            <%end%>
          </div>
       <%end%>
@@ -77,7 +79,7 @@
             </a>
           </div>
        </div>
-       <div class="box">
+       <div class="box card bg-info">
          <div class="title">
             <h3 class="title_box"><strong>Programas</strong></h3>
          </div>

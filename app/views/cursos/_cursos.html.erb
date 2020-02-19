@@ -1,3 +1,5 @@
 <tr>
   <td><%= link_to curso.nombre , curso_path(curso.id) %></td>
+  <td><%= curso.created_at.strftime("%d-%m-%Y %H:%M")  %></td>
+  <td><%= curso.created_at.strftime("%d-%m-%Y %H:%M") %></td>
 </tr>

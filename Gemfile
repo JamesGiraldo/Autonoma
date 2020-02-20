@@ -8,13 +8,14 @@ end
 gem 'rails', '~> 5.1.7'
 # Use postgresql as the database for Active Record
 # Use Puma as the app server
+gem 'mysql2'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+#gem 'therubyracer', platforms: :ruby
 # gem 'mini_racer'
 # gem 'autoprefixer-rails'
 # Use CoffeeScript for .coffee assets and views
@@ -46,9 +47,9 @@ group :development, :test do
   gem 'selenium-webdriver'
 end
 
-group :production do
-  gem 'pg'
-end
+# group :production do
+#   gem 'pg'
+# end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -75,3 +76,8 @@ gem 'activerecord-suppress_range_error', '~> 0.1.1'
 gem 'rails_admin'
 gem 'table_print'
 gem 'truncate_html'
+gem 'chartkick'
+gem 'groupdate'
+gem 'faker'
+gem 'yarn', '~> 0.1.1'
+gem 'hiera-eyaml'

@@ -57,6 +57,6 @@ class CursosController < ApplicationController
 
   private
   def curso_params
-    params.require(:curso).permit(:nombre, :linea_id)
+    params.require(:curso).permit(:nombre, :linea_id, :estado)
   end
 end

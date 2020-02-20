@@ -15,8 +15,10 @@
 # gem 'pg'
 #
 default: &default
-  adapter: postgresql
-  encoding: unicode
+  #adapter: postgresql
+  adapter: mysql2
+  ecoding: utf-8
+  # encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -28,8 +30,11 @@ development:
   database: Autonoma_development
   username: <%= ENV['BD_LOCAL_USER'] %>
   password: <%= ENV['BD_LOCAL_PASSWORD'] %>
-  port: 5432
+  port: 3309
   host: localhost
+  #pool: 5
+  timeout: 5000
+  ecoding: utf-8
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -65,8 +70,11 @@ test:
   database: Autonoma_test
   username: <%= ENV['BD_LOCAL_USER'] %>
   password: <%= ENV['BD_LOCAL_PASSWORD'] %>
-  port: 5432
+  port: 3309
   host: localhost
+  #pool: 5
+  timeout: 5000
+  ecoding: utf-8
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -87,8 +95,8 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  adapter: postgresql
-  ecoding: unicode
+  #adapter: postgresql
+  ecoding: utf-8
   pool:    <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: Autonoma_production
   username: Autonoma

@@ -11,6 +11,7 @@ gem 'rails', '~> 5.1.7'
 gem 'mysql2'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
+gem 'sassc', '~> 2.1.0'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -56,7 +57,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem "gretel"
 gem 'font-awesome-rails'
-gem 'boostrap-sass', '~> 0.0.2'
+#gem 'boostrap-sass', '~> 0.0.2'
 gem 'bootstrap', '~> 4.3.1'
 gem 'simple_form'
 gem 'rolify', '~> 5.2'

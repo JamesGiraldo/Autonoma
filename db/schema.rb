@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200217185442) do
+ActiveRecord::Schema.define(version: 20200228154245) do
 
   create_table "comentarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "titulo"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 20200217185442) do
     t.index ["linea_id"], name: "index_cursos_on_linea_id"
   end
 
+  create_table "cursos_usuarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "nombre"
+    t.string "descripcion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "linea_id"
+    t.index ["linea_id"], name: "index_cursos_usuarios_on_linea_id"
+  end
+
   create_table "facultades", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
@@ -39,6 +48,8 @@ ActiveRecord::Schema.define(version: 20200217185442) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar"
+    t.bigint "cursos_usuarios_id"
+    t.index ["cursos_usuarios_id"], name: "index_lineas_on_cursos_usuarios_id"
   end
 
   create_table "programas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -79,6 +90,8 @@ ActiveRecord::Schema.define(version: 20200217185442) do
     t.bigint "documento"
     t.string "descripcion"
     t.string "perfil"
+    t.bigint "cursos_usuarios_id"
+    t.index ["cursos_usuarios_id"], name: "index_users_on_cursos_usuarios_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -92,4 +105,7 @@ ActiveRecord::Schema.define(version: 20200217185442) do
   end
 
   add_foreign_key "cursos", "lineas"
+  add_foreign_key "cursos_usuarios", "lineas"
+  add_foreign_key "lineas", "cursos_usuarios", column: "cursos_usuarios_id"
+  add_foreign_key "users", "cursos_usuarios", column: "cursos_usuarios_id"
 end

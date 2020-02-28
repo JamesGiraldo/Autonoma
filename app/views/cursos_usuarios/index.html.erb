@@ -1,0 +1,27 @@
+<h1 class="text-center mov-naranja">LISTA DE <strong>CURSOS POR OTRO LADO</strong></h1>
+<hr />
+<div class="row">
+  <%= form_tag(cursos_usuarios_path, class:"navbar-form-custom" , method: :get) do %>
+    <div class="form-group">
+      <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
+    </div>
+  <%end%>
+</div><br>
+<table class="table table-striped">
+  <tr>
+    <th class="active">Nombre</th>
+    <th class="active">Linea</th>
+  </tr>
+  <tr>
+    <% @cursosUsuarios.each do |curso_usuario| %>
+        <tr>
+          <td><%= link_to curso_usuario.nombre , cursos_usuario_path(curso_usuario.id)%></td>
+          <td><%= curso_usuario.linea.nombre%></td>
+        </tr>
+     <%end%>
+     <% unless @cursosUsuarios.present? %>
+        <tr>
+           <h2 class="text-center">No Hay Informacion Solicitada</h2
+        </tr>
+     <%end%>
+</table>

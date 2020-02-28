@@ -79,17 +79,20 @@
                           <%= link_to "Nueva Linea" , new_linea_path %>
                         </li>
                      <%else%>
-                       <li class="<%= 'active' if current_page?('/cursos') %>">
-                         <%= link_to "Cursos" , proyecciones_path %>
+                       <li class="<%= 'active' if current_page?('/lineas') %>">
+                         <%= link_to "Nueva Linea" , new_linea_path %>
                        </li>
                         <li class="<%= 'active' if current_page?('/cursos') %>">
-                          <%= link_to "Mis Cursos" , cursos_path %>
-                        </li>
-                        <li class="<%= 'active' if current_page?('/lineas') %>">
-                          <%= link_to "Nueva Linea" , new_linea_path %>
+                          <%= link_to "Cursos" , cursos_path %>
                         </li>
                         <li class="<%= 'active' if current_page?('/cursos') %>">
-                          <%= link_to "Nuevo Curso" , new_curso_path %>
+                          <%= link_to "Mis Cursos" , cursos_usuarios_path %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/cursos') %>">
+                          <%= link_to "Nuevo Curso" , new_cursos_usuario_path %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/cursos') %>">
+                          <%= link_to "Mis Proyecciones" , proyecciones_path %>
                         </li>
                     <% end %>
                   </ul>

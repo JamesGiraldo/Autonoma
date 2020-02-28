@@ -53,6 +53,12 @@ class LineasController < ApplicationController
         render :new
       end
     end
+    def destroy
+        @linea = Linea.find(params[:id])
+        flash[:info]="No Puede Eliminar Esta Linea Por Que Contiene Cursos Relacionados!"
+        @linea.destroy
+        redirect_to :action => :index
+    end
 
     private
     def linea_params

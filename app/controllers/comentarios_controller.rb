@@ -4,7 +4,7 @@ class ComentariosController < ApplicationController
   def index
     @comentarios = Comentario.all.page params[:page]
     if params[:q].present?
-      @comentarios = @comentarios.where("nombre ilike :q", q: "%#{params[:q]}%").page params[:page]
+      @comentarios = @comentarios.where("titulo like :q", q: "%#{params[:q]}%").page params[:page]
     end
   end
 

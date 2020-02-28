@@ -4,7 +4,7 @@ class ProyeccionesController < ApplicationController
   def index
     @proyecciones = Proyeccion.all.page params[:page]
     if params[:q].present?
-      @proyecciones = @proyecciones.where("nombre ilike :q or descripcion ilike :q", q: "%#{params[:q]}%").page params[:page]
+      @proyecciones = @proyecciones.where("nombre like :q or descripcion ilike :q", q: "%#{params[:q]}%").page params[:page]
     end
   end
 

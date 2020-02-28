@@ -3,7 +3,7 @@ class CursosUsuariosController < ApplicationController
   def index
     @cursosUsuarios = CursosUsuario.all.page params[:page]
     if params[:q].present?
-      @cursosUsuarios = @cursosUsuarios.where("nombre ilike :q", q: "%#{params[:q]}%").page params[:page]
+      @cursosUsuarios = @cursosUsuarios.where("nombre like :q", q: "%#{params[:q]}%").page params[:page]
     end
   end
 

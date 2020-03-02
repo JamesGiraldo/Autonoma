@@ -1,0 +1,18 @@
+<h2 class="subtitulo mov-naranja"><strong>Lineas</strong></h2>
+
+<% series = [
+  {name: "Pedagogia", data: @male_user},
+  {name: "Ingles", data: @female_user}
+  ]
+%>
+
+<%  options = {
+  title: 'Lineas',
+  subtitle: '---',
+  xtitle: 'No. Cursos',
+  ytitle: 'Lineas',
+  stacked: true
+  }
+%>
+
+<%= line_chart(series, options) %>

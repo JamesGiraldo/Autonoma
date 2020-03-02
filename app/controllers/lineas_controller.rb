@@ -4,15 +4,8 @@ class LineasController < ApplicationController
     def index
       @lineas = Linea.all.page params[:page]
       if params[:q].present?
-        @lineas = @lineas.where("nombre ilike :q", q: "%#{params[:q]}%").page params[:page]
-        # flash[:success] = "Busqueda correctamente"
-      # else
-      #   @cursos = current_user.cursos.order(id: :desc)
+        @lineas = @lineas.where("nombre like :q", q: "%#{params[:q]}%").page params[:page]
       end
-      #respond_to do |format|
-      #  format.html
-      #  format.js
-      #end
     end
 
     def show
@@ -52,6 +45,12 @@ class LineasController < ApplicationController
         flash[:alert] = "Problemas con la grabación"
         render :new
       end
+    end
+    def destroy
+        @linea = Linea.find(params[:id])
+        flash[:info]="No Puede Eliminar Esta Linea Por Que Contiene Cursos Relacionados!"
+        @linea.destroy
+        redirect_to :action => :index
     end
 
     private

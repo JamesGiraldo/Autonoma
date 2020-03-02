@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root to: "home#index"
   devise_for :users
 
@@ -16,16 +15,16 @@ Rails.application.routes.draw do
       get :cambiar_password
     end
   end
-
   resources :cursos
+  resources :cursos_usuarios
+  resources :lineas, except: [:show] do
+    resources :cursos, module: :lineas, except: [:show]
+    resources :cursos_usuarios, module: :lineas, except: [:show]
+  end
   resources :lineas
   resources :programas
   resources :facultades
   resources :proyecciones
   resources :comentarios
-
-  resources :lineas, except: [:show] do
-    resources :cursos, module: :lineas, except: [:show]
-  end
-  post 'linea/:linea_id/cursos/:id/asignar', to: "linea/cursos#asignar", as: "asignar"
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 end

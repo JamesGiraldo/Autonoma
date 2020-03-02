@@ -15,3 +15,15 @@
   </tr>
   <%= render partial: "comentarios", collection: @comentarios, as: :comentario %>
 </table>
+<% unless @comentarios.present? %>
+   <tr>
+      <h2 class="text-center">No Hay Informacion Solicitada</h2
+   </tr>
+<%end%>
+<% if current_user.has_role? :Admin%>
+  <div class="botonContainer">
+    <div class="botonSeguimiento">
+      <%= link_to "Nuevo Comentario", new_comentario_path, class: "botonSeguimientoColor"%>
+    </div>
+  </div>
+<%end%>

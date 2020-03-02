@@ -20,3 +20,10 @@
       <h2 class="text-center">No Hay Informacion Solicitada</h2
    </tr>
 <%end%>
+<% if current_user.has_role? :Admin%>
+  <div class="botonContainer">
+    <div class="botonSeguimiento">
+      <%= link_to "Nuevo Curso", new_curso_path, class: "botonSeguimientoColor"%>
+    </div>
+  </div>
+<%end%>

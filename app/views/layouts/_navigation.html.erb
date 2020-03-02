@@ -82,6 +82,9 @@
                        <li class="<%= 'active' if current_page?('/lineas') %>">
                          <%= link_to "Nueva Linea" , new_linea_path %>
                        </li>
+                       <li class="<%= 'active' if current_page?('/lineas') %>">
+                         <%= link_to "Lineas de Cursos" , lineas_path %>
+                       </li>
                         <li class="<%= 'active' if current_page?('/cursos') %>">
                           <%= link_to "Cursos" , cursos_path %>
                         </li>

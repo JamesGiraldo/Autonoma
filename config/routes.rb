@@ -16,14 +16,15 @@ Rails.application.routes.draw do
     end
   end
   resources :cursos
+  resources :cursos_usuarios
   resources :lineas, except: [:show] do
     resources :cursos, module: :lineas, except: [:show]
+    resources :cursos_usuarios, module: :lineas, except: [:show]
   end
   resources :lineas
   resources :programas
   resources :facultades
   resources :proyecciones
   resources :comentarios
-  resources :cursos_usuarios
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 end

@@ -13,3 +13,8 @@
   </tr>
   <%= render partial: "proyecciones", collection: @proyecciones, as: :proyeccion %>
 </table>
+<% unless @proyecciones.present? %>
+   <tr>
+      <h2 class="text-center">No Hay Informacion Solicitada</h2
+   </tr>
+<%end%>

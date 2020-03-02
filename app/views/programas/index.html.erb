@@ -14,3 +14,8 @@
   </tr>
   <%= render partial: "programas", collection: @programas, as: :programa %>
 </table>
+<% unless @programas.present? %>
+   <tr>
+      <h2 class="text-center">No Hay Informacion Solicitada</h2
+   </tr>
+<%end%>

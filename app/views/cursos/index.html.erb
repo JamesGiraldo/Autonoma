@@ -16,4 +16,9 @@
   </tr>
   <%= render partial: "cursos", collection: @cursos, as: :curso %>
 </table>
+<% unless @cursos.present? %>
+   <tr>
+      <h2 class="text-center">No Hay Informacion Solicitada</h2
+   </tr>
+<%end%>
 <%= paginate @cursos, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination-sm" %>

@@ -13,15 +13,15 @@
     <th class="active">Linea</th>
   </tr>
   <tr>
-    <% @cursosUsuarios.each do |curso_usuario| %>
+    <% @cursos_usuarios.each do |curso_usuario| %>
         <tr>
           <td><%= link_to curso_usuario.nombre , cursos_usuario_path(curso_usuario.id)%></td>
           <td><%= curso_usuario.linea.nombre%></td>
         </tr>
      <%end%>
+     <% unless @cursos_usuarios.present? %>
+        <tr>
+           <h2 class="text-center">No Hay Informacion Solicitada</h2
+        </tr>
+     <%end%>
 </table>
-<% unless @cursosUsuarios.present? %>
-   <tr>
-      <h2 class="text-center">No Hay Informacion Solicitada</h2
-   </tr>
-<%end%>

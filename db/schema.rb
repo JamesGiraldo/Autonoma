@@ -48,8 +48,6 @@ ActiveRecord::Schema.define(version: 20200228154245) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar"
-    t.bigint "cursos_usuarios_id"
-    t.index ["cursos_usuarios_id"], name: "index_lineas_on_cursos_usuarios_id"
   end
 
   create_table "programas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -90,8 +88,6 @@ ActiveRecord::Schema.define(version: 20200228154245) do
     t.bigint "documento"
     t.string "descripcion"
     t.string "perfil"
-    t.bigint "cursos_usuarios_id"
-    t.index ["cursos_usuarios_id"], name: "index_users_on_cursos_usuarios_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -106,6 +102,4 @@ ActiveRecord::Schema.define(version: 20200228154245) do
 
   add_foreign_key "cursos", "lineas"
   add_foreign_key "cursos_usuarios", "lineas"
-  add_foreign_key "lineas", "cursos_usuarios", column: "cursos_usuarios_id"
-  add_foreign_key "users", "cursos_usuarios", column: "cursos_usuarios_id"
 end

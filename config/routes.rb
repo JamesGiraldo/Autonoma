@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   resources :lineas
   resources :programas
   resources :facultades
+  resources :facultades, except: [:show] do
+    resources :programas, module: :facultades, except: [:show]
+  end
   resources :proyecciones
   resources :comentarios
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

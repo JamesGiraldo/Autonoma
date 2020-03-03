@@ -6,5 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   mount_uploader :perfil, PerfilUploader
-  # has_many :cursosUsuarios
+  has_many :cursosUsuario, :dependent => :restrict_with_error
+  has_many :proyecciones, :dependent => :restrict_with_error
+  belongs_to :programa
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200303151156) do
+ActiveRecord::Schema.define(version: 20200303161251) do
 
   create_table "comentarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "titulo"
@@ -94,7 +94,9 @@ ActiveRecord::Schema.define(version: 20200303151156) do
     t.bigint "documento"
     t.string "descripcion"
     t.string "perfil"
+    t.bigint "programa_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["programa_id"], name: "index_users_on_programa_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -111,4 +113,5 @@ ActiveRecord::Schema.define(version: 20200303151156) do
   add_foreign_key "cursos_usuarios", "users"
   add_foreign_key "programas", "facultades"
   add_foreign_key "proyecciones", "users"
+  add_foreign_key "users", "programas"
 end

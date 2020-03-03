@@ -8,4 +8,5 @@ class User < ApplicationRecord
   mount_uploader :perfil, PerfilUploader
   has_many :cursosUsuario, :dependent => :restrict_with_error
   has_many :proyecciones, :dependent => :restrict_with_error
+  belongs_to :programa
 end

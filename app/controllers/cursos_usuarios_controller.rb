@@ -1,7 +1,7 @@
 class CursosUsuariosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   def index
-    @cursosUsuarios = CursosUsuario.all.page params[:page]
+    @cursosUsuarios = CursosUsuario.where(user_id: current_user.id).page params[:page]
     if params[:q].present?
       @cursosUsuarios = @cursosUsuarios.where("nombre like :q", q: "%#{params[:q]}%").page params[:page]
     end
@@ -37,7 +37,7 @@ class CursosUsuariosController < ApplicationController
   end
 
     def create
-        @curso_usuario = CursosUsuario.new(curso_usuario_params)
+      @curso_usuario = current_user.cursosUsuario.new(curso_usuario_params)
         if @curso_usuario.save
           flash[:success] = "Curso registrado correctamente"
           redirect_to cursos_usuarios_path(@curso_usuario)

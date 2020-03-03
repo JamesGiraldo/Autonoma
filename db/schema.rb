@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200228154245) do
+ActiveRecord::Schema.define(version: 20200303135527) do
 
   create_table "comentarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "titulo"
@@ -34,7 +34,9 @@ ActiveRecord::Schema.define(version: 20200228154245) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "linea_id"
+    t.bigint "user_id"
     t.index ["linea_id"], name: "index_cursos_usuarios_on_linea_id"
+    t.index ["user_id"], name: "index_cursos_usuarios_on_user_id"
   end
 
   create_table "facultades", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -102,4 +104,5 @@ ActiveRecord::Schema.define(version: 20200228154245) do
 
   add_foreign_key "cursos", "lineas"
   add_foreign_key "cursos_usuarios", "lineas"
+  add_foreign_key "cursos_usuarios", "users"
 end

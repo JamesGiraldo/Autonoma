@@ -10,6 +10,7 @@ gem 'rails', '~> 5.1.7'
 # Use Puma as the app server
 gem 'mysql2'
 gem 'puma', '~> 3.7'
+#gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sassc', '~> 2.1.0'
 gem 'sass-rails', '~> 5.0'

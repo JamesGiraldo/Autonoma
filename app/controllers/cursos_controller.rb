@@ -5,7 +5,7 @@ class CursosController < ApplicationController
     flash[:info]="Si Decea Registrar Un Nuevo Curso Asegurese De Que Tenga Una Linea Su Curso!"
     @cursos = Curso.all.page params[:page]
     if params[:q].present?
-      @cursos = @cursos.where("nombre ilike :q", q: "%#{params[:q]}%").page params[:page]
+      @cursos = @cursos.where("nombre like :q", q: "%#{params[:q]}%").page params[:page]
     end
   end
 

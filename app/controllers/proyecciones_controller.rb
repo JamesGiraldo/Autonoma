@@ -2,9 +2,9 @@ class ProyeccionesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @proyecciones = Proyeccion.all.page params[:page]
+    @proyecciones = Proyeccion.where(user_id: current_user.id).page params[:page]
     if params[:q].present?
-      @proyecciones = @proyecciones.where("nombre ilike :q or descripcion ilike :q", q: "%#{params[:q]}%").page params[:page]
+      @proyecciones = @proyecciones.where("nombre like :q or descripcion ilike :q", q: "%#{params[:q]}%").page params[:page]
     end
   end
 
@@ -49,7 +49,7 @@ class ProyeccionesController < ApplicationController
   end
 
   def create
-         @proyeccion = Proyeccion.new(proyeccion_params)
+    @proyeccion = current_user.proyecciones.new(proyeccion_params)
       if @proyeccion.save!
         flash[:success]="Proyeccion Registrada!"
         render :show

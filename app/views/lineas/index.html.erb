@@ -10,23 +10,52 @@
 </div><br>
 <div class="usuario">
   <div class="informacion_general">
+    <% unless @lineas.present? %>
+       <tr>
+          <h2 class="text-center">No Hay Informacion Solicitada</h2
+       </tr>
+    <%end%>
     <div class="card-header">
       <div class="box">
-        <% @lineas.each do |linea| %>
-          <%= link_to linea_cursos_path(linea) do %>
-            <div class="full-width post">
-              <% if linea.avatar.present? %>
-                <%= image_tag linea.avatar.thumb.url%>
-              <%else%>
-                <p>Aqui va una foto defaul</p>
-              <%end%>
-              <div class="full-width post-info">
-                <p class="full-width post-info-price nom_gru"><%=linea.nombre%></p>
+        <% if current_user.has_role? :Admin %>
+            <% @lineas.each do |linea| %>
+              <%= link_to linea_cursos_path(linea) do %>
+                <div class="full-width post">
+                  <% if linea.avatar.present? %>
+                    <%= image_tag linea.avatar.thumb.url%>
+                  <%else%>
+                    <p>Aqui va una foto defaul</p>
+                  <%end%>
+                  <div class="full-width post-info">
+                    <p class="full-width post-info-price nom_gru"><%=linea.nombre%></p>
+                  </div>
+                <%end%>
               </div>
             <%end%>
-          </div>
+          <%else%>
+            <% @lineas.each do |linea| %>
+              <%= link_to linea_cursos_usuarios_path(linea) do %>
+                <div class="full-width post">
+                  <% if linea.avatar.present? %>
+                    <%= image_tag linea.avatar.thumb.url%>
+                  <%else%>
+                    <p>Aqui va una foto defaul</p>
+                  <%end%>
+                  <div class="full-width post-info">
+                    <p class="full-width post-info-price nom_gru"><%=linea.nombre%></p>
+                  </div>
+                <%end%>
+              </div>
+            <%end%>
         <%end%>
        </div>
      </div>
+     <% if current_user.has_role? :Admin%>
+       <div class="botonContainer">
+         <div class="botonSeguimiento">
+           <%= link_to "Nueva Linea", new_linea_path, class: "botonSeguimientoColor"%>
+         </div>
+       </div>
+     <%end%>
    </div>
 </div>

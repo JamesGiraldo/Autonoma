@@ -5,7 +5,7 @@ class FacultadesController < ApplicationController
   def index
     @facultades = Facultad.all.page params[:page]
     if params[:q].present?
-      @facultades = @facultades.where("nombre ilike :q", q: "%#{params[:q]}%").page params[:page]
+      @facultades = @facultades.where("nombre like :q", q: "%#{params[:q]}%").page params[:page]
     end
   end
 

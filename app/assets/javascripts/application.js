@@ -25,3 +25,4 @@
 //= require inspinia.js
 //= require chartkick
 //= require Chart.bundle
+//= require apexcharts

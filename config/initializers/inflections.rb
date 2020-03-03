@@ -6,6 +6,9 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'facultad','facultades'
   inflect.irregular 'proyeccion','proyecciones'
   inflect.irregular 'comentario','comentarios'
+  inflect.irregular 'año','años'
+  inflect.irregular 'cursosUsuario','cursosUsuarios'
+  inflect.irregular 'cursosRealizado','cursosRealizados'
 end
 
 # Be sure to restart your server when you modify this file.

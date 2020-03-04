@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   end
   resources :lineas
   resources :programas
+  resources :programas, except: [:show] do
+    resources :users, module: :programas, except: [:show]
+  end
   resources :facultades
   resources :facultades, except: [:show] do
     resources :programas, module: :facultades, except: [:show]

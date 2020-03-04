@@ -131,35 +131,37 @@
                   <% end %>
                   <ul class=" nav nav-second-level #{is_active_controller('facultad')">
                     <% if current_user.has_role? :Admin %>
-                      <li class="<%= 'active' if current_page?('/facultades') %>">
+                      <li class="<%= 'active' if current_page?('/comentarios') %>">
                         <%= link_to "Comentarios" , comentarios_path %>
                       </li>
                       <% else %>
-                        <li class="<%= 'active' if current_page?('/facultades') %>">
+                        <li class="<%= 'active' if current_page?('/comentarios') %>">
                           <%= link_to "Mis Comentarios" , comentarios_path %>
                         </li>
                       <% end %>
                   </ul>
               </li>
-              <li class="<%= 'active' if current_page?('/facultades') %>">
-                  <%= link_to facultades_path do %>
-                  <i class="fa fa-circle-o"></i>
-                  <span class="nav-label">Facultades</span>
-                  <!-- <span class="label label-info float-right">NEW</span> -->
-                  <span class="fa arrow"></span>
-                  <% end %>
-                  <ul class=" nav nav-second-level #{is_active_controller('facultad')">
-                    <% if current_user.has_role? :Admin %>
-                      <li class="<%= 'active' if current_page?('/facultades') %>">
-                        <%= link_to "Facultades" , facultades_path %>
-                      </li>
-                    <% else %>
-                      <li class="<%= 'active' if current_page?('/facultades') %>">
-                        <%= link_to "Mis Facultades" , facultades_path %>
-                      </li>
-                    <%end%>
-                  </ul>
-              </li>
+              <% if current_user.has_role? :Admin %>
+                <li class="<%= 'active' if current_page?('/facultades') %>">
+                    <%= link_to facultades_path do %>
+                    <i class="fa fa-circle-o"></i>
+                    <span class="nav-label">Facultades</span>
+                    <!-- <span class="label label-info float-right">NEW</span> -->
+                    <span class="fa arrow"></span>
+                    <% end %>
+                    <ul class=" nav nav-second-level #{is_active_controller('facultad')">
+                      <% if current_user.has_role? :Admin %>
+                        <li class="<%= 'active' if current_page?('/facultades') %>">
+                          <%= link_to "Facultades" , facultades_path %>
+                        </li>
+                      <% else %>
+                        <li class="<%= 'active' if current_page?('/facultades') %>">
+                          <%= link_to "Mis Facultades" , facultades_path %>
+                        </li>
+                      <%end%>
+                    </ul>
+                </li>
+              <%end%>  
               <% if current_user.has_role? :Admin %>
                 <li class="<%= 'active' if current_page?('/programas') %>">
                     <%= link_to facultades_path do %>

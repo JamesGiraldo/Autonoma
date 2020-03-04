@@ -27,7 +27,11 @@
         </div>
       </div>
       <div class="col-m6">
-        <p class="details_info"><strong>Programa:</strong> <%= @user.programa.nombre %></p>
+        <% if @user.programa.present? %>
+            <p class="details_info"><strong>Programa:</strong> <%= @user.programa.nombre %></p>
+          <% else %>
+          <p class="details_info"><strong>Programa:</strong>NULL</p>
+        <% end %>
         <p class="details_info"><strong>Descripcion:</strong> <%=  @user.descripcion %></p>
       </div>
     </div>

@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       end
     elsif current_user.has_role? :Decano
         @users = User.all.includes(:roles).where('roles.name' => "Docente").page params[:page]
-      end
+    end
   end
 
   def show

@@ -14,12 +14,18 @@
       <%end%>
     </div>
     <div class="container_details">
-      <div class="info">
-         <p class="details_info"><strong>Nombre:</strong> <%= current_user.nombre %> <%= current_user.apellido%></p>
-         <p class="details_info"><strong>Rol:</strong> <%= current_user.roles.collect(&:name).join(' , ').upcase %></p>
-         <p class="details_info"><strong>Documento:</strong> <%=  current_user.documento%></p>
-         <p class="details_info"><strong>Correo:</strong> <%=  current_user.email %></p>
-         <p class="details_info"><strong>Teléfono:</strong> <%=  current_user.telefono %></p>
+      <div class="col-md-6">
+        <div class="info">
+           <p class="details_info"><strong>Nombre:</strong> <%= current_user.nombre %> <%= current_user.apellido%></p>
+           <p class="details_info"><strong>Rol:</strong> <%= current_user.roles.collect(&:name).join(' , ').upcase %></p>
+           <p class="details_info"><strong>Documento:</strong> <%=  current_user.documento%></p>
+           <p class="details_info"><strong>Correo:</strong> <%=  current_user.email %></p>
+           <p class="details_info"><strong>Teléfono:</strong> <%=  current_user.telefono %></p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <p class="details_info"><strong>Programa:</strong> <%= current_user.programa.nombre %></p>
+        <p class="details_info"><strong>Descripcion:</strong> <%=  current_user.descripcion %></p>
       </div>
     </div>
   </div>

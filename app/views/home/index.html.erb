@@ -31,7 +31,7 @@
   </div>
   <div class="informacion_general">
     <div class="container_box">
-      <div class="box">
+      <div class="box card text-white bg-primary mb-3">
          <div class="title">
              <h3 class="title_box"><strong>Comentarios</strong></h3>
          </div>
@@ -49,7 +49,7 @@
            </a>
          </div>
       </div>
-       <div class="box">
+       <div class="box card text-white bg-secondary mb-3">
           <div class="title">
             <h3 class="title_box"><strong>Facultades</strong></h3>
           </div>
@@ -67,7 +67,7 @@
             </a>
           </div>
        </div>
-       <div class="box">
+       <div class="box card text-white bg-success mb-3 ">
           <div class="title">
               <h3 class="title_box"><strong>Cursos</strong></h3>
           </div>
@@ -98,6 +98,24 @@
          <div class="ver_mas">
            <a class="<%= is_active_controller('users') %>">
               <%= link_to programas_path do %>
+                <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+              <% end %>
+           </a>
+         </div>
+       </div>
+       <div class="box card text-white bg-danger mb-3">
+         <div class="title">
+            <h3 class="title_box"><strong>Proyecciones</strong></h3>
+         </div>
+         <div class="description">
+            <h1 class="description_box"><%= current_user.proyecciones.count%></h1>
+         </div>
+         <div class="foot">
+            <h3 class="foot_box">Universidad Autonoma del caribe</h3>
+         </div>
+         <div class="ver_mas">
+           <a class="<%= is_active_controller('users') %>">
+              <%= link_to proyecciones_path do %>
                 <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
               <% end %>
            </a>

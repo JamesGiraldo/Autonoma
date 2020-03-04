@@ -1,4 +1,9 @@
-<h1 class="text-center mov-naranja"><strong><%=  @user.email %></strong></h1><hr />
+<% if @user.nombre.present? %>
+    <h1 class="text-center mov-naranja"><strong><%= @user.nombre %> <%= @user.apellido %></strong></h1><hr />
+  <%else%>
+  <h1 class="text-center mov-naranja"><strong><%= @user.email %></strong></h1><hr />
+<% end %>
+<h2 class="subtitulo mov-naranja"><strong>Informacion</strong></h2>
 <div class="usuario">
   <div class="informacion">
     <div class="container_picture">
@@ -11,14 +16,19 @@
          </div>
     </div>
     <div class="container_details">
-      <div class="info">
-         <p class="details_info"><strong>Rol:</strong> <%= @user.roles.collect(&:name).join(' , ').upcase %></p>
-         <p class="details_info"><strong>Correo:</strong> <%=  @user.email %></p>
-         <p class="details_info"><strong>Nombre:</strong> <%=  @user.nombre %></p>
-         <p class="details_info"><strong>Apellido:</strong> <%=  @user.apellido %></p>
-         <p class="details_info"><strong>Telefono:</strong> <%=  @user.telefono %></p>
-         <p class="details_info"><strong>Direccion:</strong> <%=  @user.direccion %></p>
-         <p class="details_info"><strong>Descripcion:</strong> <%=  @user.descripcion %></p>
+      <div class="col-md-6">
+        <div class="info">
+           <p class="details_info"><strong>Rol:</strong> <%= @user.roles.collect(&:name).join(' , ').upcase %></p>
+           <p class="details_info"><strong>Correo:</strong> <%=  @user.email %></p>
+           <p class="details_info"><strong>Nombre:</strong> <%=  @user.nombre %></p>
+           <p class="details_info"><strong>Apellido:</strong> <%=  @user.apellido %></p>
+           <p class="details_info"><strong>Telefono:</strong> <%=  @user.telefono %></p>
+           <p class="details_info"><strong>Direccion:</strong> <%=  @user.direccion %></p>
+        </div>
+      </div>
+      <div class="col-m6">
+        <p class="details_info"><strong>Programa:</strong> <%= @user.programa.nombre %></p>
+        <p class="details_info"><strong>Descripcion:</strong> <%=  @user.descripcion %></p>
       </div>
     </div>
   </div>

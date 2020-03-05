@@ -24,7 +24,11 @@
         </div>
       </div>
       <div class="col-md-6">
-        <p class="details_info"><strong>Programa:</strong> <%= current_user.programa.nombre %></p>
+        <% if current_user.programa.present? %>
+            <p class="details_info"><strong>Programa:</strong> <%= current_user.programa.nombre %></p>
+          <%else%>
+            <p class="details_info"><strong>Programa:</strong>NULL</p>
+        <% end %>
         <p class="details_info"><strong>Descripcion:</strong> <%=  current_user.descripcion %></p>
       </div>
     </div>

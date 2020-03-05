@@ -8,17 +8,33 @@
     </div>
   <%end%>
 </div><br>
-<table class="table table-striped">
-  <tr>
-    <th class="active">NOMBRE</th>
-  </tr>
-  <%= render partial: "programas", collection: @programas, as: :programa %>
-</table>
 <% unless @programas.present? %>
-   <tr>
-      <h2 class="text-center">No Hay Informacion Solicitada</h2
-   </tr>
+    <h2 class="text-center">No Hay Informacion Solicitada</h2
 <%end%>
+<div class="usuario">
+  <div class="informacion_general">
+    <div class="container_box">
+     <% @programas.each do |programa| %>
+        <div class="box ">
+            <div class="title">
+                <h3 class="title_box"><strong><%= programa.nombre %></strong></h3>
+            </div>
+            <div class="foot">
+                <h3 class="foot_box">Docentes</h3>
+            </div>
+            <div class="description">
+                <h1 class="description_box"><%= programa.users.includes(:roles).where('roles.name' => "Docente").count%></h1>
+            </div>
+            <div class="ver_mas">
+              <a class="<%= is_active_controller('programas') %>">
+                 <%= link_to programa_users_path(programa) do %>
+                   <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+                 <% end %>
+              </a>
+            </div>
+      </div>
+    <%end%>
+</div>
 <% if current_user.has_role? :Admin%>
   <div class="botonContainer">
     <div class="botonSeguimiento">

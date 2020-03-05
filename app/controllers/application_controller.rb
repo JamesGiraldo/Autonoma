@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
                                                                         :telefono,
                                                                         :direccion,
                                                                         :documento,
-                                                                        :descripcion)}
+                                                                        :descripcion,
+                                                                        :perfil)}
   end
 end

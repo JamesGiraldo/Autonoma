@@ -72,24 +72,18 @@
                         <li class="<%= 'active' if current_page?('/cursos') %>">
                           <%= link_to "Lista De Cursos" , cursos_path %>
                         </li>
-                        <li class="<%= 'active' if current_page?('/cursos') %>">
-                          <%= link_to "Nuevo Curso" , new_curso_path %>
-                        </li>
                         <li class="<%= 'active' if current_page?('/lineas') %>">
                           <%= link_to "Nueva Linea" , new_linea_path %>
                         </li>
                      <%else%>
                        <li class="<%= 'active' if current_page?('/lineas') %>">
-                         <%= link_to "Nueva Linea" , new_linea_path %>
+                         <%= link_to "Lineas de Cursos" , lineas_path %>
                        </li>
                         <li class="<%= 'active' if current_page?('/cursos') %>">
                           <%= link_to "Cursos" , cursos_path %>
                         </li>
                         <li class="<%= 'active' if current_page?('/cursos') %>">
                           <%= link_to "Mis Cursos" , cursos_usuarios_path %>
-                        </li>
-                        <li class="<%= 'active' if current_page?('/cursos') %>">
-                          <%= link_to "Nuevo Curso" , new_cursos_usuario_path %>
                         </li>
                         <li class="<%= 'active' if current_page?('/cursos') %>">
                           <%= link_to "Mis Proyecciones" , proyecciones_path %>
@@ -115,24 +109,19 @@
                   </ul>
               </li>
             <%end%>
-            <% if current_user.has_role? :Admin %>
               <li class="<%= 'active' if current_page?('/proyecciones') %>">
                   <%= link_to proyecciones_path do %>
                   <i class="fa fa-dashboard"></i>
-                  <span class="nav-label">Futuros Cursos</span>
+                  <span class="nav-label">Proyecciones</span>
                   <!-- <span class="label label-info float-right">NEW</span> -->
                   <span class="fa arrow"></span>
                   <% end %>
                   <ul class=" nav nav-second-level #{is_active_controller('linea')">
                     <li class="<%= 'active' if current_page?('/proyecciones') %>">
-                      <%= link_to "Cursos" , proyecciones_path %>
-                    </li>
-                    <li class="<%= 'active' if current_page?('/proyecciones') %>">
-                      <%= link_to "Nuevo Curso" , new_proyeccion_path %>
+                      <%= link_to "Mis Proyecciones" , proyecciones_path %>
                     </li>
                   </ul>
               </li>
-            <%end%>
               <li class="<%= 'active' if current_page?('/comentarios') %>">
                   <%= link_to comentarios_path do %>
                   <i class="fa fa-circle-o"></i>
@@ -141,38 +130,38 @@
                   <span class="fa arrow"></span>
                   <% end %>
                   <ul class=" nav nav-second-level #{is_active_controller('facultad')">
-                      <li class="<%= 'active' if current_page?('/facultades') %>">
-                        <%= link_to "Comentarios Asignados" , comentarios_path %>
+                    <% if current_user.has_role? :Admin %>
+                      <li class="<%= 'active' if current_page?('/comentarios') %>">
+                        <%= link_to "Comentarios" , comentarios_path %>
                       </li>
-                      <li class="<%= 'active' if current_page?('/programas') %>">
-                        <%= link_to "Nuevo Comentario" , new_comentario_path %>
-                      </li>
+                      <% else %>
+                        <li class="<%= 'active' if current_page?('/comentarios') %>">
+                          <%= link_to "Mis Comentarios" , comentarios_path %>
+                        </li>
+                      <% end %>
                   </ul>
               </li>
-              <li class="<%= 'active' if current_page?('/facultades') %>">
-                  <%= link_to facultades_path do %>
-                  <i class="fa fa-circle-o"></i>
-                  <span class="nav-label">Facultades</span>
-                  <!-- <span class="label label-info float-right">NEW</span> -->
-                  <span class="fa arrow"></span>
-                  <% end %>
-                  <ul class=" nav nav-second-level #{is_active_controller('facultad')">
-                    <% if current_user.has_role? :Admin %>
-                      <li class="<%= 'active' if current_page?('/facultades') %>">
-                        <%= link_to "Facultades" , facultades_path %>
-                      </li>
-                    <% else %>
-                      <li class="<%= 'active' if current_page?('/facultades') %>">
-                        <%= link_to "Mis Facultades" , facultades_path %>
-                      </li>
-                    <%end%>
-                    <% if current_user.has_role? :Admin %>
-                    <li class="<%= 'active' if current_page?('/facultades') %>">
-                      <%= link_to "Nueva Facultad" , new_facultad_path %>
-                    </li>
+              <% if current_user.has_role? :Admin %>
+                <li class="<%= 'active' if current_page?('/facultades') %>">
+                    <%= link_to facultades_path do %>
+                    <i class="fa fa-circle-o"></i>
+                    <span class="nav-label">Facultades</span>
+                    <!-- <span class="label label-info float-right">NEW</span> -->
+                    <span class="fa arrow"></span>
                     <% end %>
-                  </ul>
-              </li>
+                    <ul class=" nav nav-second-level #{is_active_controller('facultad')">
+                      <% if current_user.has_role? :Admin %>
+                        <li class="<%= 'active' if current_page?('/facultades') %>">
+                          <%= link_to "Facultades" , facultades_path %>
+                        </li>
+                      <% else %>
+                        <li class="<%= 'active' if current_page?('/facultades') %>">
+                          <%= link_to "Mis Facultades" , facultades_path %>
+                        </li>
+                      <%end%>
+                    </ul>
+                </li>
+              <%end%>  
               <% if current_user.has_role? :Admin %>
                 <li class="<%= 'active' if current_page?('/programas') %>">
                     <%= link_to facultades_path do %>
@@ -185,9 +174,6 @@
                       <% if current_user.has_role? :Admin %>
                         <li class="<%= 'active' if current_page?('/programas') %>">
                           <%= link_to "Programas" , programas_path %>
-                        </li>
-                        <li class="<%= 'active' if current_page?('/programas') %>">
-                          <%= link_to "Nuevo Programa" , new_programa_path %>
                         </li>
                       <% end %>
                     </ul>

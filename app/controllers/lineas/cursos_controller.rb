@@ -7,7 +7,7 @@ class Lineas::CursosController < ApplicationController
   def index
       @cursos = @linea.cursos.order(id: :desc)
     if params[:q].present?
-      @cursos = @cursos.where("nombre ilike :q", q: "%#{params[:q]}%").page params[:page]
+      @cursos = @cursos.where("nombre like :q", q: "%#{params[:q]}%").page params[:page]
     end
   end
 

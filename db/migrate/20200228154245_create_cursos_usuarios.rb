@@ -6,8 +6,7 @@ class CreateCursosUsuarios < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+    # add_reference(:cursos_usuarios, :users, foreign_key: true)
     add_reference(:cursos_usuarios, :linea, foreign_key: true)
-    add_reference(:users, :cursos_usuarios, foreign_key: true)
-    add_reference(:lineas, :cursos_usuarios, foreign_key: true)
   end
 end

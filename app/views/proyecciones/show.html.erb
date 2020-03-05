@@ -10,10 +10,10 @@
       <% if current_user.has_role? :Admin%>
         <div class="botonContainer">
           <div class="botonSeguimiento">
-            <%= link_to "Editar Curso", edit_proyeccion_path(@proyeccion), class: "botonSeguimientoColor"%>
+            <%= link_to "Editar Proyeccion", edit_proyeccion_path(@proyeccion), class: "botonSeguimientoColor"%>
           </div>
           <div class="botonSeguimiento">
-            <%= link_to 'Eliminar', { :action => :destroy, :id => @proyeccion.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar este Curso'} , class: "botonSeguimientoColor"%>
+            <%= link_to 'Eliminar', { :action => :destroy, :id => @proyeccion.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar esta Proyeccion'} , class: "botonSeguimientoColor"%>
           </div>
         </div>
       <%end%>

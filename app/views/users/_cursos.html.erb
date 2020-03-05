@@ -1,0 +1,49 @@
+<% if current_user.has_role? :decano %>
+  <h2 class="subtitulo mov-naranja"><strong>Cursos Realizados</strong></h2>
+  <div class="row">
+    <%= form_tag(cursos_usuarios_path, class:"navbar-form-custom" , method: :get) do %>
+      <div class="form-group">
+        <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
+      </div>
+    <%end%>
+  </div><br>
+    <div class="usuario">
+      <table class="table table-striped">
+        <tr>
+          <th class="active">Nombre</th>
+          <th class="active">Linea</th>
+        </tr>
+        <tr>
+          <% @user.cursosUsuario.each do |curso_usuario| %>
+              <tr>
+                <td><%= link_to curso_usuario.nombre , cursos_usuario_path(curso_usuario.id)%></td>
+                <td><%= curso_usuario.linea.nombre%></td>
+              </tr>
+           <%end%>
+      </table>
+  </div>
+  <% elsif current_user.has_role? :Admin %>
+    <h2 class="subtitulo mov-naranja"><strong>Cursos Realizados</strong></h2>
+    <div class="row">
+      <%= form_tag(cursos_usuarios_path, class:"navbar-form-custom" , method: :get) do %>
+        <div class="form-group">
+          <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
+        </div>
+      <%end%>
+    </div><br>
+      <div class="usuario">
+        <table class="table table-striped">
+          <tr>
+            <th class="active">Nombre</th>
+            <th class="active">Linea</th>
+          </tr>
+          <tr>
+            <% @user.cursosUsuario.each do |curso_usuario| %>
+                <tr>
+                  <td><%= link_to curso_usuario.nombre , cursos_usuario_path(curso_usuario.id)%></td>
+                  <td><%= curso_usuario.linea.nombre%></td>
+                </tr>
+             <%end%>
+        </table>
+    </div>
+<% end %>

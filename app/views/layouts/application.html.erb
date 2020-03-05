@@ -15,10 +15,13 @@
             <!-- Page wrapper -->
             <%= render 'layouts/topnavbar' %>
             <!-- Main view  -->
-            <section class="down">
-              <%= breadcrumbs display_single_fragment: true, style: :bootstrap , separator: ' / ' %>
-            </section>
             <%= custom_bootstrap_flash %>
+            <section class="content-header">
+               <h1></h1>
+               <ol class="breadcrumb">
+                 <%= breadcrumbs display_single_fragment: true, style: :bootstrap , separator: ' / ' %>
+               </ol>
+             </section>
             <%= yield %>
             <!-- Footer -->
             <%= render 'layouts/footer' %>

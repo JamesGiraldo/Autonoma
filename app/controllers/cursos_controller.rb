@@ -2,7 +2,9 @@ class CursosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    flash[:info]="Si Decea Registrar Un Nuevo Curso Asegurese De Que Tenga Una Linea Su Curso!"
+    if current_user.has_role? :ADmin
+       flash[:info]="Si Decea Registrar Un Nuevo Curso Asegurese De Que Tenga Una Linea Su Curso!"
+    end
     @cursos = Curso.all.page params[:page]
     if params[:q].present?
       @cursos = @cursos.where("nombre like :q", q: "%#{params[:q]}%").page params[:page]

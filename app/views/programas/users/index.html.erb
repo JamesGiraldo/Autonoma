@@ -1,0 +1,30 @@
+<h1 class="text-center mov-naranja">Usuarios del Programa <strong><%= @programa.nombre %></strong></h1>
+<hr />
+<div class="row">
+  <%= form_tag(programa_users_path, class:"navbar-form-custom" , method: :get) do %>
+    <div class="form-group">
+      <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
+    </div>
+  <%end%>
+</div><br>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <tr>
+      <th class="">DOCUMENTO</th>
+      <th class="">Email</th>
+      <th class="">NOMBRE</th>
+      <th class="">APELLIDO</th>
+      <th class="">TELEFONO</th>
+      <th class="">DIRECCION</th>
+      <% if current_user.has_role? :Admin %>
+        <th class="">ROL</th>
+      <% end %>
+    </tr>
+    <%= render partial: "users", collection: @users, as: :user %>
+  </table>
+  <% unless @users.present? %>
+    <tr>
+        <h2 class="text-center">No Hay Informacion Solicitada</h2
+    </tr>
+  <%end%>
+</div>

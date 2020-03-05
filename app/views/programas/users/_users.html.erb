@@ -1,0 +1,15 @@
+<tr>
+    <% if user.documento.present?%>
+      <td><%= link_to user.documento , ver_datos_user_path(user.id)%></td>
+      <% else %>
+      <td><%= link_to user.id , ver_datos_user_path(user.id)%></td>
+    <%end%>
+    <td><%= user.email %></td>
+    <td><%= user.nombre %></td>
+    <td><%= user.apellido %></td>
+    <td><%= user.telefono %></td>
+    <td><%= user.direccion %></td>
+    <% if current_user.has_role? :Admin %>
+      <td><%= user.roles.collect(&:name).join(' , ').upcase %></td>
+    <% end%>
+</tr>

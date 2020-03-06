@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200303161251) do
+ActiveRecord::Schema.define(version: 20200306150729) do
 
   create_table "comentarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "titulo"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20200303161251) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "linea_id"
-    t.boolean "estado"
+    t.boolean "estado", default: true
     t.index ["linea_id"], name: "index_cursos_on_linea_id"
   end
 
@@ -35,6 +35,10 @@ ActiveRecord::Schema.define(version: 20200303161251) do
     t.datetime "updated_at", null: false
     t.bigint "linea_id"
     t.bigint "user_id"
+    t.date "fecha_fin"
+    t.date "fecha_inicio"
+    t.bigint "curso_id"
+    t.index ["curso_id"], name: "index_cursos_usuarios_on_curso_id"
     t.index ["linea_id"], name: "index_cursos_usuarios_on_linea_id"
     t.index ["user_id"], name: "index_cursos_usuarios_on_user_id"
   end
@@ -109,6 +113,7 @@ ActiveRecord::Schema.define(version: 20200303161251) do
   end
 
   add_foreign_key "cursos", "lineas"
+  add_foreign_key "cursos_usuarios", "cursos"
   add_foreign_key "cursos_usuarios", "lineas"
   add_foreign_key "cursos_usuarios", "users"
   add_foreign_key "programas", "facultades"

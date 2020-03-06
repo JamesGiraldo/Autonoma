@@ -13,7 +13,7 @@
                 <% if current_user.has_role? :Docente %>
                     <%= f.input :estado, as: :radio_buttons, collection: [['UA',true],['EXTERNO', false]]%>
                 <% end %>
-              <%= f.button :submit, "Registrar Curso",  class: "btn-primary block full-width m-b" %>
+              <%= f.button :submit, "Actualizar Curso",  class: "btn-primary block full-width m-b" %>
             <% end %>
         </div>
     </div><!-- /.modal-content -->

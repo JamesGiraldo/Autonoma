@@ -2,7 +2,7 @@ class CursosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    if current_user.has_role? :ADmin
+    if current_user.has_role? :Admin
        flash[:info]="Si Decea Registrar Un Nuevo Curso Asegurese De Que Tenga Una Linea Su Curso!"
     end
     @cursos = Curso.all.page params[:page]
@@ -28,30 +28,53 @@ class CursosController < ApplicationController
 
   def edit
     @curso = Curso.find(params[:id])
+    respond_to do |f|
+      f.js
+    end
   end
 
   #PUT /curso/:id
   def update
-      @curso = Curso.find_by id: params[:id]
-      if @curso.update(curso_params)
-        flash[:success]="Curso Actualizado!"
-        render :show
-      else
-        flash[:alert] = "Problemas con la grabación!"
-        render :edit
+      if current_user.has_role? :Admin
+          @curso = Curso.find(params[:id])
+          respond_to do |format|
+            if @curso.update(curso_params)
+              flash[:success]="Curso Actualizado!"
+              format.html {redirect_to cursos_path}
+              format.json {render :show, status: :created, location: @curso }
+              format.js
+            else
+              flash[:alert]="Problemas Con La Grabacion"
+              format.html {render :show}
+              format.json {render json: @curso.errors, status: :unprocessable_entity}
+            end
+          end
+        else
+          flash[:alert]="No tiene permisos para acceder a esa vista"
+          render :index
       end
   end
 
-    def create
-      @curso = Curso.new(curso_params)
-      if @curso.save
-        flash[:success] = "Curso registrado correctamente"
-        redirect_to cursos_path(@curso)
+  def create
+    if current_user.has_role? :Admin
+        @curso = Curso.new(curso_params)
+        respond_to do |format|
+          if @curso.save
+            flash[:success]="Curso Registrado!"
+            format.html {redirect_to cursos_path}
+            format.json {render :show, status: :created, location: @curso }
+            format.js
+          else
+            flash[:alert]="Problemas Con La Grabacion"
+            format.html {render :show}
+            format.json {render json: @curso.errors, status: :unprocessable_entity}
+          end
+        end
       else
-        flash[:alert] = "Problemas con la grabación"
-        render :new
-      end
+        flash[:alert]="No tiene permisos para acceder a esa vista"
+        render :index
     end
+  end
 
   def destroy
       @curso = Curso.find(params[:id])

@@ -9,4 +9,5 @@
       <%= link_to '', { :action => :destroy, :id => curso.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar este Curso'} , class: "fa fa-trash-o btn btn-danger"%>
     <%end%>
   </td>
+  <td><%= link_to "", new_cursos_usuario_path, remote:true , class: "fa fa-check-square btn btn-warning"%></td>
 </tr>

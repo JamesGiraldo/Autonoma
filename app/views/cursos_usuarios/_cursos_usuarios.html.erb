@@ -1,5 +1,8 @@
 <tr>
-  <td><%= link_to cursos_usuarios.nombre , cursos_usuarios_path(cursos_usuarios.id) %></td>
-  <td><%= cursos_usuarios.created_at.strftime("%d-%m-%Y %H:%M")  %></td>
-  <td><%= cursos_usuarios.updated_at.strftime("%d-%m-%Y %H:%M") %></td>
+    <td><%= cursos_usuario.nombre %></td>
+    <td><%= cursos_usuario.linea.nombre%></td>
+    <td>
+      <%= link_to "", edit_cursos_usuario_path(cursos_usuario), remote:true , class: "fa fa-pencil-square-o  btn btn-warning"%>
+      <%= link_to '', { :action => :destroy, :id => cursos_usuario.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar este Curso'} , class: "fa fa-trash-o btn btn-danger"%>
+    </td>
 </tr>

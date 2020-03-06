@@ -22,6 +22,7 @@ class CursosController < ApplicationController
   def new
     @curso = Curso.new
     respond_to do |f|
+      f.html
       f.js
     end
   end
@@ -29,6 +30,7 @@ class CursosController < ApplicationController
   def edit
     @curso = Curso.find(params[:id])
     respond_to do |f|
+      f.html
       f.js
     end
   end
@@ -40,8 +42,8 @@ class CursosController < ApplicationController
           respond_to do |format|
             if @curso.update(curso_params)
               flash[:success]="Curso Actualizado!"
-              format.html {redirect_to cursos_path}
-              format.json {render :show, status: :created, location: @curso }
+              format.html {redirect_to @curso}
+              format.json {render :index, status: :created, location: @cursos }
               format.js
             else
               flash[:alert]="Problemas Con La Grabacion"
@@ -61,8 +63,8 @@ class CursosController < ApplicationController
         respond_to do |format|
           if @curso.save
             flash[:success]="Curso Registrado!"
-            format.html {redirect_to cursos_path}
-            format.json {render :show, status: :created, location: @curso }
+            format.html {redirect_to @curso}
+            format.json {render :index, status: :created, location: @curso }
             format.js
           else
             flash[:alert]="Problemas Con La Grabacion"

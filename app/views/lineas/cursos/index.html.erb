@@ -1,17 +1,28 @@
 <% breadcrumb :cursos %>
-<h1 class="text-center mov-naranja">LISTA DE <strong>CURSOS</strong></h1>
+<h1 class="text-center mov-naranja">CURSOS DE LA LINEA<strong> <%= @linea.nombre.upcase%></strong></h1>
 <hr />
 <div class="row">
-  <%= form_tag(cursos_path, class:"navbar-form-custom" , method: :get) do %>
-    <div class="form-group">
-      <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
-    </div>
-  <%end%>
-</div><br>
+  <div class="col-md-10">
+    <%= form_tag(cursos_path, class:"navbar-form-custom" , method: :get) do %>
+      <div class="form-group">
+        <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
+      </div>
+    <%end%>
+  </div>
+  <div class="col-md-2">
+    <% if current_user.has_role? :Admin %>
+      <div class="botonContainer">
+        <div class="botonSeguimiento">
+          <%= link_to "", new_curso_path, remote:true, class: "fa fa-plus"%>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div><hr>
 <table class="table table-striped">
   <tr>
     <th class="active">NOMBRE</th>
-    <th class="active">ESTADO</th>
+    <th class="active">LINEA</th>
   </tr>
   <%= render partial: "cursos", collection: @cursos, as: :curso %>
 </table>
@@ -20,10 +31,5 @@
       <h2 class="text-center">No Hay Informacion Solicitada</h2
    </tr>
 <%end%>
-<% if current_user.has_role? :Admin%>
-  <div class="botonContainer">
-    <div class="botonSeguimiento">
-      <%= link_to "Nuevo Curso", new_curso_path, class: "botonSeguimientoColor"%>
-    </div>
-  </div>
-<%end%>
+<div id="new-curso"></div>
+<div id="edit-curso"></div>

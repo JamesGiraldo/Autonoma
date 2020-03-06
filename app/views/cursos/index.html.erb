@@ -10,13 +10,11 @@
     <%end%>
   </div>
   <div class="col-md-2">
-    <% if current_user.has_role? :Admin%>
       <div class="botonContainer">
         <div class="botonSeguimiento">
           <%= link_to "", new_curso_path, remote:true, class: "fa fa-plus"%>
         </div>
       </div>
-    <%end%>
   </div>
 </div><hr>
 <table class="table table-striped">

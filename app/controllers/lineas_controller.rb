@@ -55,7 +55,7 @@ class LineasController < ApplicationController
 
     private
     def linea_params
-      params.require(:linea).permit(:nombre, :avatar)
+      params.require(:linea).permit(:nombre)
     end
 
 end

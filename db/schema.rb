@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200306150729) do
+ActiveRecord::Schema.define(version: 20200306190626) do
 
   create_table "comentarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "titulo"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20200306150729) do
     t.date "fecha_fin"
     t.date "fecha_inicio"
     t.bigint "curso_id"
+    t.boolean "estado"
     t.index ["curso_id"], name: "index_cursos_usuarios_on_curso_id"
     t.index ["linea_id"], name: "index_cursos_usuarios_on_linea_id"
     t.index ["user_id"], name: "index_cursos_usuarios_on_user_id"

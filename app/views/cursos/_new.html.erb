@@ -1,0 +1,20 @@
+<div class="container down">
+  <!-- Modal HTML Markup -->
+  <div id="myModal" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+        </div>
+        <div class="modal-body">
+              <%= simple_form_for @curso, remote: true, html: { class: 'form-horizontal' } do |f| %>
+                <%= f.input :nombre , autofocus: true, placeholder:"Nombre Del Curso" , autocomplete: "nombre" %>
+                  <%= f.association :linea, label_method: :nombre, value_method: :id , prompt: 'Selecione Tipo De Linea' , input_html: {min:"1"}  %>
+                  <%= f.input :estado, as: :radio_buttons, collection: [['Realizado',true],['En Proceso', false]]%>
+                <%= f.button :submit, "Registrar Curso",  class: "btn-primary block full-width m-b" %>
+              <% end %>
+        </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>

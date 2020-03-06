@@ -21,6 +21,9 @@ class CursosController < ApplicationController
   end
   def new
     @curso = Curso.new
+    respond_to do |f|
+      f.js
+    end
   end
 
   def edit

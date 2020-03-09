@@ -20,12 +20,9 @@
             <%= render 'layouts/topnavbar' %>
             <!-- Main view  -->
             <%= custom_bootstrap_flash %>
-            <section class="content-header">
-               <h1></h1>
-               <ol class="breadcrumb">
-                 <%= breadcrumbs display_single_fragment: true, style: :bootstrap , separator: ' / ' %>
-               </ol>
-             </section>
+            <div class=" wrapper border-bottom white-bg page-heading "><br>
+                <%= breadcrumbs display_single_fragment: true, style: :bootstrap, separator: ' / '%>
+            </div>
             <%= yield %>
             <!-- Footer -->
             <%= render 'layouts/footer' %>

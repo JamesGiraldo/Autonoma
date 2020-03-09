@@ -1,196 +1,198 @@
-<nav class="navbar-default navbar-static-side" role="navigation">
-    <div class="sidebar-collapse">
-        <ul class="nav metismenu" id="side-menu">
-            <li class="nav-header">
-                <div class="dropdown profile-element">
-                    <!-- <img alt="image" class="rounded-circle" src="image_path('profile_small.jpg') %>"/> -->
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="block m-t-xs font-bold"></span>
-                        <span class="text-muted text-xs block"><%= current_user.email %><b class="caret"></b><br><%= current_user.roles.collect(&:name).join(' , ').upcase %></span>
-                    </a>
-                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                       <li><a class="dropdown-item" href=" <%= edit_user_path %>" class="btn btn-nar">Mi Perfil</a></li>
-                       <li><a class="dropdown-item" href="<%= cambiar_password_user_path %>">Cambiar Contraseña</a></li>
-                       <li><a class="dropdown-item" href="#">Buzón</a></li>
-                       <li class="dropdown-divider"></li>
-                       <li><%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete, class:"btn btn-nar"%></li>
-                   </ul>
-                </div>
-                <div class="logo-element">
-                    <%=link_to "AU+", root_path %>
-                </div>
-            </li>
-            <li class="<%= is_active_controller('home') %>">
-                <%= link_to root_path do %>
-                <i class="fa fa-home"></i> <span class="nav-label" data-i18n="nav.layouts">Inicio</span>
-                <% end %>
-            </li>
-            <% if current_user.has_role? :Admin %>
-              <li class="<%= 'active' if current_page?('/users') %>">
-                  <%= link_to users_path do %>
-                  <i class="fa fa-group"></i>
-                  <span class="nav-label">Usuarios</span>
-                  <!-- <span class="label label-info float-right">NEW</span> -->
-                  <span class="fa arrow"></span>
-                  <% end %>
-                  <ul class=" nav nav-second-level #{is_active_controller('user')">
-                    <li class="<%= 'active' if current_page?('/users') %>">
-                      <%= link_to "Docentes" , index_instructores_users_path   %>
-                    </li>
-                    <li class="<%= 'active' if current_page?('/users') %>">
-                      <%= link_to "Decanos" , decanos_users_path  %>
-                    </li>
-                    <li class="<%= 'active' if current_page?('/users') %>">
-                      <%= link_to "Usuarios" , users_path  %>
-                    </li>
-                  </ul>
+ <% if user_signed_in? %>
+  <nav class="navbar-default navbar-static-side" role="navigation">
+      <div class="sidebar-collapse">
+          <ul class="nav metismenu" id="side-menu">
+              <li class="nav-header">
+                  <div class="dropdown profile-element">
+                      <!-- <img alt="image" class="rounded-circle" src="image_path('profile_small.jpg') %>"/> -->
+                      <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                          <span class="block m-t-xs font-bold"></span>
+                          <span class="text-muted text-xs block"><%= current_user.email %><b class="caret"></b><br><%= current_user.roles.collect(&:name).join(' , ').upcase %></span>
+                      </a>
+                      <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                         <li><a class="dropdown-item" href=" <%= edit_user_path %>" class="btn btn-nar">Mi Perfil</a></li>
+                         <li><a class="dropdown-item" href="<%= cambiar_password_user_path %>">Cambiar Contraseña</a></li>
+                         <li><a class="dropdown-item" href="#">Buzón</a></li>
+                         <li class="dropdown-divider"></li>
+                         <li><%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete, class:"btn btn-nar"%></li>
+                     </ul>
+                  </div>
+                  <div class="logo-element">
+                      <%=link_to "AU+", root_path %>
+                  </div>
               </li>
-            <% elsif current_user.has_role? :Decano %>
-              <li class="<%= 'active' if current_page?('/users') %>">
-                  <%= link_to users_path do %>
-                  <i class="fa fa-group"></i>
-                  <span class="nav-label">Usuarios</span>
-                  <!-- <span class="label label-info float-right">NEW</span> -->
-                  <span class="fa arrow"></span>
+              <li class="<%= is_active_controller('home') %>">
+                  <%= link_to root_path do %>
+                  <i class="fa fa-home"></i> <span class="nav-label" data-i18n="nav.layouts">Inicio</span>
                   <% end %>
-                  <ul class=" nav nav-second-level #{is_active_controller('user')">
-                    <li class="<%= 'active' if current_page?('/users') %>">
-                      <%= link_to "Docentes" , index_instructores_users_path   %>
-                    </li>
-                  </ul>
-              </li>
-            <%end%>
-              <li class="<%= 'active' if current_page?('/cursos') %>">
-                  <%= link_to cursos_path do %>
-                  <i class="fa fa-graduation-cap"></i>
-                  <span class="nav-label">Cursos</span>
-                  <!-- <span class="label label-info float-right">NEW</span> -->
-                  <span class="fa arrow"></span>
-                  <% end %>
-                  <ul class=" nav nav-second-level #{is_active_controller('curso')">
-                    <% if current_user.has_role? :Admin %>
-                        <li class="<%= 'active' if current_page?('/cursos') %>">
-                          <%= link_to "Lista De Cursos" , cursos_path %>
-                        </li>
-                     <%else%>
-                       <li class="<%= 'active' if current_page?('/lineas') %>">
-                         <%= link_to "Lineas de Cursos" , lineas_path %>
-                       </li>
-                        <li class="<%= 'active' if current_page?('/cursos') %>">
-                          <%= link_to "Cursos" , cursos_path %>
-                        </li>
-                        <li class="<%= 'active' if current_page?('/cursos') %>">
-                          <%= link_to "Mis Cursos" , cursos_usuarios_path %>
-                        </li>
-                    <% end %>
-                  </ul>
-              </li>
-            <% if current_user.has_role? :Admin %>
-              <li class="<%= 'active' if current_page?('/lineas') %>">
-                  <%= link_to lineas_path do %>
-                  <i class="fa fa-dashboard"></i>
-                  <span class="nav-label">lineas de Cursos</span>
-                  <!-- <span class="label label-info float-right">NEW</span> -->
-                  <span class="fa arrow"></span>
-                  <% end %>
-                  <ul class=" nav nav-second-level #{is_active_controller('linea')">
-                    <li class="<%= 'active' if current_page?('/lineas') %>">
-                      <%= link_to "Lineas" , lineas_path %>
-                    </li>
-                  </ul>
-              </li>
-            <%end%>
-              <li class="<%= 'active' if current_page?('/proyecciones') %>">
-                  <%= link_to proyecciones_path do %>
-                  <i class="fa fa-dashboard"></i>
-                  <span class="nav-label">Proyecciones</span>
-                  <!-- <span class="label label-info float-right">NEW</span> -->
-                  <span class="fa arrow"></span>
-                  <% end %>
-                  <ul class=" nav nav-second-level #{is_active_controller('linea')">
-                    <li class="<%= 'active' if current_page?('/proyecciones') %>">
-                      <%= link_to "Mis Proyecciones" , proyecciones_path %>
-                    </li>
-                  </ul>
-              </li>
-              <li class="<%= 'active' if current_page?('/comentarios') %>">
-                  <%= link_to comentarios_path do %>
-                  <i class="fa fa-circle-o"></i>
-                  <span class="nav-label">Comentarios</span>
-                  <!-- <span class="label label-info float-right">NEW</span> -->
-                  <span class="fa arrow"></span>
-                  <% end %>
-                  <ul class=" nav nav-second-level #{is_active_controller('facultad')">
-                    <% if current_user.has_role? :Admin %>
-                      <li class="<%= 'active' if current_page?('/comentarios') %>">
-                        <%= link_to "Comentarios" , comentarios_path %>
-                      </li>
-                      <% else %>
-                        <li class="<%= 'active' if current_page?('/comentarios') %>">
-                          <%= link_to "Mis Comentarios" , comentarios_path %>
-                        </li>
-                      <% end %>
-                  </ul>
               </li>
               <% if current_user.has_role? :Admin %>
-                <li class="<%= 'active' if current_page?('/facultades') %>">
-                    <%= link_to facultades_path do %>
-                    <i class="fa fa-circle-o"></i>
-                    <span class="nav-label">Facultades</span>
+                <li class="<%= 'active' if current_page?('/users') %>">
+                    <%= link_to users_path do %>
+                    <i class="fa fa-group"></i>
+                    <span class="nav-label">Usuarios</span>
                     <!-- <span class="label label-info float-right">NEW</span> -->
                     <span class="fa arrow"></span>
                     <% end %>
-                    <ul class=" nav nav-second-level #{is_active_controller('facultad')">
-                      <% if current_user.has_role? :Admin %>
-                        <li class="<%= 'active' if current_page?('/facultades') %>">
-                          <%= link_to "Facultades" , facultades_path %>
-                        </li>
-                      <% else %>
-                        <li class="<%= 'active' if current_page?('/facultades') %>">
-                          <%= link_to "Mis Facultades" , facultades_path %>
-                        </li>
-                      <%end%>
+                    <ul class=" nav nav-second-level #{is_active_controller('user')">
+                      <li class="<%= 'active' if current_page?('/users') %>">
+                        <%= link_to "Docentes" , index_instructores_users_path   %>
+                      </li>
+                      <li class="<%= 'active' if current_page?('/users') %>">
+                        <%= link_to "Decanos" , decanos_users_path  %>
+                      </li>
+                      <li class="<%= 'active' if current_page?('/users') %>">
+                        <%= link_to "Usuarios" , users_path  %>
+                      </li>
+                    </ul>
+                </li>
+              <% elsif current_user.has_role? :Decano %>
+                <li class="<%= 'active' if current_page?('/users') %>">
+                    <%= link_to users_path do %>
+                    <i class="fa fa-group"></i>
+                    <span class="nav-label">Usuarios</span>
+                    <!-- <span class="label label-info float-right">NEW</span> -->
+                    <span class="fa arrow"></span>
+                    <% end %>
+                    <ul class=" nav nav-second-level #{is_active_controller('user')">
+                      <li class="<%= 'active' if current_page?('/users') %>">
+                        <%= link_to "Docentes" , index_instructores_users_path   %>
+                      </li>
                     </ul>
                 </li>
               <%end%>
+                <li class="<%= 'active' if current_page?('/cursos') %>">
+                    <%= link_to cursos_path do %>
+                    <i class="fa fa-graduation-cap"></i>
+                    <span class="nav-label">Cursos</span>
+                    <!-- <span class="label label-info float-right">NEW</span> -->
+                    <span class="fa arrow"></span>
+                    <% end %>
+                    <ul class=" nav nav-second-level #{is_active_controller('curso')">
+                      <% if current_user.has_role? :Admin %>
+                          <li class="<%= 'active' if current_page?('/cursos') %>">
+                            <%= link_to "Lista De Cursos" , cursos_path %>
+                          </li>
+                       <%else%>
+                         <li class="<%= 'active' if current_page?('/lineas') %>">
+                           <%= link_to "Lineas de Cursos" , lineas_path %>
+                         </li>
+                          <li class="<%= 'active' if current_page?('/cursos') %>">
+                            <%= link_to "Cursos" , cursos_path %>
+                          </li>
+                          <li class="<%= 'active' if current_page?('/cursos') %>">
+                            <%= link_to "Mis Cursos" , cursos_usuarios_path %>
+                          </li>
+                      <% end %>
+                    </ul>
+                </li>
               <% if current_user.has_role? :Admin %>
-                <li class="<%= 'active' if current_page?('/programas') %>">
-                    <%= link_to facultades_path do %>
-                    <i class="fa fa-opencart"></i>
-                    <span class="nav-label">Programas</span>
+                <li class="<%= 'active' if current_page?('/lineas') %>">
+                    <%= link_to lineas_path do %>
+                    <i class="fa fa-dashboard"></i>
+                    <span class="nav-label">lineas de Cursos</span>
+                    <!-- <span class="label label-info float-right">NEW</span> -->
+                    <span class="fa arrow"></span>
+                    <% end %>
+                    <ul class=" nav nav-second-level #{is_active_controller('linea')">
+                      <li class="<%= 'active' if current_page?('/lineas') %>">
+                        <%= link_to "Lineas" , lineas_path %>
+                      </li>
+                    </ul>
+                </li>
+              <%end%>
+                <li class="<%= 'active' if current_page?('/proyecciones') %>">
+                    <%= link_to proyecciones_path do %>
+                    <i class="fa fa-dashboard"></i>
+                    <span class="nav-label">Proyecciones</span>
+                    <!-- <span class="label label-info float-right">NEW</span> -->
+                    <span class="fa arrow"></span>
+                    <% end %>
+                    <ul class=" nav nav-second-level #{is_active_controller('linea')">
+                      <li class="<%= 'active' if current_page?('/proyecciones') %>">
+                        <%= link_to "Mis Proyecciones" , proyecciones_path %>
+                      </li>
+                    </ul>
+                </li>
+                <li class="<%= 'active' if current_page?('/comentarios') %>">
+                    <%= link_to comentarios_path do %>
+                    <i class="fa fa-circle-o"></i>
+                    <span class="nav-label">Comentarios</span>
                     <!-- <span class="label label-info float-right">NEW</span> -->
                     <span class="fa arrow"></span>
                     <% end %>
                     <ul class=" nav nav-second-level #{is_active_controller('facultad')">
                       <% if current_user.has_role? :Admin %>
-                        <li class="<%= 'active' if current_page?('/programas') %>">
-                          <%= link_to "Programas" , programas_path %>
+                        <li class="<%= 'active' if current_page?('/comentarios') %>">
+                          <%= link_to "Comentarios" , comentarios_path %>
                         </li>
-                      <% end %>
+                        <% else %>
+                          <li class="<%= 'active' if current_page?('/comentarios') %>">
+                            <%= link_to "Mis Comentarios" , comentarios_path %>
+                          </li>
+                        <% end %>
                     </ul>
                 </li>
-              <% end %>
-            <li class="<%= 'active' if current_page?('/users') %>">
-                <%= link_to edit_user_path do %>
-                <i class="fa fa-cogs"></i>
-                <span class="nav-label">Configuracion</span>
-                <!-- <span class="label label-info float-right">NEW</span> -->
-                <span class="fa arrow"></span>
+                <% if current_user.has_role? :Admin %>
+                  <li class="<%= 'active' if current_page?('/facultades') %>">
+                      <%= link_to facultades_path do %>
+                      <i class="fa fa-circle-o"></i>
+                      <span class="nav-label">Facultades</span>
+                      <!-- <span class="label label-info float-right">NEW</span> -->
+                      <span class="fa arrow"></span>
+                      <% end %>
+                      <ul class=" nav nav-second-level #{is_active_controller('facultad')">
+                        <% if current_user.has_role? :Admin %>
+                          <li class="<%= 'active' if current_page?('/facultades') %>">
+                            <%= link_to "Facultades" , facultades_path %>
+                          </li>
+                        <% else %>
+                          <li class="<%= 'active' if current_page?('/facultades') %>">
+                            <%= link_to "Mis Facultades" , facultades_path %>
+                          </li>
+                        <%end%>
+                      </ul>
+                  </li>
+                <%end%>
+                <% if current_user.has_role? :Admin %>
+                  <li class="<%= 'active' if current_page?('/programas') %>">
+                      <%= link_to facultades_path do %>
+                      <i class="fa fa-opencart"></i>
+                      <span class="nav-label">Programas</span>
+                      <!-- <span class="label label-info float-right">NEW</span> -->
+                      <span class="fa arrow"></span>
+                      <% end %>
+                      <ul class=" nav nav-second-level #{is_active_controller('facultad')">
+                        <% if current_user.has_role? :Admin %>
+                          <li class="<%= 'active' if current_page?('/programas') %>">
+                            <%= link_to "Programas" , programas_path %>
+                          </li>
+                        <% end %>
+                      </ul>
+                  </li>
                 <% end %>
-                <ul class=" nav nav-second-level #{is_active_controller('user')">
-                  <li class="<%= 'active' if current_page?('/users') %>">
-                    <%= link_to "Mis Perfil" , edit_user_path %>
-                  </li>
-                  <li class="<%= 'active' if current_page?('/users') %>">
-                    <%= link_to "Cambiar Contraseña" , cambiar_password_user_path %>
-                  </li>
-                  <% if current_user.has_role? :Admin %>
+              <li class="<%= 'active' if current_page?('/users') %>">
+                  <%= link_to edit_user_path do %>
+                  <i class="fa fa-cogs"></i>
+                  <span class="nav-label">Configuracion</span>
+                  <!-- <span class="label label-info float-right">NEW</span> -->
+                  <span class="fa arrow"></span>
+                  <% end %>
+                  <ul class=" nav nav-second-level #{is_active_controller('user')">
                     <li class="<%= 'active' if current_page?('/users') %>">
-                      <%= link_to "Administracion" , rails_admin_path %>
+                      <%= link_to "Mis Perfil" , edit_user_path %>
                     </li>
-                  <%end%>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</nav>
+                    <li class="<%= 'active' if current_page?('/users') %>">
+                      <%= link_to "Cambiar Contraseña" , cambiar_password_user_path %>
+                    </li>
+                    <% if current_user.has_role? :Admin %>
+                      <li class="<%= 'active' if current_page?('/users') %>">
+                        <%= link_to "Administracion" , rails_admin_path %>
+                      </li>
+                    <%end%>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+<% end %>

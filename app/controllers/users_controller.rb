@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :setiar_user, only: [:ver_datos]
   before_action :set_user, only: [:edit, :show ,:cambiar_password, :update_password, :update]
+  respond_to :html, :json
 
   def index
     if current_user.has_role? :Admin
@@ -46,14 +47,13 @@ class UsersController < ApplicationController
   end
 
   def update_password
-    if @user.update_with_password(user_params)
-      # Sign in the user by passing validation in case their password changed
-      bypass_sign_in(@user)
+    if current_user.update_with_password(user_params)
+      bypass_sign_in(current_user)
       flash[:success] ="Contraseña Actualizada"
       redirect_to "/"
     else
-      flash[:alert]="Error al Actualizar"
-      render "edit"
+      flash[:alert]="Problemas al Actualizar"
+      render "cambiar_password"
     end
   end
 
@@ -62,10 +62,19 @@ class UsersController < ApplicationController
       flash[:success]="Registro Actualizado"
       redirect_to edit_user_path
     else
-      flash[:alert]="Error al Actualizar"
+      flash[:alert]="Problemas al Actualizar"
       render :edit
     end
   end
+  def destroy
+    if @user.destroy
+      flash[:success] = ("Cerro sesion correctamente")
+      redirect_to new_user_registration_path()
+    else
+      flash[:alert] = ("No Puede Salir")
+    end
+  end
+
 
   private
   def set_user

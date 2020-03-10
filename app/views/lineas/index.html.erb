@@ -10,12 +10,12 @@
     <%end%>
   </div>
   <div class="col-md-2">
+    <div class="input-group-btn">
       <div class="botonContainer">
-        <div class="botonSeguimiento">
-          <%= link_to "", new_linea_path,  class: "fa fa-plus"%>
+          <%= link_to "", new_linea_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
         </div>
       </div>
-  </div>
+    </div>
 </div>
 <% unless @lineas.present? %>
    <tr>
@@ -27,27 +27,36 @@
     <div class="container_box">
        <% @lineas.each do |linea| %>
           <div class="box">
+            <div class="col-md-6">
+                <%= link_to "", edit_linea_path(linea), remote:true , class: "fa fa-pencil-square-o   btn btn-warning"%>
+            </div>
+            <div class="col-md-6">
+                <%= link_to '', { :action => :destroy, :id => linea.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar esta linea'} , class: "fa fa-trash-o btn btn-danger"%>
+            </div>
              <div class="description">
                 <h1 class="description_box"><%=linea.nombre%></h1>
              </div>
              <div class="foot">
                 <h1 class="description_box"><%= linea.cursosUsuario.count%></h1>
              </div>
-             <div class="ver_mas">
-                <a class="<%= is_active_controller('programas') %>">
-                  <% if current_user.has_role? :Admin %>
-                       <%= link_to linea_cursos_path(linea) do %>
-                         <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
-                       <% end %>
-                    <%else%>
-                       <%= link_to linea_cursos_usuarios_path(linea) do %>
-                         <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
-                       <% end %>
-                  <% end %>
-                </a>
-             </div>
+               <div class="ver_mas">
+                  <a class="<%= is_active_controller('programas') %>">
+                    <% if current_user.has_role? :Admin %>
+                         <%= link_to linea_cursos_path(linea) do %>
+                           <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+                         <% end %>
+                      <%else%>
+                         <%= link_to linea_cursos_usuarios_path(linea) do %>
+                           <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+                         <% end %>
+                    <% end %>
+                  </a>
+               </div>
+
           </div>
        <%end%>
     </div>
   </div>
 </div>
+<div id="new-linea"></div>
+<div id="edit-linea"></div>

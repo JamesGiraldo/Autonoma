@@ -38,7 +38,9 @@
 <% if current_user.has_role? :Admin%>
   <div class="botonContainer">
     <div class="botonSeguimiento">
-      <%= link_to "Nuevo Programa", new_programa_path, class: "botonSeguimientoColor"%>
+      <%= link_to "Nuevo Programa", new_programa_path, remote: true, class: "botonSeguimientoColor"%>
     </div>
   </div>
 <%end%>
+<div id="new-programa"></div>
+<div id="edit-programa"></div>

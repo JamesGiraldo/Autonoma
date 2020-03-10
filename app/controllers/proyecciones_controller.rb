@@ -1,6 +1,7 @@
 class ProyeccionesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-
+  respond_to :html, :json
+  
   def index
     @proyecciones = Proyeccion.where(user_id: current_user.id).page params[:page]
     if params[:q].present?
@@ -10,6 +11,10 @@ class ProyeccionesController < ApplicationController
 
   def new
     @proyeccion = Proyeccion.new
+    respond_to do |f|
+      f.html
+      f.js
+    end
   end
 
   def show
@@ -23,17 +28,26 @@ class ProyeccionesController < ApplicationController
 
   def edit
     @proyeccion = Proyeccion.find(params[:id])
+    respond_to do |f|
+      f.html
+      f.js
+    end
   end
 
   #PUT /proyeccion/:id
   def update
-      @proyeccion = Proyeccion.find_by id: params[:id]
-      if @proyeccion.update(proyeccion_params)
-        flash[:success]="Proyeccion Actualizada!"
-        render :show
-      else
-        flash[:alert] = "Problemas con la grabación!"
-        render :edit
+     @proyeccion = Proyeccion.find_by id: params[:id]
+      respond_to do |format|
+        if @proyeccion.update(proyeccion_params)
+          flash[:success]="Proyeccion Actualizada!"
+          format.html {redirect_to @proyeccion}
+          format.json {render :index, status: :created, location: @proyecciones }
+          format.js
+        else
+          flash[:alert]="Problemas Con La Grabacion"
+          format.html {render :show}
+          format.json {render json: @proyeccion.errors, status: :unprocessable_entity}
+        end
       end
   end
 
@@ -50,12 +64,17 @@ class ProyeccionesController < ApplicationController
 
   def create
     @proyeccion = current_user.proyecciones.new(proyeccion_params)
-      if @proyeccion.save!
-        flash[:success]="Proyeccion Registrada!"
-        render :show
-      else
-        flash[:alert]="Problemas con la grabación!"
-        render :new
+      respond_to do |format|
+        if @proyeccion.save!
+          flash[:success]="Proyeccion Registrada!"
+          format.html {redirect_to @proyeccion}
+          format.json {render :index, status: :created, location: @proyeccion }
+          format.js
+        else
+          flash[:alert]="Problemas Con La Grabacion"
+          format.html {render :show}
+          format.json {render json: @proyeccion.errors, status: :unprocessable_entity}
+        end
       end
   end
 

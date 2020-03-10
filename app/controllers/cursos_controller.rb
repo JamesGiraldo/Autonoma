@@ -1,6 +1,7 @@
 class CursosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-
+  respond_to :html, :json
+  
   def index
     if current_user.has_role? :Admin
        flash[:info]="Si Decea Registrar Un Nuevo Curso Asegurese De Que Tenga Una Linea Su Curso!"

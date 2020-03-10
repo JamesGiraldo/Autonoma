@@ -9,7 +9,7 @@
       <% if current_user.has_role? :Admin%>
         <div class="botonContainer">
           <div class="botonSeguimiento">
-            <%= link_to "Editar Programa", edit_programa_path(@programa), class: "botonSeguimientoColor"%>
+            <%= link_to "Editar Programa", edit_programa_path(@programa), remote: true ,class: "botonSeguimientoColor"%>
           </div>
           <div class="botonSeguimiento">
             <%= link_to 'Eliminar', { :action => :destroy, :id => @programa.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar esta programa'} , class: "botonSeguimientoColor"%>
@@ -19,3 +19,4 @@
     </div>
   </div>
 </div>
+<div id="edit-programa"></div>

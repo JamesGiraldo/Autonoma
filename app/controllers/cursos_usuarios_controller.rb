@@ -1,7 +1,7 @@
 class CursosUsuariosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   def index
-    @cursosUsuarios = CursosUsuario.where(user_id: current_user.id).page params[:page]
+    @cursosUsuarios = CursosUsuario.all.where(user_id: current_user.id).page params[:page]
     if params[:q].present?
       @cursosUsuarios = @cursosUsuarios.where("nombre like :q", q: "%#{params[:q]}%").page params[:page]
     end

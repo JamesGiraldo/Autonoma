@@ -1,5 +1,6 @@
 class ComentariosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  respond_to :html, :json
 
   def index
     @comentarios = Comentario.all.page params[:page]
@@ -19,32 +20,51 @@ class ComentariosController < ApplicationController
 
   def new
     @comentario = Comentario.new
+    respond_to do |f|
+      f.html
+      f.js
+    end
   end
 
   def edit
     @comentario = Comentario.find(params[:id])
+    respond_to do |f|
+      f.html
+      f.js
+    end
   end
 
   def update
       @comentario = Comentario.find(params[:id])
-      if @comentario.update(comentario_params)
-        flash[:success]="Comentario actualizado"
-        redirect_to comentarios_path (@comentario)
-      else
-        flash[:alert]="Error al actualizar"
-        render :edit
+      respond_to do |format|
+        if @comentario.update(comentario_params)
+          flash[:success]="Comentario Actualizado!"
+          format.html {redirect_to @comentario}
+          format.json {render :index, status: :created, location: @comentarios }
+          format.js
+        else
+          flash[:alert]="Problemas Con La Grabacion"
+          format.html {render :show}
+          format.json {render json: @comentario.errors, status: :unprocessable_entity}
+        end
       end
   end
 
   def create
     @comentario = Comentario.new(comentario_params)
-    if @comentario.save!
-      flash[:success] = "Comentario registrado correctamente"
-      redirect_to comentarios_path(@comentario)
-    else
-      flash[:alert] = "Problemas con la grabación"
-      render :new
+    respond_to do |format|
+      if @comentario.save!
+        flash[:success]="Comentario Registrado!"
+        format.html {redirect_to @comentario}
+        format.json {render :index, status: :created, location: @comentario }
+        format.js
+      else
+        flash[:alert]="Problemas Con La Grabacion"
+        format.html {render :show}
+        format.json {render json: @comentario.errors, status: :unprocessable_entity}
+      end
     end
+
   end
 
   private

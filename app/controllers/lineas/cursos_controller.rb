@@ -11,59 +11,6 @@ class Lineas::CursosController < ApplicationController
     end
   end
 
-  def show
-    @curso = @linea.cursos.page params[:page]
-  end
-
-  def new
-    @curso = @linea.cursos.new
-  end
-
-  def edit
-  end
-
-  def asignar
-    unless current_user.cursos.include? @curso
-      @curso.users << current_user
-      if @curso.save
-        flash[:success]="Inscripcion realizada correctamente"
-        redirect_to linea_cursos_path(@linea)
-      else
-        flash[:alert]="Error al realizar inscripcion"
-        redirect_to linea_cursos_path(@linea)
-      end
-    else
-      flash[:alert]="Usted ya se encuentra inscrito al curso"
-      redirect_to linea_cursos_path(@linea)
-    end
-  end
-
-  def update
-    if @user.has_role? :admin
-      if @curso.update(curso_params)
-        flash[:success]="Curso actualizado"
-        redirect_to linea_cursos_path(@linea, @curso)
-      else
-        flash[:alert]="Error al actualizar"
-        render :edit
-      end
-    else
-      flash[:alert]="No tiene permisos para acceder a esa vista"
-      render :index
-    end
-  end
-
-  def create
-    @curso = @linea.cursos.new(curso_params)
-    if @curso.save
-      flash[:success] = "Curso registrado correctamente"
-      redirect_to linea_cursos_path(@linea, @curso)
-    else
-      flash[:alert] = "Problemas con la grabación"
-      render :new
-    end
-  end
-
   private
   def set_curso
     begin

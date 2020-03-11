@@ -1,3 +1,4 @@
+<% breadcrumb :comentario_show, @comentario %>
 <h1 class="text-center mov-naranja">COMENTARIO<strong><%=  @comentario.titulo %></strong></h1><hr />
 <div class="usuario">
   <div class="informacion">
@@ -9,7 +10,7 @@
       <% if current_user.has_role? :Admin%>
         <div class="botonContainer">
           <div class="botonSeguimiento">
-            <%= link_to "Editar Curso", edit_comentario_path(@comentario), class: "botonSeguimientoColor"%>
+            <%= link_to "Editar Curso", edit_comentario_path(@comentario), remote: true , class: "botonSeguimientoColor"%>
           </div>
           <div class="botonSeguimiento">
             <%= link_to 'Eliminar', { :action => :destroy, :id => @comentario.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar este Curso'} , class: "botonSeguimientoColor"%>
@@ -19,3 +20,4 @@
     </div>
   </div>
 </div>
+<div id="edit-comentario"></div>

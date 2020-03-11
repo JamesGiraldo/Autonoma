@@ -9,10 +9,10 @@ en:
     failure:
       already_authenticated: "Ya has iniciado sesión."
       inactive: "Tu cuenta aún no está activada."
-      invalid: "Invalid %{authentication_keys} or password."
+      invalid: "Inválido %{authentication_keys} o contraseña."
       locked: "Tu cuenta esta bloqueada."
       last_attempt: "Tienes un intento más antes de bloquear tu cuenta."
-      not_found_in_database: "Invalid %{authentication_keys} or password."
+      not_found_in_database: "Inválido %{authentication_keys} o contraseña."
       timeout: "Su sesión expiró. Inicia sesión de nuevo para continuar."
       unauthenticated: "Debe iniciar sesión o registrarse antes de continuar."
       unconfirmed: "Debe confirmar su dirección de correo electrónico antes de continuar."
@@ -28,8 +28,8 @@ en:
       password_change:
         subject: "Contraseña cambiada"
     omniauth_callbacks:
-      failure: "No se pudo autenticar desde %{kind} because \"%{reason}\"."
-      success: "Autenticado exitosamente desde %{kind} account."
+      failure: "No se pudo autenticar desde %{kind} porque \"%{reason}\"."
+      success: "Autenticado exitosamente desde %{kind} cuenta."
     passwords:
       no_token: "No puede acceder a esta página sin provenir de un correo electrónico de restablecimiento de contraseña. Si proviene de un correo electrónico de restablecimiento de contraseña, asegúrese de utilizar la URL completa provista."
       send_instructions: "Recibirá un correo electrónico con instrucciones sobre cómo restablecer su contraseña en unos minutos."
@@ -61,5 +61,5 @@ en:
       not_found: "extraviado"
       not_locked: "no estaba bloqueado"
       not_saved:
-        one: "1 error prohibited this %{resource} from being saved:"
-        other: "%{count} errors prohibited this %{resource} from being saved:"
+        one: "1 error prohibido esto %{resource} de ser salvado:"
+        other: "%{count} errores prohibidos esto %{resource} de ser salvado:"

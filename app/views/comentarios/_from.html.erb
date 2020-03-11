@@ -1,9 +1,0 @@
-<div class="container_session">
-  <div class="session">
-    <%= simple_form_for @comentario, html: { class: 'form-horizontal' } do |f| %>
-      <%= f.input :titulo , autofocus: true, placeholder:"Titulo" , autocomplete: "nombre" %>
-          <%= f.input :descripccion, :as => :text, placeholder:"Descripcion" , :input_html => { 'rows' => 8, 'cols' => 80 } %>
-      <%= f.button :submit, "Registrar Comentario",  class: "btn-primary block full-width m-b" %>
-    <% end %>
-  </div>
-</div>

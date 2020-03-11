@@ -14,6 +14,7 @@
 
 //= require rails-ujs
 //= require jquery
+//= require jquery_ujs
 //= require jquery/jquery-3.1.1.min.js
 //= require popper
 //= require toastr/toastr.min.js
@@ -26,3 +27,5 @@
 //= require chartkick
 //= require Chart.bundle
 //= require apexcharts
+//= require_tree .
+$('#datepicker').datepicker();

@@ -6,7 +6,9 @@ class HomeController < ApplicationController
     else
       flash[:info]="Sugerencia Asegurese De Actualizar Su datos!"
     end
-     #@male_user = Linea.where(nombre: :pedagogia).group_by_day(:created_at, time_zone:  false).count
-     #@female_user = Linea.where(nombre: :ingles).group_by_day(:created_at, time_zone:  false).count
+     #@users = User.all.includes(:roles).where('roles.name' => "Docente").group_by_day(:created_at, format: "%a").count
+     # @male_user = Curso.includes(:linea).where(curso.linea_id = curso.id).group_by_week(:created_at).count
+     # @female_user = Linea.where(nombre: :ingles).group_by_day(:nombre).count
+     @cursos = Curso.all.includes(:linea).group_by_day_of_week(:created_at, format: "%a").count
   end
 end

@@ -19,9 +19,9 @@ module Autonoma
     end
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
-    config.time_zone = 'Bogota'
-    config.active_record.default_timezone = :local
-    config.active_record.time_zone_aware_attributes = false
+    # config.time_zone = 'Bogota'
+    # config.active_record.default_timezone = :local
+    # config.active_record.time_zone_aware_attributes = false
 
     config.i18n.default_locale = :"es-CO"
     # Settings in config/environments/* take precedence over those specified here.

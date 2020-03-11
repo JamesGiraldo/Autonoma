@@ -30,12 +30,17 @@ class ProgramasController < ApplicationController
   def update
     if @user.has_role? :Admin
       @programa = Programa.find_by id: params[:id]
-      if @programa.update(programa_params)
-        flash[:success]="Programa Actualizado!"
-        render :show
-      else
-        flash[:alert] = "Problemas con la grabación!"
-        render :edit
+      respond_to do |format|
+        if @programa.update(programa_params)
+          flash[:success]="Programa Actualizada!"
+          format.html {redirect_to programas_path}
+          format.json {render :index, status: :created, location: @programas }
+          format.js
+        else
+          flash[:alert]="Problemas Con La Grabacion"
+          format.html {render :show}
+          format.json {render json: @programa.errors, status: :unprocessable_entity}
+        end
       end
     else
       flash[:info]="No tiene permisos para acceder a esa vista!"
@@ -55,12 +60,17 @@ class ProgramasController < ApplicationController
   def create
     if @user.has_role? :Admin
          @programa = Programa.new(programa_params)
-      if @programa.save!
-        flash[:success]="Programa Registrada!"
-        render :show
-      else
-        flash[:alert]="Problemas con la grabación!"
-        render :new
+      respond_to do |format|
+        if @programa.save!
+          flash[:success]="Programa Registrada!"
+          format.html {redirect_to programas_path}
+          format.json {render :index, status: :created, location: @programa }
+          format.js
+        else
+          flash[:alert]="Problemas Con La Grabacion"
+          format.html {render :show}
+          format.json {render json: @programa.errors, status: :unprocessable_entity}
+        end
       end
     else
       flash[:info]="No tiene permisos para acceder a esa vista!"

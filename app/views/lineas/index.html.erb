@@ -2,46 +2,61 @@
 <h1 class="text-center mov-naranja">LISTA DE <strong>LINEAS</strong></h1>
 <hr />
 <div class="row">
-  <%= form_tag(lineas_path, class:"navbar-form-custom" , method: :get) do %>
-    <div class="form-group">
-      <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
-    </div>
-  <%end%>
-</div><br>
-    <% unless @lineas.present? %>
-       <tr>
-          <h2 class="text-center">No Hay Informacion Solicitada</h2
-       </tr>
+  <div class="col-md-10">
+    <%= form_tag(lineas_path, class:"navbar-form-custom" , method: :get) do %>
+      <div class="form-group">
+        <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
+      </div>
     <%end%>
-
+  </div>
+  <div class="col-md-2">
+    <div class="input-group-btn">
+      <div class="botonContainer">
+          <%= link_to "", new_linea_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
+        </div>
+      </div>
+    </div>
+</div>
+<% unless @lineas.present? %>
+   <tr>
+      <h2 class="text-center">No Hay Informacion Solicitada</h2
+   </tr>
+<%end%>
 <div class="usuario">
   <div class="informacion_general">
     <div class="container_box">
-     <% @lineas.each do |linea| %>
-        <div class="box">
-            <div class="description">
-                <% if linea.avatar.present? %>
-                  <%= image_tag linea.avatar.thumb.url%>
-                <%else%>
-                  <p>Aqui va una foto defaul</p>
-                <%end%>
+       <% @lineas.each do |linea| %>
+          <div class="box">
+            <div class="col-md-6">
+                <%= link_to "", edit_linea_path(linea), remote:true , class: "fa fa-pencil-square-o   btn btn-warning"%>
             </div>
-            <div class="foot">
-                <h3 class="foot_box"><%=linea.nombre%></h3>
+            <div class="col-md-6">
+                <%= link_to '', { :action => :destroy, :id => linea.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar esta linea'} , class: "fa fa-trash-o btn btn-danger"%>
             </div>
-            <div class="ver_mas">
-              <a class="<%= is_active_controller('programas') %>">
-                <% if current_user.has_role? :Admin %>
-                   <%= link_to linea_cursos_path(linea) do %>
-                     <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
-                   <% end %>
-                 <%else%>
-                   <%= link_to linea_cursos_usuarios_path(linea) do %>
-                     <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
-                   <% end %>
-                <% end %>
-              </a>
-            </div>
-      </div>
-    <%end%>
+             <div class="description">
+                <h1 class="description_box"><%=linea.nombre%></h1>
+             </div>
+             <div class="foot">
+                <h1 class="description_box"><%= linea.cursosUsuario.count%></h1>
+             </div>
+               <div class="ver_mas">
+                  <a class="<%= is_active_controller('programas') %>">
+                    <% if current_user.has_role? :Admin %>
+                         <%= link_to linea_cursos_path(linea) do %>
+                           <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+                         <% end %>
+                      <%else%>
+                         <%= link_to linea_cursos_usuarios_path(linea) do %>
+                           <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+                         <% end %>
+                    <% end %>
+                  </a>
+               </div>
+
+          </div>
+       <%end%>
+    </div>
+  </div>
 </div>
+<div id="new-linea"></div>
+<div id="edit-linea"></div>

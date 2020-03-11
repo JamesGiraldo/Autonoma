@@ -6,12 +6,12 @@
       <div class="info">
          <p class="details_info"><strong>Nombre: </strong> <%=  @curso.nombre %></p>
          <p class="details_info"><strong>linea: </strong> <%=  @curso.linea.nombre %></p>
-         <p class="details_info"><strong>Esatdo: </strong> <%= @curso.estado ? "Realizado" : " En Proceso"%></p>
+         <p class="details_info"><strong>Esatdo: </strong> <%= @curso.estado ? "UAC" : "EXTERNO"%></p>
       </div>
       <% if current_user.has_role? :Admin%>
         <div class="botonContainer">
           <div class="botonSeguimiento">
-            <%= link_to "Editar Curso", edit_curso_path(@curso), class: "botonSeguimientoColor"%>
+            <%= link_to "Editar Curso", edit_curso_path(@curso), remote:true,  class: "botonSeguimientoColor"%>
           </div>
           <div class="botonSeguimiento">
             <%= link_to 'Eliminar', { :action => :destroy, :id => @curso.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar este Curso'} , class: "botonSeguimientoColor"%>
@@ -21,3 +21,4 @@
     </div>
   </div>
 </div>
+<div id="edit-curso"></div>

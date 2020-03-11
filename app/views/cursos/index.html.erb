@@ -34,7 +34,10 @@
         <th class="active">Registrado</th>
         <th class="active">Modificado</th>
         <th class="active">Incribirse</th>
-        <th class="active">Acciones</th>
+        <% if current_user.has_role? :Admin %>
+          <th class="tex-center active">Acciones</th>
+          <% else %>
+        <% end %>
       </tr>
       <%= render partial: "cursos", collection: @cursos, as: :curso %>
     </table>

@@ -1,7 +1,7 @@
 <tr>
     <td><%= cursos_usuario.nombre %></td>
     <td><%= cursos_usuario.linea.nombre%></td>
-    <td>
+    <td class="text-center">
       <%= link_to "", edit_cursos_usuario_path(cursos_usuario), remote:true , class: "fa fa-pencil-square-o  btn btn-warning"%>
       <%= link_to '', { :action => :destroy, :id => cursos_usuario.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar este Curso'} , class: "fa fa-trash-o btn btn-danger"%>
     </td>

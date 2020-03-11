@@ -3,11 +3,11 @@
   <td><%= curso.nombre %></td>
   <td><%= curso.created_at.strftime("%d-%m-%Y %H:%M")  %></td>
   <td><%= curso.updated_at.strftime("%d-%m-%Y %H:%M") %></td>
-    <td><%= link_to "", new_cursos_usuario_path, remote:true , class: "fa fa-check-square btn btn-warning"%></td>
-  <td>
-    <% if current_user.has_role? :Admin%>
-      <%= link_to "", edit_curso_path(curso), remote:true , class: "fa fa-pencil-square-o  btn btn-warning"%>
-      <%= link_to '', { :action => :destroy, :id => curso.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar este Curso'} , class: "fa fa-trash-o btn btn-danger"%>
-    <%end%>
-  </td>
+    <td class="text-center"><%= link_to "", new_cursos_usuario_path, remote:true , class: "text-center fa fa-check-square btn btn-warning"%></td>
+  <% if current_user.has_role? :Admin%>
+    <td class="text-center">
+        <%= link_to "", edit_curso_path(curso), remote:true , class: "fa fa-pencil-square-o  btn btn-warning"%>
+        <%= link_to '', { :action => :destroy, :id => curso.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar este Curso'} , class: " text-center fa fa-trash-o btn btn-danger"%>
+    </td>
+  <%end%>
 </tr>

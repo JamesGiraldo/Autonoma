@@ -5,9 +5,9 @@ class Programas::UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :asignar]
 
   def index
-      @users = @programa.users.all.includes(:roles).where('roles.name' => "Docente").order(id: :desc).page params[:page]      
+      @users = @programa.users.all.includes(:roles).where('roles.name' => "Docente").order(id: :desc).page params[:page]
     if params[:q].present?
-      @users = @users.where("nombre like :q", q: "%#{params[:q]}%").page params[:page]
+      @users = @users.where("email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q", q: "%#{params[:q]}%").page params[:page]
     end
   end
 

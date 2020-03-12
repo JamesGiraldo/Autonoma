@@ -5,7 +5,7 @@ class Facultades::ProgramasController < ApplicationController
   before_action :set_programa, only: [:edit, :update, :asignar]
 
   def index
-      @programas = @facultad.programas.order(id: :desc)
+      @programas = @facultad.programas.order(id: :desc).page params[:page]
     if params[:q].present?
       @programas = @programas.where("nombre like :q", q: "%#{params[:q]}%").page params[:page]
     end

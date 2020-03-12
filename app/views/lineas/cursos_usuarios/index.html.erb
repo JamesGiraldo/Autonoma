@@ -22,7 +22,7 @@
     <table class="table table-striped table-bordered table-hover dataTables-example">
         <tr>
           <th class="active">Nombre</th>
-          <th class="active">Linea</th>
+          <th class="active">Linea</th>          
         </tr>
         <tr>
           <% @cursos_usuarios.each do |curso_usuario| %>
@@ -38,6 +38,7 @@
            <%end%>
       </table>
   </div>
-</div>
+</div><hr>
+<%= paginate @cursos_usuarios, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination float-right" %>
 <div id="new-curso"></div>
 <div id="edit-curso"></div>

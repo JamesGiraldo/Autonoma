@@ -18,11 +18,11 @@
         <!-- Page wraper -->
         <div id="page-wrapper" class="gray-bg <%= @extra_class %>">
             <!-- Page wrapper -->
-            <%= render 'layouts/topnavbar' %>
+            <%= render 'layouts/topnavbar' %><br>
             <!-- Main view  -->
             <%= custom_bootstrap_flash %>
             <div class=" wrapper border-bottom white-bg page-heading "><br>
-                <%= breadcrumbs display_single_fragment: true, style: :bootstrap, separator: ' / '%>
+                <%= breadcrumbs display_single_fragment: true ,separator: ' / ', class:""%>
             </div>
             <%= yield %>
             <!-- Footer -->

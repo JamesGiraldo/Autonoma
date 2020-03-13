@@ -6,12 +6,16 @@
         <tr>
           <th class="active">Nombre</th>
           <th class="active">Linea</th>
+          <th class="active">Registrado</th>
+          <th class="active">Modificado</th>
         </tr>
         <tr>
           <% @user.cursosUsuario.each do |curso_usuario| %>
               <tr>
-                <td><%= link_to curso_usuario.nombre , cursos_usuario_path(curso_usuario.id)%></td>
+                <td><%= curso_usuario.nombre %></td>
                 <td><%= curso_usuario.linea.nombre%></td>
+                <td><%= curso_usuario.created_at.strftime("%d-%m-%Y %H:%M")  %></td>
+                <td><%= curso_usuario.updated_at.strftime("%d-%m-%Y %H:%M") %></td>
               </tr>
            <%end%>
       </table>
@@ -25,12 +29,16 @@
           <tr>
             <th class="active">Nombre</th>
             <th class="active">Linea</th>
+            <th class="active">Registrado</th>
+            <th class="active">Modificado</th>
           </tr>
           <tr>
             <% @user.cursosUsuario.each do |curso_usuario| %>
                 <tr>
-                  <td><%= link_to curso_usuario.nombre , cursos_usuario_path(curso_usuario.id)%></td>
+                  <td><%= curso_usuario.nombre %></td>
                   <td><%= curso_usuario.linea.nombre%></td>
+                  <td><%= curso_usuario.created_at.strftime("%d-%m-%Y %H:%M")  %></td>
+                  <td><%= curso_usuario.updated_at.strftime("%d-%m-%Y %H:%M") %></td>
                 </tr>
              <%end%>
         </table>

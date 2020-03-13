@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :cursosUsuario, :dependent => :restrict_with_error
   has_many :proyecciones, :dependent => :restrict_with_error
   belongs_to :programa
+  has_many :comentarios, :dependent => :restrict_with_error
 end

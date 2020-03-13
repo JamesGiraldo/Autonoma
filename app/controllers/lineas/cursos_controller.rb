@@ -5,7 +5,7 @@ class Lineas::CursosController < ApplicationController
   before_action :set_curso, only: [:edit, :update, :asignar]
 
   def index
-      @cursos = @linea.cursos.order(id: :desc)
+      @cursos = @linea.cursos.order(id: :desc).page params[:page]
     if params[:q].present?
       @cursos = @cursos.where("nombre like :q", q: "%#{params[:q]}%").page params[:page]
     end

@@ -4,18 +4,7 @@
           <ul class="nav metismenu" id="side-menu">
               <li class="nav-header">
                   <div class="dropdown profile-element">
-                      <!-- <img alt="image" class="rounded-circle" src="image_path('profile_small.jpg') %>"/> -->
-                      <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                          <span class="block m-t-xs font-bold"></span>
-                          <span class="text-muted text-xs block"><%= current_user.email %><b class="caret"></b><br><%= current_user.roles.collect(&:name).join(' , ').upcase %></span>
-                      </a>
-                      <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                         <li><a class="dropdown-item" href=" <%= edit_user_path %>" class="btn btn-nar">Mi Perfil</a></li>
-                         <li><a class="dropdown-item" href="<%= cambiar_password_user_path %>">Cambiar Contraseña</a></li>
-                         <li><a class="dropdown-item" href="#">Buzón</a></li>
-                         <li class="dropdown-divider"></li>
-                         <li><%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete, class:"btn btn-nar"%></li>
-                     </ul>
+                      <span class="titulo-Narajanja"> AUTÓNOMA</span>
                   </div>
                   <div class="logo-element">
                       <%=link_to "AU+", root_path %>
@@ -23,13 +12,13 @@
               </li>
               <li class="<%= is_active_controller('home') %>">
                   <%= link_to root_path do %>
-                  <i class="fa fa-home"></i> <span class="nav-label" data-i18n="nav.layouts">Inicio</span>
+                  <i class="titulo-Narajanja fa fa-home"></i> <span class="nav-label" data-i18n="nav.layouts">Inicio</span>
                   <% end %>
               </li>
               <% if current_user.has_role? :Admin %>
                 <li class="<%= 'active' if current_page?('/users') %>">
                     <%= link_to users_path do %>
-                    <i class="fa fa-group"></i>
+                    <i class="titulo-Narajanja fa fa-group"></i>
                     <span class="nav-label">Usuarios</span>
                     <!-- <span class="label label-info float-right">NEW</span> -->
                     <span class="fa arrow"></span>
@@ -49,7 +38,7 @@
               <% elsif current_user.has_role? :Decano %>
                 <li class="<%= 'active' if current_page?('/users') %>">
                     <%= link_to users_path do %>
-                    <i class="fa fa-group"></i>
+                    <i class="titulo-Narajanja fa fa-group"></i>
                     <span class="nav-label">Usuarios</span>
                     <!-- <span class="label label-info float-right">NEW</span> -->
                     <span class="fa arrow"></span>
@@ -63,7 +52,7 @@
               <%end%>
                 <li class="<%= 'active' if current_page?('/cursos') %>">
                     <%= link_to cursos_path do %>
-                    <i class="fa fa-graduation-cap"></i>
+                    <i class="titulo-Narajanja fa fa-graduation-cap"></i>
                     <span class="nav-label">Cursos</span>
                     <!-- <span class="label label-info float-right">NEW</span> -->
                     <span class="fa arrow"></span>
@@ -75,7 +64,7 @@
                           </li>
                        <%else%>
                          <li class="<%= 'active' if current_page?('/lineas') %>">
-                           <%= link_to "Lineas de Cursos" , lineas_path %>
+                           <%= link_to "Lineas" , lineas_path %>
                          </li>
                           <li class="<%= 'active' if current_page?('/cursos') %>">
                             <%= link_to "Cursos" , cursos_path %>
@@ -89,7 +78,7 @@
               <% if current_user.has_role? :Admin %>
                 <li class="<%= 'active' if current_page?('/lineas') %>">
                     <%= link_to lineas_path do %>
-                    <i class="fa fa-dashboard"></i>
+                    <i class="titulo-Narajanja fa fa-dashboard"></i>
                     <span class="nav-label">lineas de Cursos</span>
                     <!-- <span class="label label-info float-right">NEW</span> -->
                     <span class="fa arrow"></span>
@@ -103,7 +92,7 @@
               <%end%>
                 <li class="<%= 'active' if current_page?('/proyecciones') %>">
                     <%= link_to proyecciones_path do %>
-                    <i class="fa fa-dashboard"></i>
+                    <i class="titulo-Narajanja fa fa-dashboard"></i>
                     <span class="nav-label">Proyecciones</span>
                     <!-- <span class="label label-info float-right">NEW</span> -->
                     <span class="fa arrow"></span>
@@ -116,7 +105,7 @@
                 </li>
                 <li class="<%= 'active' if current_page?('/comentarios') %>">
                     <%= link_to comentarios_path do %>
-                    <i class="fa fa-circle-o"></i>
+                    <i class="titulo-Narajanja 	fa fa-comment"></i>
                     <span class="nav-label">Comentarios</span>
                     <!-- <span class="label label-info float-right">NEW</span> -->
                     <span class="fa arrow"></span>
@@ -136,7 +125,7 @@
                 <% if current_user.has_role? :Admin %>
                   <li class="<%= 'active' if current_page?('/facultades') %>">
                       <%= link_to facultades_path do %>
-                      <i class="fa fa-circle-o"></i>
+                      <i class="titulo-Narajanja fa fa-bank"></i>
                       <span class="nav-label">Facultades</span>
                       <!-- <span class="label label-info float-right">NEW</span> -->
                       <span class="fa arrow"></span>
@@ -157,7 +146,7 @@
                 <% if current_user.has_role? :Admin %>
                   <li class="<%= 'active' if current_page?('/programas') %>">
                       <%= link_to facultades_path do %>
-                      <i class="fa fa-opencart"></i>
+                      <i class="titulo-Narajanja fa fa-opencart"></i>
                       <span class="nav-label">Programas</span>
                       <!-- <span class="label label-info float-right">NEW</span> -->
                       <span class="fa arrow"></span>
@@ -173,7 +162,7 @@
                 <% end %>
               <li class="<%= 'active' if current_page?('/users') %>">
                   <%= link_to edit_user_path do %>
-                  <i class="fa fa-cogs"></i>
+                  <i class="titulo-Narajanja fa fa-cogs"></i>
                   <span class="nav-label">Configuracion</span>
                   <!-- <span class="label label-info float-right">NEW</span> -->
                   <span class="fa arrow"></span>

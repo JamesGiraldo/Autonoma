@@ -1,7 +1,7 @@
-<h1 class="text-center mov-naranja">Universidad <strong>Autonoma del caribe</strong></h1>
-<h2 class="subtitulo mov-naranja"><strong>Informacion</strong></h2>
-<div class="usuario">
-  <div class="informacion">
+<h1 class="text-center titulo-Narajanja">Universidad <strong>Autonoma del caribe</strong></h1>
+<h2 class="subtitulo titulo-Narajanja"><strong>Informacion</strong></h2>
+<div class="usuario informacion_general">
+  <div class="informacion ">
     <div class="container_picture">
       <%= link_to edit_user_path do %>
          <div class="picture">
@@ -40,7 +40,7 @@
              <h3 class="title_box"><strong>Comentarios</strong></h3>
          </div>
          <div class="description">
-             <h1 class="description_box"><%= Comentario.count%></h1>
+             <h1 class="description_box"><%= current_user.comentarios.count%></h1>
          </div>
          <div class="foot">
              <h3 class="foot_box">Universidad Autonoma del caribe</h3>
@@ -126,10 +126,9 @@
          </div>
        </div>
     </div>
-
   </div>
 </div>
 <div class="">
-  <h2 class="subtitulo mov-naranja"><strong>Cursos</strong></h2>
-  <%= column_chart @cursos %><br><br><br>
+  <h2 class="subtitulo titulo-Narajanja"><strong>Cursos</strong></h2>
+  <%= column_chart @cursos, stacked: true, colors: ["#fcae70"]%><br><br><br>
 </div>

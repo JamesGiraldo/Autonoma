@@ -1,14 +1,8 @@
 <% if current_user.has_role? :decano %>
-  <h2 class="subtitulo mov-naranja"><strong>Cursos Realizados</strong></h2>
-  <div class="row">
-    <%= form_tag(cursos_usuarios_path, class:"navbar-form-custom" , method: :get) do %>
-      <div class="form-group">
-        <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
-      </div>
-    <%end%>
-  </div><br>
-    <div class="usuario">
-      <table class="table table-striped">
+ <h2 class="subtitulo mov-naranja"><strong>Cursos Realizados</strong></h2><br>
+  <div class="ibox-content m-b-sm border-bottom">
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered table-hover dataTables-example">
         <tr>
           <th class="active">Nombre</th>
           <th class="active">Linea</th>
@@ -21,18 +15,13 @@
               </tr>
            <%end%>
       </table>
+    </div>
   </div>
   <% elsif current_user.has_role? :Admin %>
-    <h2 class="subtitulo mov-naranja"><strong>Cursos Realizados</strong></h2>
-    <div class="row">
-      <%= form_tag(cursos_usuarios_path, class:"navbar-form-custom" , method: :get) do %>
-        <div class="form-group">
-          <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
-        </div>
-      <%end%>
-    </div><br>
-      <div class="usuario">
-        <table class="table table-striped">
+   <h2 class="subtitulo mov-naranja"><strong>Cursos Realizados</strong></h2><br>
+    <div class="ibox-content m-b-sm border-bottom">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover dataTables-example">
           <tr>
             <th class="active">Nombre</th>
             <th class="active">Linea</th>
@@ -45,5 +34,6 @@
                 </tr>
              <%end%>
         </table>
+      </div>
     </div>
 <% end %>

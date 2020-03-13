@@ -1,6 +1,5 @@
 <% breadcrumb :lineas %>
-<h1 class="text-center mov-naranja">LISTA DE <strong>LINEAS</strong></h1>
-<hr />
+<h1 class="text-center titulo-Narajanja">LISTA DE <strong>LINEAS</strong></h1><hr />
 <div class="row">
   <div class="col-md-10">
     <%= form_tag(lineas_path, class:"navbar-form-custom" , method: :get) do %>
@@ -16,7 +15,7 @@
         </div>
       </div>
     </div>
-</div>
+</div><br>
 <% unless @lineas.present? %>
    <tr>
       <h2 class="text-center">No Hay Informacion Solicitada</h2
@@ -37,22 +36,15 @@
                 <h1 class="description_box"><%=linea.nombre%></h1>
              </div>
              <div class="foot">
-                <h1 class="description_box"><%= linea.cursosUsuario.count%></h1>
+                <h1 class="description_box"><%= linea.cursos.count%></h1>
              </div>
                <div class="ver_mas">
                   <a class="<%= is_active_controller('programas') %>">
-                    <% if current_user.has_role? :Admin %>
-                         <%= link_to linea_cursos_path(linea) do %>
-                           <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
-                         <% end %>
-                      <%else%>
-                         <%= link_to linea_cursos_usuarios_path(linea) do %>
-                           <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
-                         <% end %>
-                    <% end %>
+                     <%= link_to linea_cursos_path(linea) do %>
+                       <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+                     <% end %>
                   </a>
                </div>
-
           </div>
        <%end%>
     </div>

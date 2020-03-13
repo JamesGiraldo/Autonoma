@@ -1,4 +1,4 @@
-<h1 class="text-center mov-naranja">Usuarios del Programa <strong><%= @programa.nombre %></strong></h1>
+<h1 class="text-center titulo-Narajanja">Usuarios del Programa <strong><%= @programa.nombre %></strong></h1>
 <hr />
 <div class="row">
   <%= form_tag(programa_users_path, class:"navbar-form-custom" , method: :get) do %>
@@ -29,4 +29,5 @@
         </tr>
       <%end%>
   </div>
-</div>
+</div><hr>
+<%= paginate @users, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination float-right" %>

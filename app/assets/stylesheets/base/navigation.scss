@@ -170,7 +170,7 @@
 .nav-header {
   padding: 33px 25px;
   background-color: $nav-bg;
-  background-image: $nav-profile-pattern;
+  // background-image: $nav-profile-pattern;
 
 }
 
@@ -387,9 +387,10 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
   text-align: center;
   font-size: 18px;
   font-weight: 600;
-  color: white;
+  color: #fcae70;
   display: none;
   padding: 18px 0;
+  background-color: #4c4c54;
 }
 
 .navbar-static-side { transition: width 0s; }
@@ -417,7 +418,7 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
 .navbar-fixed-top .navbar-form-custom .form-control { height: 50px}
 
 .navbar-fixed-top, .navbar-static-top {
-  background: $gray;
+  background: #4c4c54;
 }
 
 .fixed-nav #wrapper {

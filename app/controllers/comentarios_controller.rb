@@ -3,7 +3,7 @@ class ComentariosController < ApplicationController
   respond_to :html, :json
 
   def index
-    @comentarios = Comentario.all.page params[:page]
+    @comentarios = Comentario.all.where(user_id: current_user.id).page params[:page]
     if params[:q].present?
       @comentarios = @comentarios.where("titulo like :q", q: "%#{params[:q]}%").page params[:page]
     end
@@ -51,7 +51,7 @@ class ComentariosController < ApplicationController
   end
 
   def create
-    @comentario = Comentario.new(comentario_params)
+    @comentario = current_user.comentarios.new(comentario_params)
     respond_to do |format|
       if @comentario.save!
         flash[:success]="Comentario Registrado!"

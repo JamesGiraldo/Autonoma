@@ -1,10 +1,10 @@
 <% breadcrumb :usuarios_show, @user %>
 <% if @user.nombre.present? %>
-    <h1 class="text-center mov-naranja"><strong><%= @user.nombre %> <%= @user.apellido %></strong></h1><hr />
+    <h1 class="text-center titulo-Narajanja"><strong><%= @user.nombre %> <%= @user.apellido %></strong></h1><hr />
   <%else%>
-  <h1 class="text-center mov-naranja"><strong><%= @user.email %></strong></h1><hr />
+  <h1 class="text-center titulo-Narajanja"><strong><%= @user.email %></strong></h1><hr />
 <% end %>
-<h2 class="subtitulo mov-naranja"><strong>Informacion</strong></h2>
+<h2 class="subtitulo titulo-Narajanja"><strong>Informacion</strong></h2>
 <div class="usuario">
   <div class="informacion">
     <div class="container_picture">

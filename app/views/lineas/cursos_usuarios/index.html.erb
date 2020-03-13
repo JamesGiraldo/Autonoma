@@ -1,5 +1,5 @@
 <% breadcrumb :cursos_usuarios_linea, @linea %>
-<h1 class="text-center mov-naranja">LISTA DE <strong>CURSOS POR OTRO LADO</strong> DE LA LINEA: <%= @linea.nombre %></h1>
+<h1 class="text-center titulo-Narajanja">LISTA DE <strong>CURSOS POR OTRO LADO</strong> DE LA LINEA: <%= @linea.nombre %></h1>
 <hr />
 <div class="row">
   <div class="col-md-10">
@@ -22,7 +22,7 @@
     <table class="table table-striped table-bordered table-hover dataTables-example">
         <tr>
           <th class="active">Nombre</th>
-          <th class="active">Linea</th>          
+          <th class="active">Linea</th>
         </tr>
         <tr>
           <% @cursos_usuarios.each do |curso_usuario| %>

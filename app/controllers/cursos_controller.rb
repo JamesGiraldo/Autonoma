@@ -42,7 +42,7 @@ class CursosController < ApplicationController
       respond_to do |format|
         if @curso.update(curso_params)
           flash[:success]="Curso Actualizado!"
-          format.html {redirect_to @curso}
+          format.html {redirect_to cursos_path}
           format.json {render :index, status: :created, location: @cursos }
           format.js
         else
@@ -79,7 +79,7 @@ class CursosController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       redirect_to cursos_path
       flash[:alert] = "Este Curso No Existe"
-    end  
+    end
   end
 
   private

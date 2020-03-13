@@ -2,8 +2,7 @@
   <td><%= curso.linea.nombre  %></td>
   <td><%= curso.nombre %></td>
   <td><%= curso.created_at.strftime("%d-%m-%Y %H:%M")  %></td>
-  <td><%= curso.updated_at.strftime("%d-%m-%Y %H:%M") %></td>
-    <td class="text-center"><%= link_to "", new_cursos_usuario_path, remote:true , class: "text-center fa fa-check-square btn btn-warning"%></td>
+  <td><%= curso.updated_at.strftime("%d-%m-%Y %H:%M") %></td>  
   <% if current_user.has_role? :Admin%>
     <td class="text-center">
         <%= link_to "", edit_curso_path(curso), remote:true , class: "fa fa-pencil-square-o  btn btn-warning"%>

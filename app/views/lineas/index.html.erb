@@ -1,6 +1,5 @@
 <% breadcrumb :lineas %>
-<h1 class="text-center mov-naranja">LISTA DE <strong>LINEAS</strong></h1>
-<hr />
+<h1 class="text-center titulo-Narajanja">LISTA DE <strong>LINEAS</strong></h1><hr />
 <div class="row">
   <div class="col-md-10">
     <%= form_tag(lineas_path, class:"navbar-form-custom" , method: :get) do %>
@@ -16,7 +15,7 @@
         </div>
       </div>
     </div>
-</div>
+</div><br>
 <% unless @lineas.present? %>
    <tr>
       <h2 class="text-center">No Hay Informacion Solicitada</h2

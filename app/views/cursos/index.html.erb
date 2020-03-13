@@ -1,10 +1,10 @@
 <% breadcrumb :cursos %>
-<h1 class="text-center mov-naranja">LISTA DE <strong>CURSOS</strong></h1>
+<h1 class="text-center titulo-Narajanja">LISTA DE <strong>CURSOS</strong></h1>
 <hr />
 <div class="ibox-content m-b-sm border-bottom">
   <div class="row">
     <div class="col-md-10">
-        <h2>Cursos</h2>
+        <h2 class="titulo-Narajanja">Cursos</h2>
     </div>
     <div class="col-md-2">
       <div class="input-group-btn">
@@ -29,13 +29,13 @@
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover dataTables-example">
       <tr>
-        <th class="footable-visible footable-first-column footable-sortable active">Linea</th>
-        <th class="footable-visible footable-first-column footable-sortable active">Nombre</th>
-        <th class="footable-visible footable-first-column footable-sortable active">Registrado</th>
-        <th class="footable-visible footable-first-column footable-sortable active">Modificado</th>
-        <th class="footable-visible footable-first-column footable-sortable active">Incribirse</th>
+        <th class="text-center  footable-visible footable-first-column footable-sortable active">Linea</th>
+        <th class="text-center  footable-visible footable-first-column footable-sortable active">Nombre</th>
+        <th class=" text-center footable-visible footable-first-column footable-sortable active">Registrado</th>
+        <th class="text-center  footable-visible footable-first-column footable-sortable active">Modificado</th>
+        <!-- <th class="footable-visible footable-first-column footable-sortable active">Incribirse</th> -->
         <% if current_user.has_role? :Admin %>
-          <th class="footable-visible footable-first-column footable-sortable tex-center active">Acciones</th>
+          <th class="footable-visible footable-first-column footable-sortable text-center active">Acciones</th>
           <% else %>
         <% end %>
       </tr>

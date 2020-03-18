@@ -5,10 +5,10 @@
     <div class="container_picture">
       <%= link_to edit_user_path do %>
          <div class="picture">
-           <% if current_user.perfil.present? %>
-               <%= image_tag current_user.perfil.thumb.url%>
-               <%else%>
-               <p>Actualizar Perfil</p>
+           <% if current_user.perfil? %>
+                <%= image_tag current_user.perfil.url(:thumb) %>
+             <%else%>
+                <%= image_tag 'nophoto' , class: "imghome"%>
            <%end%>
          </div>
       <%end%>

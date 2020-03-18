@@ -12,8 +12,8 @@
             <li>
               <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <span class="block m-t-xs font-bold"></span>
-                <% if current_user.nombre.present? %>
-                  <span class="text-muted text-xs block"><%= current_user.nombre %> <%= current_user.apellido %> <b class=" titulo-Narajanja caret"></b><br></span>
+                <% if current_user.username.present? %>
+                  <span class="text-muted text-xs block"><%= current_user.username %> <b class=" titulo-Narajanja caret"></b><br></span>
                   <% else %>
                   <span class="text-muted text-xs block"><%= current_user.email %> <b class=" titulo-Narajanja caret"></b><br></span>
                 <% end %>

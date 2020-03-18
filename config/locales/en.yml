@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+# en:
+#   activerecord:
+#     user:
+#       login: "Username or Email"

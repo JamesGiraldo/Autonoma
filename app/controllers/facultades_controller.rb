@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FacultadesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :authenticate_role_user, except: %i[index show]

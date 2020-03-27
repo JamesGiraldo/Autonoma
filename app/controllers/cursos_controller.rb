@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CursosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   respond_to :html, :json

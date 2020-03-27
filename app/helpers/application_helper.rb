@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def custom_bootstrap_flash
     flash_messages = []

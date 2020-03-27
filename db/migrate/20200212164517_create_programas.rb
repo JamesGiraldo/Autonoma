@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateProgramas < ActiveRecord::Migration[5.1]
   def change
     create_table :programas do |t|

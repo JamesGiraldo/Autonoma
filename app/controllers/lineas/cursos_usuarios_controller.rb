@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Lineas::CursosUsuariosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_linea

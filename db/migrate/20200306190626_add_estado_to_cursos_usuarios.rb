@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddEstadoToCursosUsuarios < ActiveRecord::Migration[5.1]
   def change
     add_column :cursos_usuarios, :estado, :boolean

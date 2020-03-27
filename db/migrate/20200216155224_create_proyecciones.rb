@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateProyecciones < ActiveRecord::Migration[5.1]
   def change
     create_table :proyecciones do |t|

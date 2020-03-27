@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Curso < ApplicationRecord
   belongs_to :linea
   validates :nombre, presence: true, uniqueness: true

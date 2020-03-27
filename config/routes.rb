@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-  root to: "home#index"
+  root to: 'home#index'
   devise_for :users
 
-  resources :users, only: [:index, :ver_datos] do
+  resources :users, only: %i[index ver_datos] do
     get :ver_datos, on: :member
     collection do
       get :index_instructores
       get :decanos
     end
   end
-  resource :user, only: [:edit, :destroy, :update , :show] do
+  resource :user, only: %i[edit destroy update show] do
     collection do
       patch 'update_password'
       get :cambiar_password

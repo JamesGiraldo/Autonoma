@@ -7,10 +7,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   mount_uploader :perfil, PerfilUploader
-  has_many :cursosUsuario, :dependent => :restrict_with_error
-  has_many :proyecciones, :dependent => :restrict_with_error
+  has_many :cursosUsuario, dependent: :restrict_with_error
+  has_many :proyecciones, dependent: :restrict_with_error
   belongs_to :programa
-  has_many :comentarios, :dependent => :restrict_with_error
+  has_many :comentarios, dependent: :restrict_with_error
 
   # def self.find_dor_database_authentication warden_condition
   #   conditions = warden_condition.dup
@@ -22,14 +22,14 @@ class User < ApplicationRecord
 
   def self.find_for_authentication(conditions)
     login = conditions.delete(:login)
-    where(conditions).where(["username = :value OR email = :value", { :value => login }]).first
+    where(conditions).where(['username = :value OR email = :value', { value: login }]).first
   end
   # "getter"
   #
   # def login
   #   @login
   # end
-  
+
   # "setter"
   # def login=(str)
   #    @login = str

@@ -1,15 +1,15 @@
 crumb :root do
-  link " Home ", root_path
+  link ' Home ', root_path
 end
-#users
+# users
 crumb :users do
-  link "Usuarios ", users_path
+  link 'Usuarios ', users_path
 end
 crumb :users_instructores do
-  link "Docentes ", index_instructores_users_path
+  link 'Docentes ', index_instructores_users_path
 end
 crumb :users_decanos do
-  link "Decanos ", decanos_users_path
+  link 'Decanos ', decanos_users_path
 end
 crumb :usuarios_show do |user|
   if user.nombre.present?
@@ -26,135 +26,135 @@ crumb :user_edit do |user|
   end
 end
 crumb :user_password_edit do |user|
-  link "Cambiar contraseña", edit_user_path(user)
+  link 'Cambiar contraseña', edit_user_path(user)
   parent :user_edit, user
 end
-#fin Users
-#curso
+# fin Users
+# curso
 crumb :cursos do
-  link "Cursos ", cursos_path
+  link 'Cursos ', cursos_path
 end
 
 crumb :cursos_new do
-   link "Nuevo Curso ", cursos_path
-   parent :novedades
+  link 'Nuevo Curso ', cursos_path
+  parent :novedades
 end
 
 crumb :curso_show do |curso|
-   link "#{curso.nombre}", curso_path(curso)
-   parent :curso, curso
+  link curso.nombre.to_s, curso_path(curso)
+  parent :curso, curso
 end
 
 crumb :curso_edit do |curso|
   link "Editar Curso: #{curso.nombre}", edit_curso_path(curso)
   parent :curso_show, curso
 end
-#fin curso
-#lineas
+# fin curso
+# lineas
 crumb :lineas do
-  link "Lineas ", lineas_path
+  link 'Lineas ', lineas_path
 end
 
 crumb :linea_new do
-   link " Nueva Linea ", lineas_path
-   parent :lineas
-end
-
-crumb :cursos_usuarios_linea do |linea|
-  link "Mis Cursos", linea_cursos_usuarios_path
+  link ' Nueva Linea ', lineas_path
   parent :lineas
 end
 
-crumb :cursos_linea do |linea|
-  link "Cursos", linea_cursos_path
+crumb :cursos_usuarios_linea do |_linea|
+  link 'Mis Cursos', linea_cursos_usuarios_path
+  parent :lineas
+end
+
+crumb :cursos_linea do |_linea|
+  link 'Cursos', linea_cursos_path
   parent :lineas
 end
 
 crumb :linea_show do |linea|
-   link "#{linea.nombre}", linea_path(linea)
-   parent :lineas
+  link linea.nombre.to_s, linea_path(linea)
+  parent :lineas
 end
 
 crumb :linea_edit do |linea|
   link " Editar Linea: #{linea.nombre} ", edit_linea_path(linea)
   parent :linea_show, linea
 end
-#fin lineas
-#cursos
+# fin lineas
+# cursos
 crumb :cursos do
-  link "Cursos ", cursos_path
+  link 'Cursos ', cursos_path
 end
 
 crumb :cursos_usuarios do
-  link " Mis Cursos ", cursos_usuarios_path
+  link ' Mis Cursos ', cursos_usuarios_path
 end
 
 crumb :curso_new do
-   link " Nuevo Curso ", cursos_path
-   parent :cursos
+  link ' Nuevo Curso ', cursos_path
+  parent :cursos
 end
 
 crumb :curso_show do |curso|
-   link "#{curso.nombre}", curso_path(curso)
-   parent :cursos
+  link curso.nombre.to_s, curso_path(curso)
+  parent :cursos
 end
 
 crumb :curso_edit do |curso|
   link " Editar Curso: #{curso.nombre} ", edit_curso_path(curso)
   parent :curso_show, curso
 end
-#fin cursos
-#programas
+# fin cursos
+# programas
 crumb :programas do
-  link "Programas ", programas_path
+  link 'Programas ', programas_path
 end
 
 crumb :programa_new do
-   link " Nuevo Programa ", programas_path
-   parent :programas
+  link ' Nuevo Programa ', programas_path
+  parent :programas
 end
 
 crumb :programa_show do |programa|
-   link "#{programa.nombre}", programa_path(programa)
-   parent :programas
+  link programa.nombre.to_s, programa_path(programa)
+  parent :programas
 end
 
 crumb :programa_edit do |programa|
   link " Editar Programa: #{programa.nombre} ", edit_programa_path(programa)
   parent :programa_show, programa
 end
-#fin programas
-#facultades
+# fin programas
+# facultades
 crumb :facultades do
-  link "Facultades ", facultades_path
+  link 'Facultades ', facultades_path
 end
 
 crumb :facultad_new do
-   link " Nueva Facultad ", facultades_path
-   parent :facultades
+  link ' Nueva Facultad ', facultades_path
+  parent :facultades
 end
 
 crumb :facultad_show do |facultad|
-   link "#{facultad.nombre}", facultad_path(facultad)
-   parent :facultades
+  link facultad.nombre.to_s, facultad_path(facultad)
+  parent :facultades
 end
 
 crumb :facultad_edit do |facultad|
   link " Editar Facultad: #{facultad.nombre} ", edit_facultad_path(facultad)
   parent :facultad_show, facultad
 end
-#fin facultades
+# fin facultades
 crumb :comentarios do
-  link " Comentarios ", comentarios_path
+  link ' Comentarios ', comentarios_path
 end
 
 crumb :comentario_show do |comentario|
-  link "#{comentario.titulo}", comentario_path(comentario)
+  link comentario.titulo.to_s, comentario_path(comentario)
   parent :comentarios
 end
 
-crumb :proyecciones  do
-  link " Proyecciones", proyecciones_path
+crumb :proyecciones do
+  link ' Proyecciones', proyecciones_path
 end
 
 # If you want to split your breadcrumbs configuration over multiple files, you

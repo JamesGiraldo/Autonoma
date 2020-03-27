@@ -1,14 +1,14 @@
 ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.irregular 'user','users'
-  inflect.irregular 'curso','cursos'
-  inflect.irregular 'linea','lineas'
-  inflect.irregular 'programa','programas'
-  inflect.irregular 'facultad','facultades'
-  inflect.irregular 'proyeccion','proyecciones'
-  inflect.irregular 'comentario','comentarios'
-  inflect.irregular 'año','años'
-  inflect.irregular 'cursosUsuario','cursosUsuarios'
-  inflect.irregular 'cursosRealizado','cursosRealizados'
+  inflect.irregular 'user', 'users'
+  inflect.irregular 'curso', 'cursos'
+  inflect.irregular 'linea', 'lineas'
+  inflect.irregular 'programa', 'programas'
+  inflect.irregular 'facultad', 'facultades'
+  inflect.irregular 'proyeccion', 'proyecciones'
+  inflect.irregular 'comentario', 'comentarios'
+  inflect.irregular 'año', 'años'
+  inflect.irregular 'cursosUsuario', 'cursosUsuarios'
+  inflect.irregular 'cursosRealizado', 'cursosRealizados'
 end
 
 # Be sure to restart your server when you modify this file.

@@ -7,24 +7,24 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.paths << Emoji.images_path
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
-Rails.application.config.assets.precompile += %w( home.js )
-Rails.application.config.assets.precompile += %w( home.scss )
-Rails.application.config.assets.precompile += %w( cursos.css )
-Rails.application.config.assets.precompile += %w( cursos.js )
-Rails.application.config.assets.precompile += %w( lineas.css )
-Rails.application.config.assets.precompile += %w( lineas.js )
-Rails.application.config.assets.precompile += %w( proyecciones.css )
-Rails.application.config.assets.precompile += %w( proyecciones.js )
-Rails.application.config.assets.precompile += %w( comentarios.css )
-Rails.application.config.assets.precompile += %w( comentarios.js )
-Rails.application.config.assets.precompile += %w( facultades.css )
-Rails.application.config.assets.precompile += %w( facultades.js )
-Rails.application.config.assets.precompile += %w( programas.css )
-Rails.application.config.assets.precompile += %w( programas.js )
-Rails.application.config.assets.precompile += %w( cursos_usuarios.css )
-Rails.application.config.assets.precompile += %w( cursos_usuarios.js )
-Rails.application.config.assets.precompile += %w( users.css )
-Rails.application.config.assets.precompile += %w( users.js )
+Rails.application.config.assets.precompile += %w[home.js]
+Rails.application.config.assets.precompile += %w[home.scss]
+Rails.application.config.assets.precompile += %w[cursos.css]
+Rails.application.config.assets.precompile += %w[cursos.js]
+Rails.application.config.assets.precompile += %w[lineas.css]
+Rails.application.config.assets.precompile += %w[lineas.js]
+Rails.application.config.assets.precompile += %w[proyecciones.css]
+Rails.application.config.assets.precompile += %w[proyecciones.js]
+Rails.application.config.assets.precompile += %w[comentarios.css]
+Rails.application.config.assets.precompile += %w[comentarios.js]
+Rails.application.config.assets.precompile += %w[facultades.css]
+Rails.application.config.assets.precompile += %w[facultades.js]
+Rails.application.config.assets.precompile += %w[programas.css]
+Rails.application.config.assets.precompile += %w[programas.js]
+Rails.application.config.assets.precompile += %w[cursos_usuarios.css]
+Rails.application.config.assets.precompile += %w[cursos_usuarios.js]
+Rails.application.config.assets.precompile += %w[users.css]
+Rails.application.config.assets.precompile += %w[users.js]
 # Rails.application.config.assets.precompile += %w( devise/sessions.css devise/sessions.js)
 # Rails.application.config.assets.precompile += %w( devise/registrations.css)
 # Precompile additional assets.

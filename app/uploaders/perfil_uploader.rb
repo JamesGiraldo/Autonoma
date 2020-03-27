@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class PerfilUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -29,3 +30,4 @@ class PerfilUploader < CarrierWave::Uploader::Base
     new_file.content_type.start_with? 'image'
   end
 end
+# rubocop:enable Style/Documentation

@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class ComentariosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   respond_to :html, :json
 
-  def index
+  def index # rubocop:todo Metrics/AbcSize
     @comentarios = Comentario.all.where(user_id: current_user.id).page params[:page]
-    if params[:q].present?
+    if params[:q].present? # rubocop:todo Style/GuardClause
       @comentarios = @comentarios.where('titulo like :q', q: "%#{params[:q]}%").page params[:page]
     end
   end
@@ -34,7 +35,8 @@ class ComentariosController < ApplicationController
     end
   end
 
-  def update
+  # rubocop:todo Metrics/MethodLength
+  def update # rubocop:todo Metrics/AbcSize
     @comentario = Comentario.find(params[:id])
     respond_to do |format|
       if @comentario.update(comentario_params)
@@ -49,8 +51,10 @@ class ComentariosController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
-  def create
+  # rubocop:todo Metrics/MethodLength
+  def create # rubocop:todo Metrics/AbcSize
     @comentario = current_user.comentarios.new(comentario_params)
     respond_to do |format|
       if @comentario.save!
@@ -65,6 +69,7 @@ class ComentariosController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   private
 
@@ -72,3 +77,4 @@ class ComentariosController < ApplicationController
     params.require(:comentario).permit(:titulo, :descripccion)
   end
 end
+# rubocop:enable Style/Documentation

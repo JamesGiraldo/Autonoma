@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class AddRemoveEstadoToCursos < ActiveRecord::Migration[5.1]
   def change
     remove_column :cursos, :estado
@@ -9,3 +10,4 @@ class AddRemoveEstadoToCursos < ActiveRecord::Migration[5.1]
     add_column :cursos, :estado, :boolean, default: true
   end
 end
+# rubocop:enable Style/Documentation

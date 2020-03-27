@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class FacultadesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :authenticate_role_user, except: %i[index show]
 
   def index
     @facultades = Facultad.all.page params[:page]
-    if params[:q].present?
+    if params[:q].present? # rubocop:todo Style/GuardClause
       @facultades = @facultades.where('nombre like :q', q: "%#{params[:q]}%").page params[:page]
     end
   end
@@ -27,7 +28,7 @@ class FacultadesController < ApplicationController
   end
 
   # PUT /facultad/:id
-  def update
+  def update # rubocop:todo Metrics/MethodLength
     if @user.has_role? :Admin
       @facultad = Facultad.find_by id: params[:id]
       if @facultad.update(facultad_params)
@@ -44,7 +45,7 @@ class FacultadesController < ApplicationController
   end
 
   def destroy
-    if @user.has_role? :Admin
+    if @user.has_role? :Admin # rubocop:todo Style/GuardClause
       @facultad = Facultad.find(params[:id])
       flash[:alert] = 'Facultad Eliminada!'
       @facultad.destroy
@@ -52,7 +53,7 @@ class FacultadesController < ApplicationController
     end
   end
 
-  def create
+  def create # rubocop:todo Metrics/MethodLength
     if @user.has_role? :Admin
       @facultad = Facultad.new(facultad_params)
       if @facultad.save!
@@ -83,3 +84,4 @@ class FacultadesController < ApplicationController
     end
   end
 end
+# rubocop:enable Style/Documentation

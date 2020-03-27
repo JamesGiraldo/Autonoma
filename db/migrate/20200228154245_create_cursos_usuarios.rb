@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class CreateCursosUsuarios < ActiveRecord::Migration[5.1]
   def change
     create_table :cursos_usuarios do |t|
@@ -12,3 +13,4 @@ class CreateCursosUsuarios < ActiveRecord::Migration[5.1]
     add_reference(:cursos_usuarios, :linea, foreign_key: true)
   end
 end
+# rubocop:enable Style/Documentation

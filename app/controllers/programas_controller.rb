@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class ProgramasController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :authenticate_role_user, except: %i[index show]
 
   def index
     @programas = Programa.all.page params[:page]
-    if params[:q].present?
+    if params[:q].present? # rubocop:todo Style/GuardClause
       @programas = @programas.where('nombre like :q', q: "%#{params[:q]}%").page params[:page]
     end
   end
@@ -27,7 +28,8 @@ class ProgramasController < ApplicationController
   end
 
   # PUT /programa/:id
-  def update
+  # rubocop:todo Metrics/MethodLength
+  def update # rubocop:todo Metrics/AbcSize
     if @user.has_role? :Admin
       @programa = Programa.find_by id: params[:id]
       respond_to do |format|
@@ -47,9 +49,10 @@ class ProgramasController < ApplicationController
       render :edit
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def destroy
-    if @user.has_role? :Admin
+    if @user.has_role? :Admin # rubocop:todo Style/GuardClause
       @programa = Programa.find(params[:id])
       flash[:alert] = 'Programa Eliminada!'
       @programa.destroy
@@ -57,7 +60,8 @@ class ProgramasController < ApplicationController
     end
   end
 
-  def create
+  # rubocop:todo Metrics/MethodLength
+  def create # rubocop:todo Metrics/AbcSize
     if @user.has_role? :Admin
       @programa = Programa.new(programa_params)
       respond_to do |format|
@@ -77,6 +81,7 @@ class ProgramasController < ApplicationController
       render :index
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   private
 
@@ -93,3 +98,4 @@ class ProgramasController < ApplicationController
     end
   end
 end
+# rubocop:enable Style/Documentation

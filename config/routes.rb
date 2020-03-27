@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Rails.application.routes.draw do
+Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
   root to: 'home#index'
   devise_for :users
 

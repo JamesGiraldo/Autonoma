@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class Facultades::ProgramasController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_facultad
@@ -8,7 +9,7 @@ class Facultades::ProgramasController < ApplicationController
 
   def index
     @programas = @facultad.programas.order(id: :desc).page params[:page]
-    if params[:q].present?
+    if params[:q].present? # rubocop:todo Style/GuardClause
       @programas = @programas.where('nombre like :q', q: "%#{params[:q]}%").page params[:page]
     end
   end
@@ -33,3 +34,4 @@ class Facultades::ProgramasController < ApplicationController
     params.require(:programas_usuario).permit(:nombre, :descripcion, :facultad_id)
   end
 end
+# rubocop:enable Style/Documentation

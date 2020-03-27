@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ApplicationHelper
+module ApplicationHelper # rubocop:todo Style/Documentation
   def custom_bootstrap_flash
     flash_messages = []
     flash.each do |type, message|
@@ -12,13 +12,17 @@ module ApplicationHelper
     flash_messages.join("\n").html_safe
   end
 
+  # rubocop:todo Naming/PredicateName
   def is_active_controller(controller_name, class_name = nil)
+    # rubocop:todo Style/GuardClause
     if params[:controller] == controller_name
       class_name.nil? ? 'active' : class_name
     end
+    # rubocop:enable Style/GuardClause
   end
+  # rubocop:enable Naming/PredicateName
 
-  def is_active_action(action_name)
+  def is_active_action(action_name) # rubocop:todo Naming/PredicateName
     params[:action] == action_name ? 'active' : nil
   end
 

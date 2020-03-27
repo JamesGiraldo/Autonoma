@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-module LineasHelper
+module LineasHelper # rubocop:todo Style/Documentation
 end

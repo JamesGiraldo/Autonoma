@@ -10,7 +10,7 @@ require 'carrierwave/orm/activerecord'
 Bundler.require(*Rails.groups)
 
 module Autonoma
-  class Application < Rails::Application
+  class Application < Rails::Application # rubocop:todo Style/Documentation
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
     config.before_configuration do
@@ -38,7 +38,9 @@ module Autonoma
       Devise::PasswordsController.layout 'session'
       Devise::PasswordsController.layout 'session'
       Devise::ConfirmationsController.layout 'session'
+      # rubocop:todo Lint/AmbiguousBlockAssociation
       Devise::RegistrationsController.layout proc { |_controller| user_signed_in? ? 'application' : 'session' }
+      # rubocop:enable Lint/AmbiguousBlockAssociation
       # Or to configure mailer layout
       # Devise::Mailer.layout "email" # email.haml or email.erb
     end

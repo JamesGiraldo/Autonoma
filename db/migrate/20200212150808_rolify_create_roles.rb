@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class RolifyCreateRoles < ActiveRecord::Migration[5.1]
-  def change
+  def change # rubocop:todo Metrics/MethodLength
     create_table(:roles) do |t|
       t.string :name
       t.references :resource, polymorphic: true
@@ -18,3 +19,4 @@ class RolifyCreateRoles < ActiveRecord::Migration[5.1]
     add_index(:users_roles, %i[user_id role_id])
   end
 end
+# rubocop:enable Style/Documentation

@@ -12,6 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+# rubocop:todo Metrics/BlockLength
 ActiveRecord::Schema.define(version: 20_200_318_193_602) do
   create_table 'comentarios', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
     t.string 'titulo'
@@ -126,3 +127,4 @@ ActiveRecord::Schema.define(version: 20_200_318_193_602) do
   add_foreign_key 'proyecciones', 'users'
   add_foreign_key 'users', 'programas'
 end
+# rubocop:enable Metrics/BlockLength

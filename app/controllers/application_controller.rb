@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 
-  def configure_permitted_parameters
+  def configure_permitted_parameters # rubocop:todo Metrics/MethodLength
     devise_parameter_sanitizer.permit(:sign_up) do |u|
       u.permit(:email, :username,
                :programa_id, :password,
@@ -30,3 +31,4 @@ class ApplicationController < ActionController::Base
     end
   end
 end
+# rubocop:enable Style/Documentation

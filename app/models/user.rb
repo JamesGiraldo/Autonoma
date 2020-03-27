@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User < ApplicationRecord
+class User < ApplicationRecord # rubocop:todo Style/Documentation
   attr_accessor :login
   rolify
   # Include default devise modules. Others available are:

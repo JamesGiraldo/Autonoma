@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class CreateComentarios < ActiveRecord::Migration[5.1]
   def change
     create_table :comentarios do |t|
@@ -10,3 +11,4 @@ class CreateComentarios < ActiveRecord::Migration[5.1]
     end
   end
 end
+# rubocop:enable Style/Documentation

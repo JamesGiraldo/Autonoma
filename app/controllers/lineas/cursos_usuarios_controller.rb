@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class Lineas::CursosUsuariosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_linea
@@ -8,7 +9,7 @@ class Lineas::CursosUsuariosController < ApplicationController
 
   def index
     @cursos_usuarios = @linea.cursosUsuario.order(id: :desc).page params[:page]
-    if params[:q].present?
+    if params[:q].present? # rubocop:todo Style/GuardClause
       @cursos_usuarios = @cursos_usuarios.where('nombre like :q', q: "%#{params[:q]}%").page params[:page]
     end
   end
@@ -33,3 +34,4 @@ class Lineas::CursosUsuariosController < ApplicationController
     params.require(:cursos_usuario).permit(:nombre, :descripcion, :linea_id)
   end
 end
+# rubocop:enable Style/Documentation

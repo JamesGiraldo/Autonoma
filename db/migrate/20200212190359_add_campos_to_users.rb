@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class AddCamposToUsers < ActiveRecord::Migration[5.1]
   def change
     add_column :users, :nombre, :string
@@ -11,3 +12,4 @@ class AddCamposToUsers < ActiveRecord::Migration[5.1]
     add_column :users, :perfil, :string
   end
 end
+# rubocop:enable Style/Documentation

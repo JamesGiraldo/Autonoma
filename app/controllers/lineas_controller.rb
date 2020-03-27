@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class LineasController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   respond_to :html, :json
   def index
     @lineas = Linea.all.page params[:page]
-    if params[:q].present?
+    if params[:q].present? # rubocop:todo Style/GuardClause
       @lineas = @lineas.where('nombre like :q', q: "%#{params[:q]}%").page params[:page]
     end
   end
@@ -33,7 +34,8 @@ class LineasController < ApplicationController
     end
   end
 
-  def update
+  # rubocop:todo Metrics/MethodLength
+  def update # rubocop:todo Metrics/AbcSize
     @linea = Linea.find(params[:id])
     respond_to do |format|
       if @linea.update(linea_params)
@@ -48,8 +50,10 @@ class LineasController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
-  def create
+  # rubocop:todo Metrics/MethodLength
+  def create # rubocop:todo Metrics/AbcSize
     @linea = Linea.new(linea_params)
     respond_to do |format|
       if @linea.save!
@@ -64,6 +68,7 @@ class LineasController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def destroy
     @linea = Linea.find(params[:id])
@@ -78,3 +83,4 @@ class LineasController < ApplicationController
     params.require(:linea).permit(:nombre)
   end
 end
+# rubocop:enable Style/Documentation

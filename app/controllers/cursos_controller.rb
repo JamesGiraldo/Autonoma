@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class CursosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   respond_to :html, :json
 
-  def index
+  def index # rubocop:todo Metrics/AbcSize
     if current_user.has_role? :Admin
       flash[:info] = 'Si Decea Registrar Un Nuevo Curso Asegurese De Que Tenga Una Linea Su Curso!'
     end
     @cursos = Curso.all.where(estado: true).page params[:page]
-    if params[:q].present?
+    if params[:q].present? # rubocop:todo Style/GuardClause
       @cursos = @cursos.where('nombre like :q', q: "%#{params[:q]}%").page params[:page]
     end
   end
@@ -38,7 +39,8 @@ class CursosController < ApplicationController
   end
 
   # PUT /curso/:id
-  def update
+  # rubocop:todo Metrics/MethodLength
+  def update # rubocop:todo Metrics/AbcSize
     @curso = Curso.find(params[:id])
     respond_to do |format|
       if @curso.update(curso_params)
@@ -53,8 +55,10 @@ class CursosController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
-  def create
+  # rubocop:todo Metrics/MethodLength
+  def create # rubocop:todo Metrics/AbcSize
     @curso = Curso.new(curso_params)
     respond_to do |format|
       if @curso.save
@@ -69,6 +73,7 @@ class CursosController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def destroy
     @curso = Curso.find(params[:id])
@@ -87,3 +92,4 @@ class CursosController < ApplicationController
     params.require(:curso).permit(:nombre, :linea_id, :estado)
   end
 end
+# rubocop:enable Style/Documentation

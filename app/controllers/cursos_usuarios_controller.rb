@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
+# rubocop:todo Style/Documentation
 class CursosUsuariosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  def index
+  def index # rubocop:todo Metrics/AbcSize
+    # rubocop:todo Naming/VariableName
     @cursosUsuarios = CursosUsuario.all.where(user_id: current_user.id).page params[:page]
-    if params[:q].present?
+    # rubocop:enable Naming/VariableName
+    if params[:q].present? # rubocop:todo Style/GuardClause
+      # rubocop:todo Naming/VariableName
       @cursosUsuarios = @cursosUsuarios.where('nombre like :q', q: "%#{params[:q]}%").page params[:page]
+      # rubocop:enable Naming/VariableName
     end
   end
 
@@ -33,7 +38,8 @@ class CursosUsuariosController < ApplicationController
   end
 
   # PUT /curso_usuario/:id
-  def update
+  # rubocop:todo Metrics/MethodLength
+  def update # rubocop:todo Metrics/AbcSize
     @curso_usuario = CursosUsuario.find_by id: params[:id]
     respond_to do |format|
       if @curso_usuario.update(curso_usuario_params)
@@ -48,8 +54,10 @@ class CursosUsuariosController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
-  def create
+  # rubocop:todo Metrics/MethodLength
+  def create # rubocop:todo Metrics/AbcSize
     @curso_usuario = current_user.cursosUsuario.new(curso_usuario_params)
     respond_to do |format|
       if @curso_usuario.save
@@ -64,6 +72,7 @@ class CursosUsuariosController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def destroy
     @curso_usuario = CursosUsuario.find(params[:id])
@@ -78,3 +87,4 @@ class CursosUsuariosController < ApplicationController
     params.require(:cursos_usuario).permit(:nombre, :descripcion, :linea_id, :estado, :fecha_inicio, :fecha_fin)
   end
 end
+# rubocop:enable Style/Documentation

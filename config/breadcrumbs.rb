@@ -85,10 +85,12 @@ end
 # cursos
 crumb :cursos do
   link 'Cursos ', cursos_path
+  parent :lineas
 end
 
 crumb :cursos_usuarios do
   link ' Mis Cursos ', cursos_usuarios_path
+  parent :lineas
 end
 
 crumb :curso_new do
@@ -109,6 +111,7 @@ end
 # programas
 crumb :programas do
   link 'Programas ', programas_path
+  parent :facultades
 end
 
 crumb :programa_new do
@@ -124,6 +127,10 @@ end
 crumb :programa_edit do |programa|
   link " Editar Programa: #{programa.nombre} ", edit_programa_path(programa)
   parent :programa_show, programa
+end
+crumb :programa_users do |programa|
+  link " Docentes del Programa: #{programa.nombre} ", programa_users_path(programa)
+  parent :programas, programa
 end
 # fin programas
 # facultades
@@ -145,6 +152,11 @@ crumb :facultad_edit do |facultad|
   link " Editar Facultad: #{facultad.nombre} ", edit_facultad_path(facultad)
   parent :facultad_show, facultad
 end
+
+crumb :facultad_programas do |facultad|
+  link " Programas de la Facultad: #{facultad.nombre} ", facultad_programas_path(facultad)
+  parent :facultades, facultad
+end
 # fin facultades
 crumb :comentarios do
   link ' Comentarios ', comentarios_path
@@ -159,6 +171,10 @@ crumb :proyecciones do
   link ' Proyecciones', proyecciones_path
 end
 
+crumb :proyeccion_show do |proyeccion|
+  link proyeccion.nombre, proyeccion_path(proyeccion)
+  parent :proyecciones
+end
 # If you want to split your breadcrumbs configuration over multiple files, you
 # can create a folder named `config/breadcrumbs` and put your configuration
 # files there. All *.rb files (e.g. `frontend.rb` or `products.rb`) in that

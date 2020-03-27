@@ -1,5 +1,5 @@
-<h1 class="text-center titulo-Narajanja">Usuarios del Programa <strong><%= @programa.nombre %></strong></h1>
-<hr />
+<% breadcrumb :programa_users, @programa %>
+<h1 class="text-center titulo-Narajanja">Usuarios del Programa <strong><%= @programa.nombre %></strong></h1><hr />
 <div class="row">
   <%= form_tag(programa_users_path, class:"navbar-form-custom" , method: :get) do %>
     <div class="form-group">

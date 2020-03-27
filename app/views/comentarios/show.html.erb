@@ -12,9 +12,6 @@
           <div class="botonSeguimiento">
             <%= link_to "Editar Curso", edit_comentario_path(@comentario), remote: true , class: "botonSeguimientoColor"%>
           </div>
-          <div class="botonSeguimiento">
-            <%= link_to 'Eliminar', { :action => :destroy, :id => @comentario.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar este Curso'} , class: "botonSeguimientoColor"%>
-          </div>
         </div>
       <%end%>
     </div>

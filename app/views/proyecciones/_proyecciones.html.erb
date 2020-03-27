@@ -3,7 +3,7 @@
   <td><%=  proyeccion.descripcion %></td>
   <td><%=  proyeccion.created_at.strftime("%d-%m-%Y %H:%M") %></td>
   <td><%=  proyeccion.updated_at.strftime("%d-%m-%Y %H:%M") %></td>
-  <td>
+  <td class="text-center">
     <%= link_to "", edit_proyeccion_path(proyeccion), remote:true , class: "fa fa-pencil-square-o  btn btn-warning"%>
     <%= link_to '', { :action => :destroy, :id => proyeccion.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar esta Proyeccion'} , class: "fa fa-trash-o btn btn-danger"%>
   </td>

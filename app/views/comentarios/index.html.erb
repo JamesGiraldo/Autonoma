@@ -42,6 +42,7 @@
             <h2 class="text-center">No Hay Informacion Solicitada</h2
          </tr>
       <%end%>
+      <%= paginate @comentarios, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination float-right" %>
   </div>
 </div>
 <% if current_user.has_role? :Admin%>
@@ -50,7 +51,6 @@
       <%= link_to "Nuevo Comentario", new_comentario_path, remote: true, class: "botonSeguimientoColor"%>
     </div>
   </div>
-<%end%>
-<hr><%= paginate @comentarios, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination float-right" %>
+<%end%><hr>
 <div id="new-comentario"></div>
 <div id="edit-comentario"></div>

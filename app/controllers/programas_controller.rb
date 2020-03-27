@@ -8,7 +8,8 @@ class ProgramasController < ApplicationController
   def index
     @programas = Programa.all.page params[:page]
     if params[:q].present? # rubocop:todo Style/GuardClause
-      @programas = @programas.where('nombre like :q', q: "%#{params[:q]}%").page params[:page]
+      @programas = @programas.where('nombre like :q',
+                                    q: "%#{params[:q]}%").page params[:page]
     end
   end
 

@@ -5,10 +5,10 @@ class ProyeccionesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   respond_to :html, :json
 
-  def index 
+  def index
     @proyecciones = Proyeccion.where(user_id: current_user.id).page params[:page]
-    if params[:q].present? # rubocop:todo Style/GuardClause
-      @proyecciones = @proyecciones.where('nombre like :q or descripcion ilike :q', q: "%#{params[:q]}%").page params[:page]
+    if params[:q].present?
+      @proyecciones = @proyecciones.where('nombre like :q or descripcion like :q', q: "%#{params[:q]}%").page params[:page]
     end
   end
 
@@ -74,4 +74,3 @@ class ProyeccionesController < ApplicationController
     params.require(:proyeccion).permit(:nombre, :descripcion)
   end
 end
-# rubocop:enable Style/Documentation

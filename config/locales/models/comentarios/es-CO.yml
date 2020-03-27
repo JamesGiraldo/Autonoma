@@ -1,0 +1,11 @@
+es-CO:
+  activerecord:
+    models:
+      comentario:
+        one: Comentario
+        other: Comentarios
+    attributes:
+      comentario:
+        titulo: Titulo De Comentario
+        descripccion:  Descripccion
+        user_id: Usuario

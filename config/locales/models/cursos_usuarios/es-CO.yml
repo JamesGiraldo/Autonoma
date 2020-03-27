@@ -1,0 +1,13 @@
+es-CO:
+  activerecord:
+    models:
+      cursos_usuario:
+        one: Curso Usuario
+        other: Cursos Del Usuario
+    attributes:
+      cursos_usuario:
+        nombre: Nombre
+        descripcion: Descripccion
+        user_id: usuario        
+        estado: Estado
+        linea_id: Linea

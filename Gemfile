@@ -85,3 +85,4 @@ gem 'faker'
 gem 'yarn', '~> 0.1.1'
 gem 'hiera-eyaml'
 gem 'sidekiq'
+gem 'rubocop', require: false

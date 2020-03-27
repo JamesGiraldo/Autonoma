@@ -59,10 +59,10 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      flash[:success]="Registro Actualizado"
+      flash[:success]="Perfil Actualizado"
       redirect_to edit_user_path
     else
-      flash[:alert]="Problemas al Actualizar"
+      flash[:alert]="Problemas al Actualizar Datos"
       render :edit
     end
   end
@@ -86,16 +86,11 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email,
-                                 :password,
-                                 :current_password,
-                                 :password_confirmation,
-                                 :nombre,
-                                 :apellido,
-                                 :telefono,
-                                 :direccion,
-                                 :documento,
-                                 :descripcion,
+    params.require(:user).permit(:email, :password,
+                                 :current_password, :password_confirmation,
+                                 :nombre, :apellido,
+                                 :telefono, :direccion,
+                                 :documento, :descripcion,
                                  :perfil)
   end
 end

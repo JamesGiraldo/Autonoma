@@ -6,8 +6,9 @@ class LineasController < ApplicationController
   respond_to :html, :json
   def index
     @lineas = Linea.all.page params[:page]
-    if params[:q].present? # rubocop:todo Style/GuardClause
-      @lineas = @lineas.where('nombre like :q', q: "%#{params[:q]}%").page params[:page]
+    if params[:q].present?
+      @lineas = @lineas.where('nombre like :q',
+                              q: "%#{params[:q]}%").page params[:page]
     end
   end
 
@@ -34,41 +35,29 @@ class LineasController < ApplicationController
     end
   end
 
-  # rubocop:todo Metrics/MethodLength
-  def update # rubocop:todo Metrics/AbcSize
+  def update
     @linea = Linea.find(params[:id])
     respond_to do |format|
       if @linea.update(linea_params)
         flash[:success] = 'Linea Actualizada!'
-        format.html { redirect_to @linea }
-        format.json { render :index, status: :created, location: @lineas }
-        format.js
+        redirect_to action: :index
       else
         flash[:alert] = 'Problemas Con La Grabacion'
-        format.html { render :show }
-        format.json { render json: @linea.errors, status: :unprocessable_entity }
+        redirect_to action: :index
       end
     end
   end
-  # rubocop:enable Metrics/MethodLength
 
-  # rubocop:todo Metrics/MethodLength
-  def create # rubocop:todo Metrics/AbcSize
+  def create
     @linea = Linea.new(linea_params)
-    respond_to do |format|
-      if @linea.save!
-        flash[:success] = 'Linea Registrado!'
-        format.html { redirect_to @linea }
-        format.json { render :index, status: :created, location: @linea }
-        format.js
-      else
-        flash[:alert] = 'Problemas Con La Grabacion'
-        format.html { render :show }
-        format.json { render json: @linea.errors, status: :unprocessable_entity }
-      end
+    if @linea.save
+      flash[:success] = 'Linea Registrado!'
+      redirect_to action: :index
+    else
+      flash[:alert] = 'Problemas Con La Grabacion'
+      redirect_to action: :index
     end
   end
-  # rubocop:enable Metrics/MethodLength
 
   def destroy
     @linea = Linea.find(params[:id])
@@ -83,4 +72,3 @@ class LineasController < ApplicationController
     params.require(:linea).permit(:nombre)
   end
 end
-# rubocop:enable Style/Documentation

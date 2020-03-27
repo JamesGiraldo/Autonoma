@@ -4,4 +4,5 @@ class Curso < ApplicationRecord # rubocop:todo Style/Documentation
   belongs_to :linea
   validates :nombre, presence: true, uniqueness: true
   validates :linea, presence: true
+  validates :estado, presence: true
 end

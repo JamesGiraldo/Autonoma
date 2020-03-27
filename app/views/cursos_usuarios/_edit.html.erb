@@ -7,14 +7,14 @@
           <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
         </div>
         <div class="modal-body">
-          <%= simple_form_for @curso_usuario,remote: true,  html: { class: 'form-horizontal' } do |f| %>
-            <%= f.input :nombre , autofocus: true, placeholder:"Nombre Del Curso" , autocomplete: "nombre" %>
-              <%= f.association :linea, label_method: :nombre, value_method: :id , prompt: 'Selecione Tipo De Linea' , input_html: {min:"1"}  %>
+          <%= simple_form_for @curso_usuario, html: { class: 'form-horizontal' } do |f| %>
+            <%= f.input :nombre , autofocus: true, placeholder:"Nombre Del Curso" , autocomplete: "nombre", require:true %>
+              <%= f.association :linea, label_method: :nombre, value_method: :id , require:true, prompt: 'Selecione Tipo De Linea' , input_html: {min:"1"}  %>
               <%= f.input :estado, as: :radio_buttons, collection: [['En Proceso',true],['Terminado', false]]%>
               <%= f.input :fecha_inicio, required: true%>
               <%= f.input :fecha_fin, required: true%>
-              <%= f.input :descripcion, :as => :text, :input_html => { 'rows' => 8, 'cols' => 80 } %>
-            <%= f.button :submit, "Registrar Curso",  class: "btn-primary block full-width m-b" %>
+              <%= f.input :descripcion, require:true, :as => :text, :input_html => { 'rows' => 8, 'cols' => 80 } %>
+            <%= f.button :submit, "Actualizar Curso",  class: "btn-primary block full-width m-b" %>
           <% end %>
         </div>
     </div><!-- /.modal-content -->

@@ -4,8 +4,7 @@
   <td><%= comentario.descripccion %></td>
   <td><%= comentario.created_at.strftime("%d-%m-%Y %H:%M")  %></td>
   <td><%= comentario.updated_at.strftime("%d-%m-%Y %H:%M") %></td>
-  <td>
+  <td class="text-center">
     <%= link_to "", edit_comentario_path(comentario), remote:true , class: "fa fa-pencil-square-o  btn btn-warning"%>
-    <%= link_to '', { :action => :destroy, :id => comentario.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar este Comentario'} , class: "fa fa-trash-o btn btn-danger"%>
   </td>
 </tr>

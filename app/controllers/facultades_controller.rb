@@ -7,8 +7,9 @@ class FacultadesController < ApplicationController
 
   def index
     @facultades = Facultad.all.page params[:page]
-    if params[:q].present? # rubocop:todo Style/GuardClause
-      @facultades = @facultades.where('nombre like :q', q: "%#{params[:q]}%").page params[:page]
+    if params[:q].present?
+      @facultades = @facultades.where('nombre like :q',
+                                      q: "%#{params[:q]}%").page params[:page]
     end
   end
 
@@ -28,7 +29,7 @@ class FacultadesController < ApplicationController
   end
 
   # PUT /facultad/:id
-  def update # rubocop:todo Metrics/MethodLength
+  def update 
     if @user.has_role? :Admin
       @facultad = Facultad.find_by id: params[:id]
       if @facultad.update(facultad_params)

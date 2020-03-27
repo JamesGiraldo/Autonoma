@@ -3,14 +3,12 @@
 # rubocop:todo Style/Documentation
 class CursosUsuariosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  def index # rubocop:todo Metrics/AbcSize
-    # rubocop:todo Naming/VariableName
+  respond_to :html, :json
+  def index
     @cursosUsuarios = CursosUsuario.all.where(user_id: current_user.id).page params[:page]
-    # rubocop:enable Naming/VariableName
-    if params[:q].present? # rubocop:todo Style/GuardClause
-      # rubocop:todo Naming/VariableName
-      @cursosUsuarios = @cursosUsuarios.where('nombre like :q', q: "%#{params[:q]}%").page params[:page]
-      # rubocop:enable Naming/VariableName
+    if params[:q].present?
+      @cursosUsuarios = @cursosUsuarios.where('nombre like :q',
+                                        q: "%#{params[:q]}%").page params[:page]
     end
   end
 
@@ -37,42 +35,27 @@ class CursosUsuariosController < ApplicationController
     end
   end
 
-  # PUT /curso_usuario/:id
-  # rubocop:todo Metrics/MethodLength
-  def update # rubocop:todo Metrics/AbcSize
+  def update
     @curso_usuario = CursosUsuario.find_by id: params[:id]
-    respond_to do |format|
-      if @curso_usuario.update(curso_usuario_params)
-        flash[:success] = 'Curso Actualizado!'
-        format.html { redirect_to @curso_usuario }
-        format.json { render :index, status: :created, location: @cursosUsuarios }
-        format.js
-      else
-        flash[:alert] = 'Problemas Con La Grabacion'
-        format.html { render :show }
-        format.json { render json: @curso_usuario.errors, status: :unprocessable_entity }
-      end
+    if @curso_usuario.update(curso_usuario_params)
+      flash[:success] = 'Curso Actualizado!'
+      redirect_to action: :index
+    else
+      flash[:alert] = 'Problemas Con La Grabacion'
+      redirect_to action: :index
     end
   end
-  # rubocop:enable Metrics/MethodLength
 
-  # rubocop:todo Metrics/MethodLength
-  def create # rubocop:todo Metrics/AbcSize
+  def create
     @curso_usuario = current_user.cursosUsuario.new(curso_usuario_params)
-    respond_to do |format|
-      if @curso_usuario.save
-        flash[:success] = 'Curso Registrado!'
-        format.html { redirect_to @curso_usuario }
-        format.json { render :index, status: :created, location: @cursosUsuarios }
-        format.js
-      else
-        flash[:alert] = 'Problemas Con La Grabacion'
-        format.html { render :show }
-        format.json { render json: @curso_usuario.errors, status: :unprocessable_entity }
-      end
+    if @curso_usuario.save
+      flash[:success] = 'Curso Registrado!'
+      redirect_to action: :index
+    else
+      flash[:alert] = 'Problemas Con La Grabacion'
+      redirect_to action: :index
     end
   end
-  # rubocop:enable Metrics/MethodLength
 
   def destroy
     @curso_usuario = CursosUsuario.find(params[:id])
@@ -87,4 +70,3 @@ class CursosUsuariosController < ApplicationController
     params.require(:cursos_usuario).permit(:nombre, :descripcion, :linea_id, :estado, :fecha_inicio, :fecha_fin)
   end
 end
-# rubocop:enable Style/Documentation

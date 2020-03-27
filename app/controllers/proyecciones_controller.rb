@@ -5,7 +5,7 @@ class ProyeccionesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   respond_to :html, :json
 
-  def index # rubocop:todo Metrics/AbcSize
+  def index 
     @proyecciones = Proyeccion.where(user_id: current_user.id).page params[:page]
     if params[:q].present? # rubocop:todo Style/GuardClause
       @proyecciones = @proyecciones.where('nombre like :q or descripcion ilike :q', q: "%#{params[:q]}%").page params[:page]
@@ -35,57 +35,38 @@ class ProyeccionesController < ApplicationController
     end
   end
 
-  # PUT /proyeccion/:id
-  # rubocop:todo Metrics/MethodLength
-  def update # rubocop:todo Metrics/AbcSize
+  def update
     @proyeccion = Proyeccion.find_by id: params[:id]
-    respond_to do |format|
-      if @proyeccion.update(proyeccion_params)
-        flash[:success] = 'Proyeccion Actualizada!'
-        format.html { redirect_to @proyeccion }
-        format.json { render :index, status: :created, location: @proyecciones }
-        format.js
-      else
-        flash[:alert] = 'Problemas Con La Grabacion'
-        format.html { render :show }
-        format.json { render json: @proyeccion.errors, status: :unprocessable_entity }
-      end
+    if @proyeccion.update(proyeccion_params)
+      flash[:success] = 'Proyeccion Actualizada!'
+      redirect_to action: :index
+    else
+      flash[:alert] = 'Problemas Con La Grabacion'
+      redirect_to action: :index
     end
   end
-  # rubocop:enable Metrics/MethodLength
 
   def destroy
     @proyeccion = Proyeccion.find(params[:id])
     if @proyeccion.destroy
       flash[:alert] = 'Proyeccion Eliminada!'
-      # rubocop:todo Style/IdenticalConditionalBranches
       redirect_to action: :index
-      # rubocop:enable Style/IdenticalConditionalBranches
     else
       flash[:info] = 'No Puede Eliminar Esta Proyeccion Por Que Contiene Cursos Relacionados!'
-      # rubocop:todo Style/IdenticalConditionalBranches
       redirect_to action: :index
-      # rubocop:enable Style/IdenticalConditionalBranches
     end
   end
 
-  # rubocop:todo Metrics/MethodLength
-  def create # rubocop:todo Metrics/AbcSize
+  def create
     @proyeccion = current_user.proyecciones.new(proyeccion_params)
-    respond_to do |format|
-      if @proyeccion.save!
-        flash[:success] = 'Proyeccion Registrada!'
-        format.html { redirect_to @proyeccion }
-        format.json { render :index, status: :created, location: @proyeccion }
-        format.js
-      else
-        flash[:alert] = 'Problemas Con La Grabacion'
-        format.html { render :show }
-        format.json { render json: @proyeccion.errors, status: :unprocessable_entity }
-      end
+    if @proyeccion.save!
+      flash[:success] = 'Proyeccion Registrada!'
+      redirect_to action: :index
+    else
+      flash[:alert] = 'Problemas Con La Grabacion'
+      redirect_to action: :index
     end
   end
-  # rubocop:enable Metrics/MethodLength
 
   private
 

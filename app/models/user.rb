@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User < ApplicationRecord # rubocop:todo Style/Documentation
+class User < ApplicationRecord
   attr_accessor :login
   rolify
   # Include default devise modules. Others available are:
@@ -13,7 +13,9 @@ class User < ApplicationRecord # rubocop:todo Style/Documentation
   has_many :proyecciones, dependent: :restrict_with_error
   belongs_to :programa
   has_many :comentarios, dependent: :restrict_with_error
-
+  validates :documento, presence: true , uniqueness: true
+  validates :nombre, presence: true
+  validates :apellido, presence: true
   # def self.find_dor_database_authentication warden_condition
   #   conditions = warden_condition.dup
   #   login = conditions.delete(:login)

@@ -4,7 +4,7 @@
 class ProgramasController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :authenticate_role_user, except: %i[index show]
-
+  respond_to :html, :json
   def index
     @programas = Programa.all.page params[:page]
     if params[:q].present? # rubocop:todo Style/GuardClause
@@ -28,31 +28,24 @@ class ProgramasController < ApplicationController
   end
 
   # PUT /programa/:id
-  # rubocop:todo Metrics/MethodLength
-  def update # rubocop:todo Metrics/AbcSize
+  def update
     if @user.has_role? :Admin
       @programa = Programa.find_by id: params[:id]
-      respond_to do |format|
-        if @programa.update(programa_params)
-          flash[:success] = 'Programa Actualizada!'
-          format.html { redirect_to programas_path }
-          format.json { render :index, status: :created, location: @programas }
-          format.js
-        else
-          flash[:alert] = 'Problemas Con La Grabacion'
-          format.html { render :show }
-          format.json { render json: @programa.errors, status: :unprocessable_entity }
-        end
+      if @programa.update(programa_params)
+        flash[:success] = 'Programa Actualizada!'
+        redirect_to action: :index
+      else
+        flash[:alert] = 'Problemas Con La Grabacion'
+        redirect_to action: :index
       end
     else
       flash[:info] = 'No tiene permisos para acceder a esa vista!'
       render :edit
     end
   end
-  # rubocop:enable Metrics/MethodLength
 
   def destroy
-    if @user.has_role? :Admin # rubocop:todo Style/GuardClause
+    if @user.has_role? :Admin
       @programa = Programa.find(params[:id])
       flash[:alert] = 'Programa Eliminada!'
       @programa.destroy
@@ -60,28 +53,21 @@ class ProgramasController < ApplicationController
     end
   end
 
-  # rubocop:todo Metrics/MethodLength
-  def create # rubocop:todo Metrics/AbcSize
+  def create
     if @user.has_role? :Admin
       @programa = Programa.new(programa_params)
-      respond_to do |format|
-        if @programa.save!
-          flash[:success] = 'Programa Registrada!'
-          format.html { redirect_to programas_path }
-          format.json { render :index, status: :created, location: @programa }
-          format.js
-        else
-          flash[:alert] = 'Problemas Con La Grabacion'
-          format.html { render :show }
-          format.json { render json: @programa.errors, status: :unprocessable_entity }
-        end
+      if @programa.save
+        flash[:success] = 'Programa Registrada!'
+        redirect_to action: :index
+      else
+        flash[:alert] = 'Problemas Con La Grabacion'
+        redirect_to action: :index
       end
     else
       flash[:info] = 'No tiene permisos para acceder a esa vista!'
       render :index
     end
   end
-  # rubocop:enable Metrics/MethodLength
 
   private
 
@@ -98,4 +84,3 @@ class ProgramasController < ApplicationController
     end
   end
 end
-# rubocop:enable Style/Documentation

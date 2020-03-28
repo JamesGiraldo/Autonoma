@@ -2,7 +2,7 @@ module Lineas
   class CursosController < ApplicationController
     before_action :authenticate_user!
     respond_to :html, :json
-    before_action :set_linea    
+    before_action :set_linea
     before_action :set_curso, only: [:show, :edit, :update, :destroy]
 
     def index
@@ -67,6 +67,5 @@ module Lineas
     def curso_params
       params.require(:curso).permit(:nombre, :linea_id, :estado)
     end
-
   end
 end

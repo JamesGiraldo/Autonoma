@@ -1,6 +1,5 @@
 <% breadcrumb :cursos_linea, @linea %>
-<h1 class="text-center titulo-Narajanja">CURSOS DE LA LINEA<strong> <%= @linea.nombre.upcase%></strong></h1>
-<hr />
+<h1 class="text-center titulo-Narajanja">CURSOS DE LA LINEA<strong> <%= @linea.nombre.upcase%></strong></h1><hr />
 <div class="row">
   <div class="col-md-10">
     <%= form_tag(cursos_path, class:"navbar-form-custom" , method: :get) do %>
@@ -11,9 +10,9 @@
   </div>
   <div class="col-md-2">
     <% if current_user.has_role? :Admin %>
-      <div class="botonContainer">
-        <div class="botonSeguimiento">
-          <%= link_to "", new_curso_path, remote:true, class: "fa fa-plus"%>
+      <div class="input-group-btn">
+        <div class="botonContainer">
+            <%= link_to "", new_linea_curso_path(@linea), remote:true , class: "fa fa-plus  btn btn-primary"%>
         </div>
       </div>
     <%end%>
@@ -23,10 +22,14 @@
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover dataTables-example">
       <tr>
-        <th class="active">NOMBRE</th>
-        <th class="active">LINEA</th>
-        <th class="active">REGITRADO</th>
-        <th class="active">MODIFICADO</th>
+        <th class="active text-center">NOMBRE</th>
+        <th class="active text-center">LINEA</th>
+        <th class="active text-center">REGITRADO</th>
+        <th class="active text-center">MODIFICADO</th>
+        <th class="active text-center">PERTENECIENTE</th>
+        <% if current_user.has_role? :Admin %>
+          <th class="active text-center">ACCIONES</th>
+        <% end %>
       </tr>
       <%= render partial: "cursos", collection: @cursos, as: :curso %>
     </table>

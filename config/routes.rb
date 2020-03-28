@@ -19,11 +19,13 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
   end
   resources :cursos
   resources :cursos_usuarios
+  resources :lineas
+  
   resources :lineas, except: [:show] do
     resources :cursos, module: :lineas, except: [:show]
     resources :cursos_usuarios, module: :lineas, except: [:show]
   end
-  resources :lineas
+
   resources :programas
   resources :programas, except: [:show] do
     resources :users, module: :programas, except: [:show]

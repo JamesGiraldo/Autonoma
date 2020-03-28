@@ -3,7 +3,7 @@
 # rubocop:todo Style/Documentation
 class ProgramasController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :authenticate_role_user, except: %i[index show]
+  before_action :authenticate_role_user
   respond_to :html, :json
   def index
     @programas = Programa.all.page params[:page]
@@ -81,7 +81,7 @@ class ProgramasController < ApplicationController
     if @user.has_role? :Admin
     else
       flash[:info] = 'No tiene permisos para acceder a esa vista!'
-      redirect_to programas_path(@programa)
+      redirect_to root_path
     end
   end
 end

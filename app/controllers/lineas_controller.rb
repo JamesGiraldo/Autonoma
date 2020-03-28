@@ -3,7 +3,9 @@
 # rubocop:todo Style/Documentation
 class LineasController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_role_user, except: %i[index show]
   respond_to :html, :json
+
   def index
     @lineas = Linea.all.page params[:page]
     if params[:q].present?
@@ -49,13 +51,18 @@ class LineasController < ApplicationController
   end
 
   def create
-    @linea = Linea.new(linea_params)
-    if @linea.save
-      flash[:success] = 'Linea Registrado!'
-      redirect_to action: :index
+    if @user.has_role? :Admin
+      @linea = Linea.new(linea_params)
+      if @linea.save
+        flash[:success] = 'Linea Registrado!'
+        redirect_to action: :index
+      else
+        flash[:alert] = 'Problemas Con La Grabacion'
+        redirect_to action: :index
+      end
     else
-      flash[:alert] = 'Problemas Con La Grabacion'
-      redirect_to action: :index
+      flash[:info] = 'No tiene permisos para acceder a esa vista!'
+      render :index
     end
   end
 
@@ -71,4 +78,14 @@ class LineasController < ApplicationController
   def linea_params
     params.require(:linea).permit(:nombre)
   end
+
+  def authenticate_role_user
+    @user = User.find(current_user.id)
+    if @user.has_role? :Admin
+    else
+      flash[:info] = 'No tiene permisos para acceder a esa vista!'
+      redirect_to lineas_path(@linea)
+    end
+  end
+
 end

@@ -1,9 +1,6 @@
-# frozen_string_literal: true
-
-# rubocop:todo Style/Documentation
 class FacultadesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :authenticate_role_user, except: %i[index show]
+  before_action :authenticate_role_user
 
   def index
     @facultades = Facultad.all.page params[:page]
@@ -29,7 +26,7 @@ class FacultadesController < ApplicationController
   end
 
   # PUT /facultad/:id
-  def update 
+  def update
     if @user.has_role? :Admin
       @facultad = Facultad.find_by id: params[:id]
       if @facultad.update(facultad_params)
@@ -81,7 +78,7 @@ class FacultadesController < ApplicationController
     if @user.has_role? :Admin
     else
       flash[:info] = 'No tiene permisos para acceder a esa vista!'
-      redirect_to facultads_path(@facultad)
+      redirect_to root_path
     end
   end
 end

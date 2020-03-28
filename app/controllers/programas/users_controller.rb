@@ -8,7 +8,7 @@ class Programas::UsersController < ApplicationController
   before_action :set_user, only: %i[edit update asignar]
 
   def index # rubocop:todo Metrics/AbcSize
-    @users = @programa.users.all.includes(:roles).where('roles.name' => 'Docente').order(id: :desc).page params[:page]
+    @users = @programa.users.includes(:roles).where('roles.name' => 'Docente').order(id: :desc).page params[:page]
     if params[:q].present? # rubocop:todo Style/GuardClause
       @users = @users.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
     end

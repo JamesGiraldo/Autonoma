@@ -9,12 +9,14 @@
     <%end%>
   </div>
   <div class="col-md-2">
+   <% if current_user.has_role? :Admin %>
     <div class="input-group-btn">
       <div class="botonContainer">
           <%= link_to "", new_linea_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
         </div>
       </div>
-    </div>
+    <% end %>
+   </div>
 </div><br>
 <% unless @lineas.present? %>
    <tr>

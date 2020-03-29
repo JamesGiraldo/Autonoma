@@ -6,7 +6,9 @@ class HomeController < ApplicationController
   def index
     if current_user.has_role? :Admin
     else
-      flash[:info] = 'Sugerencia Asegurese De Actualizar Su datos!'
+      unless current_user.documento.present?
+        flash[:info] = 'Sugerencia Asegurese De Actualizar Su datos!'
+      end
     end
     # @users = User.all.includes(:roles).where('roles.name' => "Docente").group_by_day(:created_at, format: "%a").count
     # @male_user = Curso.includes(:linea).where(curso.linea_id = curso.id).group_by_week(:created_at).count

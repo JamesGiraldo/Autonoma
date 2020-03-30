@@ -20,7 +20,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
   resources :cursos
   resources :cursos_usuarios
   resources :lineas
-  
+
   resources :lineas, except: [:show] do
     resources :cursos, module: :lineas, except: [:show]
     resources :cursos_usuarios, module: :lineas, except: [:show]
@@ -37,4 +37,5 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
   resources :proyecciones
   resources :comentarios
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  get "*any", via: :all, to: "application#catch_404"
 end

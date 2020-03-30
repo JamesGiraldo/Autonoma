@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
+Rails.application.routes.draw do
   root to: 'home#index'
   devise_for :users
 
@@ -11,12 +9,14 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       get :decanos
     end
   end
+
   resource :user, only: %i[edit destroy update show] do
     collection do
       patch 'update_password'
       get :cambiar_password
     end
   end
+
   resources :cursos
   resources :cursos_usuarios
   resources :lineas
@@ -34,6 +34,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
   resources :facultades, except: [:show] do
     resources :programas, module: :facultades, except: [:show]
   end
+
   resources :proyecciones
   resources :comentarios
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

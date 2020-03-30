@@ -29,6 +29,21 @@
   --verde: #56B495;
 }
 
+.ir-arriba{
+  display: none;
+  padding: 20px;
+  background: #fcae70;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+  position: fixed;
+  bottom: 35px;
+  right: 20px;
+  border-radius: 35px;
+  background: url('flecha.png');
+  background-size: cover;
+}
+
 .mov-naranja{
    color: #56B495;
 }

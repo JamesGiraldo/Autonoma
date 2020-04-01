@@ -3,7 +3,7 @@
 <div class="ibox-content m-b-sm border-bottom">
     <h2 class="titulo-Narajanja">Docentes</h2>
   <div class="search-form">
-    <%= form_tag(users_path, method: :get) do %>
+    <%= form_tag(index_instructores_users_path, method: :get) do %>
       <div class="input-group">
         <input type="text" name="q" class="form-control input-lg" placeholder="Buscar..." type="text" value="<%= params[:q] %>"></input>
         <div class="input-group-btn">

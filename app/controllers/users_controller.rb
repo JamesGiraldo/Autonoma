@@ -33,6 +33,9 @@ class UsersController < ApplicationController # rubocop:todo Style/Documentation
     elsif current_user.has_role? :Decano
       @users = User.all.includes(:roles).where('roles.name' => 'Docente').page params[:page]
       @users = @users.joins(:programa).where("programas.id = #{current_user.programa.id}").page params[:page]
+      if params[:q].present?
+        @users = @users.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
+      end
     end
   end
 

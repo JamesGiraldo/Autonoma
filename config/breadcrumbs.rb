@@ -7,7 +7,13 @@ crumb :users do
   link 'Usuarios ', users_path
 end
 crumb :users_instructores do
-  link 'Docentes ', index_instructores_users_path
+  link 'Docentes ', instructores_users_path
+end
+crumb :users_vicerrectores do
+  link 'Directores ', directores_users_path
+end
+crumb :users_vicerrectores do
+  link 'Vicerrectores ', vicerrectores_users_path
 end
 crumb :users_decanos do
   link 'Decanos ', decanos_users_path

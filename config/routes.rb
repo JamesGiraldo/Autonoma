@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   resources :users, only: %i[index ver_datos] do
     get :ver_datos, on: :member
     collection do
-      get :index_instructores
+      get :instructores
       get :decanos
+      get :vicerrectores
+      get :directores
     end
   end
 

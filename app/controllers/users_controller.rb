@@ -1,13 +1,11 @@
-# frozen_string_literal: true
-
-class UsersController < ApplicationController # rubocop:todo Style/Documentation
+class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :setiar_user, only: [:ver_datos]
   before_action :set_user, only: %i[edit show cambiar_password update_password update]
   respond_to :html, :json
 
-  def index # rubocop:todo Metrics/AbcSize
-    if current_user.has_role? :Admin # rubocop:todo Style/GuardClause
+  def index
+    if current_user.has_role? :Admin 
       @users = User.all.page params[:page]
       if params[:q].present?
         @users = @users.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
@@ -15,7 +13,7 @@ class UsersController < ApplicationController # rubocop:todo Style/Documentation
     end
   end
 
-  def decanos # rubocop:todo Metrics/AbcSize
+  def decanos
     if current_user.has_role? :Admin # rubocop:todo Style/GuardClause
       @users = User.all.includes(:roles).where('roles.name' => 'Decano').page params[:page]
       if params[:q].present?
@@ -24,7 +22,7 @@ class UsersController < ApplicationController # rubocop:todo Style/Documentation
     end
   end
 
-  def index_instructores # rubocop:todo Metrics/AbcSize
+  def instructores # rubocop:todo Metrics/AbcSize
     if current_user.has_role? :Admin
       @users = User.all.includes(:roles).where('roles.name' => 'Docente').page params[:page]
       if params[:q].present?
@@ -33,6 +31,24 @@ class UsersController < ApplicationController # rubocop:todo Style/Documentation
     elsif current_user.has_role? :Decano
       @users = User.all.includes(:roles).where('roles.name' => 'Docente').page params[:page]
       @users = @users.joins(:programa).where("programas.id = #{current_user.programa.id}").page params[:page]
+      if params[:q].present?
+        @users = User.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
+      end
+    end
+  end
+
+  def vicerrectores
+    if current_user.has_role? :Admin # rubocop:todo Style/GuardClause
+      @users = User.all.includes(:roles).where('roles.name' => 'Vicerrector').page params[:page]
+      if params[:q].present?
+        @users = @users.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
+      end
+    end
+  end
+
+  def directores
+    if current_user.has_role? :Admin # rubocop:todo Style/GuardClause
+      @users = User.all.includes(:roles).where('roles.name' => 'Director').page params[:page]
       if params[:q].present?
         @users = @users.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
       end

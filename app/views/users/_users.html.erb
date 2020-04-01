@@ -4,12 +4,14 @@
       <% else %>
       <td><%= link_to user.id , ver_datos_user_path(user.id)%></td>
     <%end%>
-    <td><%= user.email %></td>
     <td><%= user.nombre %></td>
     <td><%= user.apellido %></td>
+    <td><%= user.email %></td>
     <td><%= user.telefono %></td>
     <td><%= user.direccion %></td>
+    <td><%= user.programa.nombre %></td>
     <% if current_user.has_role? :Admin %>
+      <td><%= user.programa.facultad.nombre %></td>
       <td><%= user.roles.collect(&:name).join(' , ').upcase %></td>
     <% end%>
 </tr>

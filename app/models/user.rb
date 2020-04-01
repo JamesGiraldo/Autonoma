@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class User < ApplicationRecord
   attr_accessor :login
   rolify
@@ -13,9 +11,10 @@ class User < ApplicationRecord
   has_many :proyecciones, dependent: :restrict_with_error
   belongs_to :programa
   has_many :comentarios, dependent: :restrict_with_error
-  validates :documento, presence: true , uniqueness: true
-  validates :nombre, presence: true
-  validates :apellido, presence: true
+  validates :username, :presence => true, :uniqueness => {
+                                          :case_sensitive => false }
+  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+  validate :validate_username
   # def self.find_dor_database_authentication warden_condition
   #   conditions = warden_condition.dup
   #   login = conditions.delete(:login)
@@ -25,9 +24,19 @@ class User < ApplicationRecord
   # end
 
   def self.find_for_authentication(conditions)
-    login = conditions.delete(:login)
-    where(conditions).where(['username = :value OR email = :value', { value: login }]).first
+    if login = conditions.delete(:login)
+     where(conditions.to_h).where(['username = :value OR email = :value', { value: login.downcase }]).first
+    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      where(conditions.to_h).first
+    end
   end
+
+  def validate_username
+    if User.where(email: username).exists?
+      errors.add(:username, :invalid)
+    end
+  end
+
   # "getter"
   #
   # def login

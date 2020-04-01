@@ -59,13 +59,16 @@
                     <% end %>
                     <ul class=" nav nav-second-level #{is_active_controller('curso')">
                       <% if current_user.has_role? :Admin %>
+                          <li class="<%= 'active' if current_page?('/lineas') %>">
+                            <%= link_to "Lineas" , lineas_path %>
+                          </li>
                           <li class="<%= 'active' if current_page?('/cursos') %>">
                             <%= link_to "Lista De Cursos" , cursos_path %>
                           </li>
                        <%else%>
-                         <li class="<%= 'active' if current_page?('/lineas') %>">
-                           <%= link_to "Lineas" , lineas_path %>
-                         </li>
+                          <li class="<%= 'active' if current_page?('/lineas') %>">
+                            <%= link_to "Lineas" , lineas_path %>
+                          </li>
                           <li class="<%= 'active' if current_page?('/cursos') %>">
                             <%= link_to "Cursos" , cursos_path %>
                           </li>
@@ -75,21 +78,6 @@
                       <% end %>
                     </ul>
                 </li>
-              <% if current_user.has_role? :Admin %>
-                <li class="<%= 'active' if current_page?('/lineas') %>">
-                    <%= link_to lineas_path do %>
-                    <i class="titulo-Narajanja fa fa-dashboard"></i>
-                    <span class="nav-label">lineas de Cursos</span>
-                    <!-- <span class="label label-info float-right">NEW</span> -->
-                    <span class="fa arrow"></span>
-                    <% end %>
-                    <ul class=" nav nav-second-level #{is_active_controller('linea')">
-                      <li class="<%= 'active' if current_page?('/lineas') %>">
-                        <%= link_to "Lineas" , lineas_path %>
-                      </li>
-                    </ul>
-                </li>
-              <%end%>
                 <li class="<%= 'active' if current_page?('/proyecciones') %>">
                     <%= link_to proyecciones_path do %>
                     <i class="titulo-Narajanja fa fa-dashboard"></i>

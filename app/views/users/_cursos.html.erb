@@ -1,27 +1,3 @@
-<% if current_user.has_role? :decano %>
- <h2 class="subtitulo titulo-Narajanja"><strong>Cursos Realizados</strong></h2><br>
-  <div class="ibox-content m-b-sm border-bottom">
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered table-hover dataTables-example">
-        <tr>
-          <th class="active">Nombre</th>
-          <th class="active">Linea</th>
-          <th class="active">Registrado</th>
-          <th class="active">Modificado</th>
-        </tr>
-        <tr>
-          <% @user.cursosUsuario.each do |curso_usuario| %>
-              <tr>
-                <td><%= curso_usuario.nombre %></td>
-                <td><%= curso_usuario.linea.nombre%></td>
-                <td><%= curso_usuario.created_at.strftime("%d-%m-%Y %H:%M")  %></td>
-                <td><%= curso_usuario.updated_at.strftime("%d-%m-%Y %H:%M") %></td>
-              </tr>
-           <%end%>
-      </table>
-    </div>
-  </div>
-  <% elsif current_user.has_role? :Admin %>
    <h2 class="subtitulo titulo-Narajanja"><strong>Cursos Realizados</strong></h2><br>
     <div class="mb-3 ibox-content m-b-sm border-bottom ">
       <div class="mb-3table-responsive">
@@ -44,9 +20,8 @@
         </table>
         <% unless @user.cursosUsuario.present? %>
            <tr>
-              <h2 class="text-center">No Hay Informacion Solicitada</h2
+              <h2 class="text-center">No Hay Informacion...</h2
            </tr>
         <%end%>
       </div>
-    </div><br><br>
-<% end %>
+    </div>

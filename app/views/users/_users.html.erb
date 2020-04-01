@@ -10,8 +10,8 @@
     <td><%= user.telefono %></td>
     <td><%= user.direccion %></td>
     <td><%= user.programa.nombre %></td>
+    <td><%= user.programa.facultad.nombre %></td>
     <% if current_user.has_role? :Admin %>
-      <td><%= user.programa.facultad.nombre %></td>
       <td><%= user.roles.collect(&:name).join(' , ').upcase %></td>
     <% end%>
 </tr>

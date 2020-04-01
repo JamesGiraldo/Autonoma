@@ -18,11 +18,13 @@
     <table class="table table-striped table-bordered table-hover dataTables-example">
         <tr>
           <th class="">DOCUMENTO</th>
-          <th class="">Email</th>
           <th class="">NOMBRE</th>
           <th class="">APELLIDO</th>
+          <th class="">EMAIL</th>
           <th class="">TELEFONO</th>
           <th class="">DIRECCION</th>
+          <th class="">PROGRAMA</th>
+          <th class="">FACULTAD</th>
           <% if current_user.has_role? :Admin %>
             <th class="">ROL</th>
           <% end %>

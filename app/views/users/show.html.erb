@@ -38,16 +38,16 @@
     </div>
   </div>
 </div>
-<% if current_user.has_role? :Decano %>
+<% if current_user.has_role? :Admin %>
   <div class="salto">
     <%= render 'cursos' %>
   </div>
-  <% elsif current_user.has_role? :Admin %>
+  <% elsif current_user.has_role? :Vicerrector %>
   <div class="salto">
     <%= render 'cursos' %>
   </div>
 <% end %>
-<% if current_user.has_role? :Vicerrector %>
+<% if current_user.has_role? :Decano %>
   <div class="salto">
     <%= render 'cursos' %>
   </div>

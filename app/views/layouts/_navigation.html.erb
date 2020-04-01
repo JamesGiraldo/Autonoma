@@ -24,24 +24,24 @@
                     <span class="fa arrow"></span>
                     <% end %>
                     <ul class=" nav nav-second-level #{is_active_controller('user')">
-                      <li class="<%= 'active' if current_page?('/users') %>">
-                        <%= link_to "Decanos" , decanos_users_path  %>
-                      </li>
-                      <li class="<%= 'active' if current_page?('/users') %>">
-                        <%= link_to "Directores" , directores_users_path  %>
-                      </li>
-                      <li class="<%= 'active' if current_page?('/users') %>">
-                        <%= link_to "Docentes" , instructores_users_path   %>
-                      </li>
-                      <li class="<%= 'active' if current_page?('/users') %>">
-                        <%= link_to "Vicerrectores" , vicerrectores_users_path  %>
-                      </li>
-                      <li class="<%= 'active' if current_page?('/users') %>">
-                        <%= link_to "Usuarios" , users_path  %>
-                      </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Decanos" , decanos_users_path  %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Directores" , directores_users_path  %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Docentes" , instructores_users_path   %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Vicerrectores" , vicerrectores_users_path  %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Usuarios" , users_path  %>
+                        </li>
                     </ul>
                 </li>
-              <% elsif current_user.has_role? :Decano %>
+              <% elsif current_user.has_role? :Vicerrector %>
                 <li class="<%= 'active' if current_page?('/users') %>">
                     <%= link_to users_path do %>
                     <i class="titulo-Narajanja fa fa-group"></i>
@@ -50,11 +50,49 @@
                     <span class="fa arrow"></span>
                     <% end %>
                     <ul class=" nav nav-second-level #{is_active_controller('user')">
-                      <li class="<%= 'active' if current_page?('/users') %>">
-                        <%= link_to "Docentes" , instructores_users_path   %>
-                      </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Decanos" , decanos_users_path   %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Directores" , directores_users_path   %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Docentes" , instructores_users_path   %>
+                        </li>
                     </ul>
                 </li>
+              <%end%>
+              <% if current_user.has_role? :Decano %>
+                    <li class="<%= 'active' if current_page?('/users') %>">
+                        <%= link_to users_path do %>
+                        <i class="titulo-Narajanja fa fa-group"></i>
+                        <span class="nav-label">Usuarios</span>
+                        <!-- <span class="label label-info float-right">NEW</span> -->
+                        <span class="fa arrow"></span>
+                        <% end %>
+                        <ul class=" nav nav-second-level #{is_active_controller('user')">
+                            <li class="<%= 'active' if current_page?('/users') %>">
+                              <%= link_to "Directores" , directores_users_path   %>
+                            </li>
+                            <li class="<%= 'active' if current_page?('/users') %>">
+                              <%= link_to "Docentes" , instructores_users_path   %>
+                            </li>
+                        </ul>
+                    </li>
+              <% elsif current_user.has_role? :Director %>
+                  <li class="<%= 'active' if current_page?('/users') %>">
+                      <%= link_to users_path do %>
+                      <i class="titulo-Narajanja fa fa-group"></i>
+                      <span class="nav-label">Usuarios</span>
+                      <!-- <span class="label label-info float-right">NEW</span> -->
+                      <span class="fa arrow"></span>
+                      <% end %>
+                      <ul class=" nav nav-second-level #{is_active_controller('user')">                          
+                          <li class="<%= 'active' if current_page?('/users') %>">
+                            <%= link_to "Docentes" , instructores_users_path   %>
+                          </li>
+                      </ul>
+                  </li>
               <%end%>
                 <li class="<%= 'active' if current_page?('/cursos') %>">
                     <%= link_to cursos_path do %>

@@ -129,8 +129,10 @@
   </div>
 </div>
 <div class="">
-  <h2 class="subtitulo titulo-Narajanja"><strong>Cursos</strong></h2>
+  <h2 class="subtitulo titulo-Narajanja"><strong>Lineas</strong></h2>
   <div class="salto">
-    <%= column_chart @cursos, stacked: true, colors: ["#fcae70"]%>
+    <%= column_chart @lineas, stacked: true, colors: ['#fcae70'], dataLabels: {
+      style: {colors: ['#4c4c54']}
+    }%>
   </div>
 </div>

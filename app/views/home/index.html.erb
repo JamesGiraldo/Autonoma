@@ -6,7 +6,7 @@
       <%= link_to edit_user_path do %>
          <div class="picture">
            <% if current_user.perfil? %>
-                <%= image_tag current_user.perfil.url(:thumb) %>
+                <%= image_tag current_user.perfil.url(:thumb), title: "Mi Perfil" %>
              <%else%>
                 <%= image_tag 'nophoto' , class: "imghome"%>
            <%end%>
@@ -48,7 +48,7 @@
          <div class="ver_mas">
            <a class="<%= is_active_controller('comentarios') %>">
               <%= link_to comentarios_path do %>
-                <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+                <i class="ver_mas_box"></i> <span data-i18n="nav.layouts" data-toggle="tooltip" title="Todo Sobre Comentarios">Ver más</span>
               <% end %>
            </a>
          </div>
@@ -66,7 +66,7 @@
           <div class="ver_mas">
             <a class="<%= is_active_controller('facultades') %>">
                <%= link_to facultades_path do %>
-                 <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+                 <i class="ver_mas_box"></i> <span data-i18n="nav.layouts"  data-toggle="tooltip" title="Todo Sobre Facultades">Ver más</span>
                <% end %>
             </a>
           </div>
@@ -84,7 +84,7 @@
           <div class="ver_mas">
             <a class="<%= is_active_controller('cursos') %>">
                <%= link_to cursos_path do %>
-                 <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+                 <i class="ver_mas_box"></i> <span data-i18n="nav.layouts"  data-toggle="tooltip" title="Todo Sobre Cursos">Ver más</span>
                <% end %>
             </a>
           </div>
@@ -100,9 +100,9 @@
             <h3 class="foot_box">Universidad Autonoma del caribe</h3>
          </div>
          <div class="ver_mas">
-           <a class="<%= is_active_controller('users') %>">
+           <a class="<%= is_active_controller('programas') %>">
               <%= link_to programas_path do %>
-                <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+                <i class="ver_mas_box"></i> <span data-i18n="nav.layouts"  data-toggle="tooltip" title="Todos Los Programas">Ver más</span>
               <% end %>
            </a>
          </div>
@@ -118,9 +118,9 @@
             <h3 class="foot_box">Universidad Autonoma del caribe</h3>
          </div>
          <div class="ver_mas">
-           <a class="<%= is_active_controller('users') %>">
+           <a class="<%= is_active_controller('proyecciones') %>">
               <%= link_to proyecciones_path do %>
-                <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+                <i class="ver_mas_box"></i> <span data-i18n="nav.layouts"  data-toggle="tooltip" title="Todas Las Proyecciones">Ver más</span>
               <% end %>
            </a>
          </div>

@@ -25,7 +25,7 @@
                     <% end %>
                     <ul class=" nav nav-second-level #{is_active_controller('user')">
                         <li class="<%= 'active' if current_page?('/users') %>">
-                          <%= link_to "Decanos" , decanos_users_path  %>
+                          <%= link_to "Decanos" , decanos_users_path %>
                         </li>
                         <li class="<%= 'active' if current_page?('/users') %>">
                           <%= link_to "Directores" , directores_users_path  %>
@@ -87,7 +87,7 @@
                       <!-- <span class="label label-info float-right">NEW</span> -->
                       <span class="fa arrow"></span>
                       <% end %>
-                      <ul class=" nav nav-second-level #{is_active_controller('user')">                          
+                      <ul class=" nav nav-second-level #{is_active_controller('user')">
                           <li class="<%= 'active' if current_page?('/users') %>">
                             <%= link_to "Docentes" , instructores_users_path   %>
                           </li>

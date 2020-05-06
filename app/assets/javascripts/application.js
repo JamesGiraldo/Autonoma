@@ -32,6 +32,7 @@ $('#datepicker').datepicker();
 
 
 $(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
     $('#ir-arriba').click(function(){
       $('body, html').animate({
           scrollTop: '0px'

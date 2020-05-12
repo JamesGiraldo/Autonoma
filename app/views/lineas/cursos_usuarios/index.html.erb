@@ -1,9 +1,8 @@
 <% breadcrumb :cursos_usuarios_linea, @linea %>
-<h1 class="text-center titulo-Narajanja">LISTA DE <strong>CURSOS POR OTRO LADO</strong> DE LA LINEA: <%= @linea.nombre %></h1>
-<hr />
+<h1 class="text-center titulo-Narajanja">LISTA DE <strong>CURSOS POR OTRO LADO</strong> DE LA LINEA: <%= @linea.nombre %></h1><hr />
 <div class="row">
   <div class="col-md-10">
-    <%= form_tag(cursos_usuarios_path, class:"navbar-form-custom" , method: :get) do %>
+    <%= form_tag(linea_cursos_usuarios_path, class:"navbar-form-custom" , method: :get) do %>
       <div class="form-group">
         <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
       </div>

@@ -20,20 +20,20 @@
 </div><br>
 <% unless @lineas.present? %>
    <tr>
-      <h2 class="text-center">No Hay Informacion Solicitada</h2
+      <h2 class="text-center">No Hay Informacion Solicitada</h2>
    </tr>
 <%end%>
 <div class="usuario">
   <div class="informacion_general">
     <div class="container_box">
        <% @lineas.each do |linea| %>
-          <div class="box">
+          <div class="box card text-white bg-secondary mb-3">
             <% if current_user.has_role? :Admin %>
               <div class="col-md-6">
                   <%= link_to "", edit_linea_path(linea), remote:true , class: "fa fa-pencil-square-o   btn btn-warning"%>
               </div>
               <div class="col-md-6">
-                  <%= link_to '', { :action => :destroy, :id => linea.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar esta linea'} , class: "fa fa-trash-o btn btn-danger"%>
+                  <%= link_to "", { :action => :destroy, :id => linea.id }, method: :delete, data: {confirm: "¿esta seguro?", mensaje: "La linea se borrara definitivamente"}, class: "fa fa-trash-o btn btn-danger" %>
               </div>
             <% end %>
              <div class="description">

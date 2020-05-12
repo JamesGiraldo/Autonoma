@@ -1,3 +1,24 @@
 // Place all the styles related to the lineas controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.btn-danger {
+  color: #fff;
+  background-color: #ED5565;
+  position: absolute;
+  border-color: #ED5565;
+  float: right;
+  top: -35px;
+  left: 118%;
+  width: 78%;
+  padding: 10px;
+  border-top-color: #ed5565;
+}
+.btn-warning{
+  right: -25px;
+  color: #ffffff;
+  background-color: #f8ac59;
+  border-color: #f8ac59;
+  padding: 10px;
+  width: 100%;
+  top: -30px;
+}

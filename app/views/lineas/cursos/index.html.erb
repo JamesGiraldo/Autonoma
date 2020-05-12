@@ -1,29 +1,36 @@
 <% breadcrumb :cursos_linea, @linea %>
 <h1 class="text-center titulo-Narajanja">CURSOS DE LA LINEA<strong> <%= @linea.nombre.upcase%></strong></h1><hr />
-<div class="row">
-  <div class="col-md-10">
-    <%= form_tag(cursos_path, class:"navbar-form-custom" , method: :get) do %>
-      <div class="form-group">
-        <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
-      </div>
-    <%end%>
+<div class="ibox-content m-b-sm border-bottom">
+  <div class="row">
+    <div class="col-md-10">
+        <h2 class="titulo-Narajanja">Cursos</h2>
+    </div>
+    <div class="col-md-2">
+      <% if current_user.has_role? :Admin %>
+        <div class="input-group-btn">
+          <div class="botonContainer">
+              <%= link_to "", new_linea_curso_path(@linea), remote:true , class: "fa fa-plus  btn btn-primary"%>
+          </div>
+        </div>
+      <%end%>
+    </div>
   </div>
-  <div class="col-md-2">
-    <% if current_user.has_role? :Admin %>
-      <div class="input-group-btn">
-        <div class="botonContainer">
-            <%= link_to "", new_linea_curso_path(@linea), remote:true , class: "fa fa-plus  btn btn-primary"%>
+  <div class="search-form">
+    <%= form_tag(linea_cursos_path, method: :get) do %>
+      <div class="input-group">
+        <input type="text" name="q" class="form-control input-lg" placeholder="Buscar..." type="text" value="<%= params[:q] %>"></input>
+        <div class="input-group-btn">
+          <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
         </div>
       </div>
     <%end%>
   </div>
-</div><hr>
+</div>
 <div class="ibox-content m-b-sm border-bottom">
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover dataTables-example">
       <tr>
         <th class="active text-center">NOMBRE</th>
-        <th class="active text-center">LINEA</th>
         <th class="active text-center">REGITRADO</th>
         <th class="active text-center">MODIFICADO</th>
         <th class="active text-center">PERTENECIENTE</th>
@@ -39,7 +46,7 @@
        </tr>
     <%end%>
   </div>
-</div><hr>
+</div><br><hr>
 <%= paginate @cursos, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination float-right" %>
 <div id="new-curso"></div>
 <div id="edit-curso"></div>

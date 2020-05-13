@@ -5,4 +5,5 @@ class Linea < ApplicationRecord # rubocop:todo Style/Documentation
   has_many :cursos, dependent: :restrict_with_error
   has_many :cursosUsuario, dependent: :restrict_with_error
   validates :nombre, presence: true
+  has_many :proyecciones, dependent: :restrict_with_error
 end

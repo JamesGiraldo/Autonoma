@@ -8,7 +8,7 @@
         </div>
         <div class="modal-body">
           <%= simple_form_for @curso_usuario, html: { class: 'form-horizontal' } do |f| %>
-            <%= f.input :nombre , autofocus: true, placeholder:"Nombre Del Curso" , autocomplete: "nombre", require:true %>
+              <%= f.input :nombre , autofocus: true, placeholder:"Nombre Del Curso" , autocomplete: "nombre", require:true %>
               <%= f.association :linea, label_method: :nombre, value_method: :id , require:true, prompt: 'Selecione Tipo De Linea' , input_html: {min:"1"}  %>
               <%= f.input :estado, as: :radio_buttons, collection: [['En Proceso',true],['Terminado', false]]%>
               <%= f.input :fecha_inicio, required: true%>

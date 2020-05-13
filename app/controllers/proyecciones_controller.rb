@@ -71,6 +71,6 @@ class ProyeccionesController < ApplicationController
   private
 
   def proyeccion_params
-    params.require(:proyeccion).permit(:nombre, :descripcion)
+    params.require(:proyeccion).permit(:nombre, :linea_id, :descripcion)
   end
 end

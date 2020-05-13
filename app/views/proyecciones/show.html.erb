@@ -1,12 +1,21 @@
 <% breadcrumb :proyeccion_show, @proyeccion %>
-<h1 class="text-center mov-naranja">CURSO<strong><%=  @proyeccion.nombre %></strong></h1><hr />
+<h1 class="text-center mov-naranja">Proyeccion <strong><%=  @proyeccion.nombre %></strong></h1><hr />
 <div class="usuario">
   <div class="informacion">
     <div class="container_details">
-      <div class="info">
-         <p class="details_info"><strong>Nombre: </strong> <%=  @proyeccion.nombre %></p>
-         <label for="">Descripccion</label>
-         <textarea name="name" rows="5" cols="80"><%=  @proyeccion.descripcion %></textarea>
+      <div class="col-md-6">
+        <div class="info">
+           <p class="details_info"><strong>Nombre:</strong> <%= @proyeccion.nombre %></p>
+           <p class="details_info"><strong>Linea:</strong> <%= @proyeccion.linea.nombre %></p>
+           <p class="details_info"><strong>Registrada:</strong> <%=  @proyeccion.created_at.strftime("%d-%m-%Y %H:%M") %></p>
+           <p class="details_info"><strong>Actualizada:</strong> <%=  @proyeccion.updated_at.strftime("%d-%m-%Y %H:%M") %></p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info">
+          <p><label for=""><strong>Descripccion:</strong></label><br>
+          <textarea rows="8" cols="70" disabled><%=  @proyeccion.descripcion %></textarea> </p>
+        </div>
       </div>
     </div>
   </div>

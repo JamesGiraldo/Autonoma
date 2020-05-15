@@ -14,12 +14,7 @@ class UsersController < ApplicationController
   end
 
   def decanos
-    if current_user.has_role? :Admin # rubocop:todo Style/GuardClause
-      @users = User.all.includes(:roles).where('roles.name' => 'Decano').page params[:page]
-      if params[:q].present?
-        @users = @users.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
-      end
-    elsif current_user.has_role? :Vicerrector
+    if current_user.has_role? :Admin or current_user.has_role? :Vicerrector
       @users = User.all.includes(:roles).where('roles.name' => 'Decano').page params[:page]
       if params[:q].present?
         @users = @users.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
@@ -28,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def instructores
-    if current_user.has_role? :Admin
+    if current_user.has_role? :Admin or current_user.has_role? :Vicerrector or current_user.has_role? :Director
       @users = User.all.includes(:roles).where('roles.name' => 'Docente').page params[:page]
       if params[:q].present?
         @users = @users.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
@@ -40,21 +35,10 @@ class UsersController < ApplicationController
         @users = User.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
       end
     end
-    if current_user.has_role? :Director
-      @users = User.all.includes(:roles).where('roles.name' => 'Docente').page params[:page]
-      if params[:q].present?
-        @users = @users.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
-      end
-    elsif current_user.has_role? :Vicerrector
-      @users = User.all.includes(:roles).where('roles.name' => 'Docente').page params[:page]
-      if params[:q].present?
-        @users = @users.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
-      end
-    end
   end
 
   def vicerrectores
-    if current_user.has_role? :Admin # rubocop:todo Style/GuardClause
+    if current_user.has_role? :Admin
       @users = User.all.includes(:roles).where('roles.name' => 'Vicerrector').page params[:page]
       if params[:q].present?
         @users = @users.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
@@ -63,18 +47,7 @@ class UsersController < ApplicationController
   end
 
   def directores
-    if current_user.has_role? :Admin # rubocop:todo Style/GuardClause
-      @users = User.all.includes(:roles).where('roles.name' => 'Director').page params[:page]
-      if params[:q].present?
-        @users = @users.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
-      end
-    elsif current_user.has_role? :Vicerrector
-      @users = User.all.includes(:roles).where('roles.name' => 'Director').page params[:page]
-      if params[:q].present?
-        @users = @users.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]
-      end
-    end
-    if current_user.has_role? :Decano # rubocop:todo Style/GuardClause
+    if current_user.has_role? :Admin or current_user.has_role? :Vicerrector or current_user.has_role? :Decano
       @users = User.all.includes(:roles).where('roles.name' => 'Director').page params[:page]
       if params[:q].present?
         @users = @users.where('email like :q or nombre like :q or apellido like :q or telefono like :q or direccion like :q', q: "%#{params[:q]}%").page params[:page]

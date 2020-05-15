@@ -28,12 +28,11 @@
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover dataTables-example">
       <tr>
-        <th class="active">ID</th>
-        <th class="active">TITULO</th>
-        <th class="active">DESCRIPCION</th>
-        <th class="active">REGISTRADO</th>
-        <th class="active">MODIFICADO</th>
-        <th class="active">ACCIONES</th>
+        <th class="active text-center">TITULO</th>
+        <th class="active text-center">DESCRIPCION</th>
+        <th class="active text-center">REGISTRADO</th>
+        <th class="active text-center">MODIFICADO</th>
+        <th class="active text-center">ACCIONES</th>
       </tr>
       <%= render partial: "comentarios", collection: @comentarios, as: :comentario %>
       </table>

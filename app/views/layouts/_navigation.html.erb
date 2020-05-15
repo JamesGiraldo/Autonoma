@@ -174,8 +174,6 @@
                         <%end%>
                       </ul>
                   </li>
-                <%end%>
-                <% if current_user.has_role? :Admin %>
                   <li class="<%= 'active' if current_page?('/programas') %>">
                       <%= link_to facultades_path do %>
                       <i class="titulo-Narajanja fa fa-opencart"></i>
@@ -184,11 +182,9 @@
                       <span class="fa arrow"></span>
                       <% end %>
                       <ul class=" nav nav-second-level #{is_active_controller('facultad')">
-                        <% if current_user.has_role? :Admin %>
                           <li class="<%= 'active' if current_page?('/programas') %>">
                             <%= link_to "Programas" , programas_path %>
                           </li>
-                        <% end %>
                       </ul>
                   </li>
                 <% end %>

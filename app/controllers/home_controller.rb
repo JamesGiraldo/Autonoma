@@ -9,5 +9,6 @@ class HomeController < ApplicationController
     end
     @lineas = Linea.includes(:cursos).collect{|linea| [linea.nombre,
                                                       linea.cursos.size]}
+    @users = User.all.includes(:roles).where('roles.name' => 'Docente').count
   end
 end

@@ -35,24 +35,26 @@
   </div>
   <div class="informacion_general">
     <div class="container_box">
-        <div class="box card text-white bg-primary mb-3">
-           <div class="title">
-               <h3 class="title_box"><strong>Docentes</strong></h3>
-           </div>
-           <div class="description">
-               <h1 class="description_box"><%= @users %></h1>
-           </div>
-           <div class="foot">
-               <h3 class="foot_box">Universidad Autonoma del caribe</h3>
-           </div>
-           <div class="ver_mas">
-             <a class="<%= is_active_controller('comentarios') %>">
-                <%= link_to comentarios_path do %>
-                  <i class="ver_mas_box"></i> <span data-i18n="nav.layouts" data-toggle="tooltip" title="Todo Sobre Comentarios">Ver más</span>
-                <% end %>
-             </a>
-           </div>
-        </div>
+        <% unless current_user.has_role? :Docente %>
+          <div class="box card text-white bg-primary mb-3">
+             <div class="title">
+                 <h3 class="title_box"><strong>Docentes</strong></h3>
+             </div>
+             <div class="description">
+                 <h1 class="description_box"><%= @users %></h1>
+             </div>
+             <div class="foot">
+                 <h3 class="foot_box">Universidad Autonoma del caribe</h3>
+             </div>
+             <div class="ver_mas">
+               <a class="<%= is_active_controller('comentarios') %>">
+                  <%= link_to instructores_users_path do %>
+                    <i class="ver_mas_box"></i> <span data-i18n="nav.layouts" data-toggle="tooltip" title="Todo Sobre Comentarios">Ver más</span>
+                  <% end %>
+               </a>
+             </div>
+          </div>
+        <% end %>
         <div class="box card text-white bg-danger mb-3">
           <div class="title">
              <h3 class="title_box"><strong>Proyecciones</strong></h3>

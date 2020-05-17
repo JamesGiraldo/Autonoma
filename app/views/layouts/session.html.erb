@@ -9,12 +9,10 @@
   </head>
   <body class="gray-bg">
     <!-- <h1 class="mov-naranja">Bienvenido a Seguimiento</h1> -->
-    <div class="row">
-        <div class="col-md-12">
+    <div class="container">        
         <!-- <div class="ibox-content"> -->
           <%=yield%>
         <!-- </div> -->
-        </div>
     </div>
     <!-- Include javascript per-controller - vendor plugins -->
       <%= javascript_include_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.js") %>

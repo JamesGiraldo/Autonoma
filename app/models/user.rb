@@ -15,6 +15,10 @@ class User < ApplicationRecord
                                           :case_sensitive => false }
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   validate :validate_username
+
+  validates :email, presence: true
+  validates :email, uniqueness: true
+
   # def self.find_dor_database_authentication warden_condition
   #   conditions = warden_condition.dup
   #   login = conditions.delete(:login)

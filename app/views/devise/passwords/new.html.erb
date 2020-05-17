@@ -1,12 +1,12 @@
-<center><h1 class="mov-naranja">¿Olvidaste tu contraseña?</h1></center>
+<h1 class="text-center titulo-Narajanja">Universidad <strong>Autonoma del caribe</strong></h1>
 <div class="container_session">
     <div class="session">
-      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+      <center><h3 class="titulo-Narajanja">¿Olvidaste tu contraseña?</h3></center>
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>      
         <%= f.input :email, autofocus: true, autocomplete: "email" %>
         <%= f.button :submit, "Restablecer instrucciones de contraseña",  class: "btn-primary block full-width m-b" %>
-        <!-- btn-outline-info -->
-        <%= render "devise/shared/links" %>
+        <a class="btn btn-sm btn-white btn-block" href="<%=new_user_session_path%>">Iniciar Seccion</a>
+        <a class="btn btn-sm btn-white btn-block" href="<%=new_user_registration_path%>">Crea una cuenta</a>
       <% end %>
     </div>
 </div>

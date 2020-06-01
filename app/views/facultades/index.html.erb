@@ -1,13 +1,21 @@
 <% breadcrumb :facultades %>
-<h1 class="text-center titulo-Narajanja">LISTA DE <strong>FACULTADES</strong></h1>
-<hr />
-<div class="row">
-  <%= form_tag(facultades_path, class:"navbar-form-custom" , method: :get) do %>
-    <div class="form-group">
-      <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
+<div class="ibox-content m-b-sm border-bottom buscador-complemnto">
+  <div class="row">
+    <div class="container">
+      <h2 class="titulo-Narajanja">Facultades</h2>
     </div>
-  <%end%>
-</div><br>
+  </div>
+  <div class="search-form">
+    <%= form_tag(facultades_path, method: :get) do %>
+      <div class="input-group">
+        <input type="text" name="q" class="form-control input-lg" placeholder="Buscar..." type="text" value="<%= params[:q] %>"></input>
+        <div class="input-group-btn">
+          <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>
 <div class="ibox-content m-b-sm border-bottom">
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover dataTables-example">

@@ -1,9 +1,8 @@
 <% breadcrumb :cursos_linea, @linea %>
-<h1 class="text-center titulo-Narajanja">CURSOS DE LA LINEA<strong> <%= @linea.nombre.upcase%></strong></h1><hr />
-<div class="ibox-content m-b-sm border-bottom">
+<div class="ibox-content m-b-sm border-bottom  buscador-complemnto">
   <div class="row">
     <div class="col-md-10">
-        <h2 class="titulo-Narajanja">Cursos</h2>
+        <h2 class="titulo-Narajanja">CURSOS DE LA LINEA<strong> <%= @linea.nombre.upcase%></strong></h2>
     </div>
     <div class="col-md-2">
       <% if current_user.has_role? :Admin %>

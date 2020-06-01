@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class Proyeccion < ApplicationRecord # rubocop:todo Style/Documentation
+class Proyeccion < ApplicationRecord
   belongs_to :user
   belongs_to :linea
   validates :nombre, presence: true

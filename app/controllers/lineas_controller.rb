@@ -1,9 +1,7 @@
-# frozen_string_literal: true
-
-# rubocop:todo Style/Documentation
 class LineasController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :authenticate_role_user, except: %i[index show]
+  before_action :set_linea, only: [ :show, :edit, :update, :destroy]
   respond_to :html, :json
 
   def index
@@ -15,10 +13,9 @@ class LineasController < ApplicationController
   end
 
   def show
-    @linea = Linea.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to linea_path
-    flash[:alert] = 'Este linea No Existe'
+    rescue ActiveRecord::RecordNotFound
+      redirect_to linea_path
+      flash[:alert] = 'Este linea No Existe'
   end
 
   def new
@@ -30,7 +27,6 @@ class LineasController < ApplicationController
   end
 
   def edit
-    @linea = Linea.find(params[:id])
     respond_to do |f|
       f.html
       f.js
@@ -38,15 +34,12 @@ class LineasController < ApplicationController
   end
 
   def update
-    @linea = Linea.find(params[:id])
-    respond_to do |format|
-      if @linea.update(linea_params)
-        flash[:success] = 'Linea Actualizada!'
-        redirect_to action: :index
-      else
-        flash[:alert] = 'Problemas Con La Grabacion'
-        redirect_to action: :index
-      end
+    if @linea.update(linea_params)
+      flash[:success] = 'Linea Actualizada!'
+      redirect_to action: :index
+    else
+      flash[:alert] = 'Problemas Con La Grabacion'
+      redirect_to action: :index
     end
   end
 
@@ -67,16 +60,23 @@ class LineasController < ApplicationController
   end
 
   def destroy
-    @linea = Linea.find(params[:id])
-    flash[:info] = 'No Puede Eliminar Esta Linea Por Que Contiene Cursos Relacionados!'
-    @linea.destroy
-    redirect_to action: :index
+    if @linea.destroy
+      flash[:alert] = "Linea #{@linea.nombre.upcase} Eliminada Correctamente!"
+      redirect_to action: :index
+    else
+      flash[:info] = 'No Puede Eliminar Esta Linea Por Que Contiene Cursos Relacionados!'
+      redirect_to action: :index
+    end
   end
 
   private
 
+  def set_linea
+    @linea = Linea.find(params[:id])
+  end
+
   def linea_params
-    params.require(:linea).permit(:nombre)
+    params.require(:linea).permit(:nombre, :avatar)
   end
 
   def authenticate_role_user
@@ -87,5 +87,4 @@ class LineasController < ApplicationController
       redirect_to lineas_path(@linea)
     end
   end
-
 end

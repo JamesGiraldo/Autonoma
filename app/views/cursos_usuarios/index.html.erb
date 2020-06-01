@@ -1,5 +1,5 @@
 <% breadcrumb :cursos_usuarios %>
-<br><div class="ibox-content m-b-sm border-bottom">
+<br><div class="ibox-content m-b-sm border-bottom buscador-complemnto">
   <div class="row">
     <div class="col-md-10">
         <h2 class="titulo-Narajanja">Mis Cursos</h2>
@@ -31,7 +31,7 @@
         <th class="active text-center">NOMBRE</th>
         <th class="active text-center">ESTADO</th>
         <th class="active text-center">FECHA DE INICIO</th>
-        <th class="active text-center">FECHA FINALIZACION</th>        
+        <th class="active text-center">FECHA FINALIZACION</th>
         <th class="active text-center">ACCIONES</th>
       </tr>
       <%= render partial: "cursos_usuarios", collection: @cursosUsuarios, as: :cursos_usuario %>

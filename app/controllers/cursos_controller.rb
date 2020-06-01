@@ -1,9 +1,7 @@
-# frozen_string_literal: true
-
-# rubocop:todo Style/Documentation
 class CursosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   respond_to :html, :json
+  before_action :set_curso, only: [:show, :edit, :update, :destroy]
 
   def index
     if current_user.has_role? :Admin
@@ -17,7 +15,6 @@ class CursosController < ApplicationController
   end
 
   def show
-    @curso = Curso.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to cursos_path
     flash[:alert] = 'Este Curso No Existe'
@@ -32,7 +29,6 @@ class CursosController < ApplicationController
   end
 
   def edit
-    @curso = Curso.find(params[:id])
     respond_to do |f|
       f.html
       f.js
@@ -40,7 +36,6 @@ class CursosController < ApplicationController
   end
 
   def update
-    @curso = Curso.find(params[:id])
     if @curso.update(curso_params)
       flash[:success] = 'Curso Actualizado!'
       redirect_to action: :index
@@ -62,16 +57,20 @@ class CursosController < ApplicationController
   end
 
   def destroy
-    @curso = Curso.find(params[:id])
-    flash[:alert] = 'Curso Eliminado!'
-    @curso.destroy
-    redirect_to action: :index
-  rescue ActiveRecord::RecordNotFound
-    redirect_to cursos_path
-    flash[:alert] = 'Este Curso No Existe'
+    if @curso.destroy
+       flash[:alert] = 'Curso Eliminado!'
+       redirect_to action: :index
+    end
+    rescue ActiveRecord::RecordNotFound
+      redirect_to cursos_path
+      flash[:alert] = 'Este Curso No Existe'
   end
 
   private
+
+  def set_curso
+    @curso = Curso.find(params[:id])
+  end
 
   def curso_params
     params.require(:curso).permit(:nombre, :linea_id, :estado)

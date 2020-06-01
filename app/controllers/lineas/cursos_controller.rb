@@ -58,6 +58,9 @@ module Lineas
 
     def set_linea
       @linea = Linea.find(params[:linea_id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to linea_cursos_path(@linea, @curso)
+      flash[:alert] = 'Este Curso No Existe'
     end
 
     def set_curso

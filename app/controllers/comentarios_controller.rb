@@ -1,9 +1,8 @@
-# frozen_string_literal: true
-
-# COnmentarios Controller
 class ComentariosController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   respond_to :html, :json
+  before_action :set_comentario, only: [:show, :edit, :update, :destroy]
+
   def index
     @comentarios = Comentario.all.where(user_id:
                                         current_user.id).page params[:page]
@@ -14,7 +13,6 @@ class ComentariosController < ApplicationController
   end
 
   def show
-    @comentario = Comentario.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to comentario_path
     flash[:alert] = 'Este comentario No Existe'
@@ -29,7 +27,6 @@ class ComentariosController < ApplicationController
   end
 
   def edit
-    @comentario = Comentario.find(params[:id])
     respond_to do |f|
       f.html
       f.js
@@ -37,7 +34,6 @@ class ComentariosController < ApplicationController
   end
 
   def update
-    @comentario = Comentario.find(params[:id])
     if @comentario.update(comentario_params)
       flash[:success] = 'Comentario Actualizado!'
       redirect_to action: :index
@@ -59,6 +55,10 @@ class ComentariosController < ApplicationController
   end
 
   private
+
+  def set_comentario
+    @comentario = Comentario.find(params[:id])
+  end
 
   def comentario_params
     params.require(:comentario).permit(:titulo, :descripccion)

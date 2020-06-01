@@ -1,3 +1,7 @@
 <tr>
-  <td><%= link_to programa.nombre , programa_users_path(programa) %></td>
+  <td><%= link_to programas.nombre, programa_users_path(programas) %></td>
+  <td>
+    <%= link_to "Editar", edit_facultad_programa_path(@facultad, programas) %>
+    <%= link_to "Eliminar", facultad_programa_path(@facultad, programas), method: :delete, data: {confirm: "¿Estas seguro?"} %>
+  </td>
 </tr>

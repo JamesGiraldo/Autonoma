@@ -1,10 +1,9 @@
-# frozen_string_literal: true
-
-# rubocop:todo Style/Documentation
 class ProgramasController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :authenticate_role_user
   respond_to :html, :json
+  before_action :set_programa, only: [ :show, :edit, :update, :destroy]
+
   def index
     @programas = Programa.all.page params[:page]
     if params[:q].present? # rubocop:todo Style/GuardClause
@@ -18,20 +17,17 @@ class ProgramasController < ApplicationController
   end
 
   def show
-    @programa = Programa.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to linea_path
     flash[:alert] = 'Este Programa No Existe'
   end
 
   def edit
-    @programa = Programa.find(params[:id])
   end
 
   # PUT /programa/:id
   def update
     if @user.has_role? :Admin
-      @programa = Programa.find_by id: params[:id]
       if @programa.update(programa_params)
         flash[:success] = 'Programa Actualizada!'
         redirect_to action: :index
@@ -47,10 +43,10 @@ class ProgramasController < ApplicationController
 
   def destroy
     if @user.has_role? :Admin
-      @programa = Programa.find(params[:id])
-      flash[:alert] = 'Programa Eliminada!'
-      @programa.destroy
-      redirect_to action: :index
+      if @programa.destroy
+        flash[:alert] = "Programa #{@programa.nombre.upcase} Eliminada!"
+        redirect_to action: :index      
+      end
     end
   end
 
@@ -71,6 +67,10 @@ class ProgramasController < ApplicationController
   end
 
   private
+
+  def set_programa
+      @programa = Programa.find(params[:id])
+  end
 
   def programa_params
     params.require(:programa).permit(:nombre, :facultad_id)

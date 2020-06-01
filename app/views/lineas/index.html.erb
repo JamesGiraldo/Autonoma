@@ -1,27 +1,32 @@
 <% breadcrumb :lineas %>
-<h1 class="text-center titulo-Narajanja">LISTA DE <strong>LINEAS</strong></h1><hr />
-<div class="row">
-  <div class="col-md-10">
-    <%= form_tag(lineas_path, class:"navbar-form-custom" , method: :get) do %>
-      <div class="form-group">
-        <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
+<div class="ibox-content m-b-sm border-bottom buscador-complemnto">
+  <div class="row">
+    <div class="col-md-10">
+        <h2 class="titulo-Narajanja">Lineas</h2>
+    </div>
+    <div class="col-md-2">
+      <% if current_user.has_role? :Admin %>
+        <div class="input-group-btn">
+          <div class="botonContainer">
+              <%= link_to "", new_linea_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
+            </div>
+          </div>
+        </div>
+      <%end%>
+  </div>
+  <div class="search-form">
+    <%= form_tag(lineas_path, method: :get) do %>
+      <div class="input-group">
+        <input type="text" name="q" class="form-control input-lg" placeholder="Buscar..." type="text" value="<%= params[:q] %>"></input>
+        <div class="input-group-btn">
+          <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
+        </div>
       </div>
     <%end%>
   </div>
-  <div class="col-md-2">
-   <% if current_user.has_role? :Admin %>
-    <div class="input-group-btn">
-      <div class="botonContainer">
-          <%= link_to "", new_linea_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
-        </div>
-      </div>
-    <% end %>
-   </div>
-</div><br>
+</div>
 <% unless @lineas.present? %>
-   <tr>
-      <h2 class="text-center">No Hay Informacion Solicitada</h2>
-   </tr>
+    <h2 class="text-center">No Hay Informacion Solicitada</h2>
 <%end%>
 <div class="usuario">
   <div class="informacion_general">
@@ -33,7 +38,7 @@
                   <%= link_to "", edit_linea_path(linea), remote:true , class: "fa fa-pencil-square-o   btn btn-warning"%>
               </div>
               <div class="col-md-6">
-                  <%= link_to "", { :action => :destroy, :id => linea.id }, method: :delete, data: {confirm: "¿esta seguro?", mensaje: "La linea se borrara definitivamente"}, class: "fa fa-trash-o btn btn-danger" %>
+                  <%= link_to "", { :action => :destroy, :id => linea.id }, method: :delete, data: {confirm: "¿Esta Seguro De Eliminar La Linea #{linea.nombre}? ", mensaje: "La linea se borrara definitivamente"}, class: "fa fa-trash-o btn btn-danger" %>
               </div>
             <% end %>
              <div class="description">
@@ -42,13 +47,15 @@
              <div class="foot">
                 <h1 class="description_box"><%= linea.cursos.count%></h1>
              </div>
-               <div class="ver_mas">
-                  <a class="<%= is_active_controller('programas') %>">
-                     <%= link_to linea_cursos_path(linea) do %>
-                       <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
-                     <% end %>
-                  </a>
-               </div>
+             <% if current_user.has_role? :Admin %>
+                 <div class="ver_mas">
+                    <a class="<%= is_active_controller('programas') %>">
+                       <%= link_to linea_cursos_path(linea) do %>
+                         <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+                       <% end %>
+                    </a>
+                 </div>
+              <% end %>
           </div>
        <%end%>
     </div>

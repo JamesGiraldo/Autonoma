@@ -1,6 +1,7 @@
 class FacultadesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :authenticate_role_user
+  before_action :authenticate_role_user, only: [:create, :new, :update, :edit, :destroy]
+  before_action :set_facultad, only: [:show, :edit, :update, :destroy]
 
   def index
     @facultades = Facultad.all.page params[:page]
@@ -15,59 +16,47 @@ class FacultadesController < ApplicationController
   end
 
   def show
-    @facultad = Facultad.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to linea_path
     flash[:alert] = 'Este Facultad No Existe'
   end
 
   def edit
-    @facultad = Facultad.find(params[:id])
   end
 
   # PUT /facultad/:id
   def update
-    if @user.has_role? :Admin
-      @facultad = Facultad.find_by id: params[:id]
-      if @facultad.update(facultad_params)
-        flash[:success] = 'Facultad Actualizada!'
-        render :show
-      else
-        flash[:alert] = 'Problemas con la grabación!'
-        render :edit
-      end
+    if @facultad.update(facultad_params)
+      flash[:success] = 'Facultad Actualizada!'
+      render :show
     else
-      flash[:info] = 'No tiene permisos para acceder a esa vista!'
+      flash[:alert] = 'Problemas con la grabación!'
       render :edit
     end
   end
 
   def destroy
-    if @user.has_role? :Admin # rubocop:todo Style/GuardClause
-      @facultad = Facultad.find(params[:id])
-      flash[:alert] = 'Facultad Eliminada!'
-      @facultad.destroy
-      redirect_to action: :index
-    end
+    @facultad.destroy
+    flash[:alert] = 'Facultad Eliminada!'
+    redirect_to action: :index
   end
 
-  def create # rubocop:todo Metrics/MethodLength
-    if @user.has_role? :Admin
-      @facultad = Facultad.new(facultad_params)
-      if @facultad.save!
-        flash[:success] = 'Facultad Registrada!'
-        render :show
-      else
-        flash[:alert] = 'Problemas con la grabación!'
-        render :new
-      end
+  def create
+    @facultad = Facultad.new(facultad_params)
+    if @facultad.save
+      flash[:success] = 'Facultad Registrada!'
+      render :show
     else
-      flash[:info] = 'No tiene permisos para acceder a esa vista!'
-      render :index
+      flash[:alert] = 'Problemas con la grabación!'
+      render :new
     end
   end
 
   private
+
+  def set_facultad
+    @facultad = Facultad.find(params[:id])
+  end
 
   def facultad_params
     params.require(:facultad).permit(:nombre)
@@ -82,4 +71,3 @@ class FacultadesController < ApplicationController
     end
   end
 end
-# rubocop:enable Style/Documentation

@@ -16,7 +16,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery/jquery-3.1.1.min.js
-//= require jquery-ui/jquery-ui.min.js
 //= require popper
 //= require toastr/toastr.min.js
 //= require bootstrap
@@ -45,5 +44,5 @@ $(document).ready(function(){
       } else {
         $('#ir-arriba').slideUp(300);
       }
-    });  
+    });
 });

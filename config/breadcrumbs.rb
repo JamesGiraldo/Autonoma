@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 crumb :root do
   link ' HOME ', root_path
 end

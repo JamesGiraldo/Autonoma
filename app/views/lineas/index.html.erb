@@ -1,18 +1,16 @@
 <% breadcrumb :lineas %>
 <div class="ibox-content m-b-sm border-bottom buscador-complemnto">
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-10">
         <h2 class="titulo-Narajanja">Lineas</h2>
     </div>
-    <div class="col-md-2">
+    <div class="col-2">
       <% if current_user.has_role? :Admin %>
-        <div class="input-group-btn">
-          <div class="botonContainer">
-              <%= link_to "", new_linea_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
-            </div>
-          </div>
+        <div class="botonContainer">
+          <%= link_to "", new_linea_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
         </div>
       <%end%>
+    </div>
   </div>
   <div class="search-form">
     <%= form_tag(lineas_path, method: :get) do %>
@@ -34,11 +32,17 @@
        <% @lineas.each do |linea| %>
           <div class="box card text-white bg-secondary mb-3">
             <% if current_user.has_role? :Admin %>
-              <div class="col-md-6">
-                  <%= link_to "", edit_linea_path(linea), remote:true , class: "fa fa-pencil-square-o   btn btn-warning"%>
-              </div>
-              <div class="col-md-6">
-                  <%= link_to "", { :action => :destroy, :id => linea.id }, method: :delete, data: {confirm: "¿Esta Seguro De Eliminar La Linea #{linea.nombre}? ", mensaje: "La linea se borrara definitivamente"}, class: "fa fa-trash-o btn btn-danger" %>
+              <div class="row">
+                <div class="col-6">
+                  <div class="botonContainer">
+                    <%= link_to "", edit_linea_path(linea), remote:true , class: "fa fa-pencil-square-o   btn btn-warning"%>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="botonContainer">
+                      <%= link_to "", { :action => :destroy, :id => linea.id }, method: :delete, data: {confirm: "¿Esta Seguro De Eliminar La Linea #{linea.nombre}? ", mensaje: "La linea se borrara definitivamente"}, class: "fa fa-trash-o btn btn-danger" %>
+                  </div>
+                </div>
               </div>
             <% end %>
              <div class="description">

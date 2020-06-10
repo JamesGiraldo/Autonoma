@@ -1,16 +1,14 @@
 <% breadcrumb :proyecciones %>
 <div class="ibox-content m-b-sm border-bottom buscador-complemnto">
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-10">
         <h2 class="titulo-Narajanja"><strong>Proyecciones</strong></h2>
     </div>
-    <div class="col-md-2">
-      <div class="input-group-btn">
-        <div class="botonContainer">
-            <%= link_to "", new_proyeccion_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
-          </div>
-        </div>
+    <div class="col-2">
+      <div class="botonContainer">
+        <%= link_to "", new_proyeccion_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
       </div>
+    </div>
   </div>
   <div class="search-form">
     <%= form_tag(proyecciones_path, method: :get) do %>

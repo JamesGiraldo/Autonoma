@@ -1,15 +1,15 @@
 <% breadcrumb :cursos_usuarios_linea, @linea %>
 <div class="ibox-content m-b-sm border-bottom  buscador-complemnto"">
   <div class="row">
-    <div class="col-md-10">
-        <h2 class="titulo-Narajanja">LISTA DE <strong>CURSOS POR OTRO LADO</strong> DE LA LINEA: <%= @linea.nombre %></h2>
+    <div class="col-10">
+        <h2 class="titulo-Narajanja">CURSOS <strong> POR OTRO LADO</strong> DE LA LINEA: <%= @linea.nombre %></h2>
     </div>
-    <div class="col-md-2">
-        <div class="input-group-btn">
-          <div class="botonContainer">
-              <%= link_to "", new_cursos_usuario_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
-          </div>
+    <div class="col-2">
+      <% if current_user.has_role? :Admin %>
+        <div class="botonContainer">
+          <%= link_to "", new_cursos_usuario_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
         </div>
+      <%end%>
     </div>
   </div>
   <div class="search-form">

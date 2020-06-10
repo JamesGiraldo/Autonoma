@@ -1,16 +1,16 @@
 <% breadcrumb :programas %>
 <div class="ibox-content m-b-sm border-bottom buscador-complemnto">
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-10">
         <h2 class="titulo-Narajanja">Programas</h2>
     </div>
-    <div class="col-md-2">
-      <div class="input-group-btn">
+    <div class="col-2">
+      <% if current_user.has_role? :Admin %>
         <div class="botonContainer">
-            <%= link_to "", new_programa_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
-          </div>
+          <%= link_to "", new_programa_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
         </div>
-      </div>
+      <%end%>
+    </div>
   </div>
   <div class="search-form">
     <%= form_tag(programas_path, method: :get) do %>
@@ -32,11 +32,17 @@
        <% @programas.each do |programa| %>
           <div class="box card text-white bg-secondary mb-3">
             <% if current_user.has_role? :Admin %>
-              <div class="col-md-6">
-                  <%= link_to "", edit_programa_path(programa), remote:true , class: "fa fa-pencil-square-o   btn btn-warning"%>
-              </div>
-              <div class="col-md-6">
-                  <%= link_to "", { :action => :destroy, :id => programa.id }, method: :delete, data: {confirm: "¿Esta Seguro De Eliminar La Linea #{programa.nombre}? ", mensaje: "La linea se borrara definitivamente"}, class: "fa fa-trash-o btn btn-danger" %>
+              <div class="row">
+                <div class="col-6">
+                  <div class="botonContainer">
+                    <%= link_to "", edit_programa_path(programa), remote:true , class: "fa fa-pencil-square-o   btn btn-warning"%>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="botonContainer">
+                      <%= link_to "", { :action => :destroy, :id => programa.id }, method: :delete, data: {confirm: "¿Esta Seguro De Eliminar La Linea #{programa.nombre}? ", mensaje: "La linea se borrara definitivamente"}, class: "fa fa-trash-o btn btn-danger" %>
+                  </div>
+                </div>
               </div>
             <% end %>
              <div class="description">

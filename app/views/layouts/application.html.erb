@@ -6,11 +6,12 @@
   	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <title>Autonoma</title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>    
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css")%>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
   </head>
-  <body data-toggle="tooltip" class="hold-transition skin-blue sidebar-mini">
+  <body class="hold-transition skin-blue sidebar-mini">
     <div id="wrapper" class="<%= params[:controller] %>.<%= params[:action] %>">
         <!-- Navigation -->
         <%= render 'layouts/navigation' %>
@@ -24,11 +25,11 @@
                 <%= breadcrumbs display_single_fragment: true ,separator: ' / ', class:""%>
             </div>
             <%= yield %>
-            <span id="ir-arriba" class="ir-arriba"></span>
             <!-- Footer -->
             <%= render 'layouts/footer' %>
         </div>
     </div>
+    <%= javascript_include_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.js")%>
     <%= yield :javascript %>
   </body>
 </html>

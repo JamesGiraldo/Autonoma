@@ -19,6 +19,8 @@
 //= require popper
 //= require toastr/toastr.min.js
 //= require bootstrap
+//= require bootstrapvalidator/bootstrapValidator.js
+//= require bootstrapvalidator/language/es_ES.js
 //= require pace/pace.min.js
 //= require peity/jquery.peity.min.js
 //= require slimscroll/jquery.slimscroll.min.js

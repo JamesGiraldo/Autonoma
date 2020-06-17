@@ -6,8 +6,8 @@
         <%= f.error_notification %>
         <p>Debe iniciar sesión o registrarse antes de continuar.<p>
         <%= f.input :username, autofocus: true, placeholder:"Usario" ,autocomplete: "username" %>
-        <%= f.input :email, autofocus: true, placeholder:"Correo" ,autocomplete: "email" %>
-        <%= f.association :programa, label_method: :nombre, value_method: :id , prompt: 'Seleccione Un Programa' , input_html: {min:"1"}  %>
+        <%= f.input :email, autofocus: true, placeholder:"Correo" ,autocomplete: "email" %>        
+        <%= f.association :programa, collection: Programa.order(:nombre), label_method: :nombre, input_html: {class: "select2select", "data-placeholder": "Seleccione Programa"} %>
         <%= f.input :password,  placeholder:"Contraseña", autocomplete: "new-password" %>
         <%= f.input :password_confirmation, placeholder:"Confirme contraseña", autocomplete: "new-password" %>
         <% if devise_mapping.rememberable? %>

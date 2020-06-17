@@ -1,0 +1,11 @@
+es-CO:
+  activerecord:
+    models:
+      curso:
+        one: Curso
+        other: Cursos
+    attributes:
+      curso:
+        nombre: Nombre
+        estado: Estado
+        linea_id: Linea

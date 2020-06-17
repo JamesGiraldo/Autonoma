@@ -1,36 +1,74 @@
-class Lineas::CursosController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
-  before_action :set_linea
-  before_action :set_curso
-  before_action :set_curso, only: [:edit, :update, :asignar]
+module Lineas
+  class CursosController < ApplicationController
+    before_action :authenticate_user!
+    respond_to :html, :json
+    before_action :set_linea
+    before_action :set_curso, only: [:show, :edit, :update, :destroy]
 
-  def index
+    def index
       @cursos = @linea.cursos.order(id: :desc).page params[:page]
-    if params[:q].present?
-      @cursos = @cursos.where("nombre like :q", q: "%#{params[:q]}%").page params[:page]
+      if params[:q].present?
+        @cursos = @cursos.where('nombre like :q', q: "%#{params[:q]}%").page params[:page]
+      end
     end
-  end
 
-  private
-  def set_curso
-    begin
-      @curso = @linea.cursos.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to linea_cursos_path(@linea, @curso)
-      flash[:alert] = "Este Curso No Existe"
+    def edit
+      respond_to do |f|
+        f.html
+        f.js
+      end
     end
-  end
 
-  def set_linea
-    begin
+    def new
+      @curso = @linea.cursos.new
+      respond_to do |f|
+        f.html
+        f.js
+      end
+    end
+
+    def create
+      @curso = @linea.cursos.new(curso_params)
+      if @curso.save
+        flash[:success] = 'Curso Registrado!'
+        redirect_to action: :index
+      else
+        flash[:alert] = 'Problemas Con La Grabacion'
+        redirect_to action: :index
+      end
+    end
+
+    def update
+      if @curso.update(curso_params)
+        flash[:success] = 'Curso Registrada'
+        redirect_to action: :index
+      else
+        flash[:alert] = 'Problemas Con La Grabacion'
+        redirect_to action: :index
+      end
+    end
+
+    def destroy
+      @curso.destroy
+      flash[:alert] = 'Curso Eliminado'
+      respond_with @linea, :cursos
+    end
+
+    private
+
+    def set_linea
       @linea = Linea.find(params[:linea_id])
     rescue ActiveRecord::RecordNotFound
       redirect_to linea_cursos_path(@linea, @curso)
-      flash[:alert] = "Este Curso No Existe"
+      flash[:alert] = 'Este Curso No Existe'
     end
-  end
 
-  def curso_params
-    params.require(:curso).permit(:nombre, :estado, :linea_id)
+    def set_curso
+      @curso = @linea.cursos.find(params[:id])
+    end
+
+    def curso_params
+      params.require(:curso).permit(:nombre, :linea_id, :estado)
+    end
   end
 end

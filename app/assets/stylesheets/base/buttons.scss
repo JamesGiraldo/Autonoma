@@ -29,7 +29,7 @@ button:focus {
 }
 
 .btn-primary.btn-outline {
-  color: $navy;
+  color: #fcae70;
 }
 
 .btn-success.btn-outline {
@@ -65,27 +65,27 @@ button:focus {
 
 .btn-primary {
   color: #fff;
-  background-color: $navy;
-  border-color: $navy;
+  background-color: #fcae70;
+  border-color: #fcae70;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary.focus {
-  background-color: darken($navy, 3%);
-  border-color: darken($navy, 3%);
+  background-color: darken(#fcae70, 3%);
+  border-color: darken(#fcae70, 3%);
   color: #FFFFFF;
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
   color: #fff;
-  background-color: darken($navy, 3%);
-  border-color: darken($navy, 3%);
+  background-color: darken(#fcae70, 3%);
+  border-color: darken(#fcae70, 3%);
 }
 
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: darken($navy, 3%);
-  border-color: darken($navy, 3%);
+  background-color: darken(#fcae70, 3%);
+  border-color: darken(#fcae70, 3%);
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -242,7 +242,7 @@ button:focus {
 }
 
 .btn-link:hover, .btn-link:focus, .btn-link:active, .btn-link.active, .open .dropdown-toggle.btn-link {
-  color: $navy;
+  color: #fcae70;
   text-decoration: none;
 }
 
@@ -317,11 +317,11 @@ button.dim:active {
 }
 
 button.btn-primary.dim {
-  box-shadow: inset 0 0 0 darken($navy, 6%), 0 5px 0 0 darken($navy, 6%), 0 10px 5px #999 !important;
+  box-shadow: inset 0 0 0 darken(#fcae70, 6%), 0 5px 0 0 darken(#fcae70, 6%), 0 10px 5px #999 !important;
 }
 
 button.btn-primary.dim:active {
-  box-shadow: inset 0 0 0 darken($navy, 6%), 0 2px 0 0 darken($navy, 6%), 0 5px 3px #999 !important;
+  box-shadow: inset 0 0 0 darken(#fcae70, 6%), 0 2px 0 0 darken(#fcae70, 6%), 0 5px 3px #999 !important;
 }
 
 button.btn-default.dim {

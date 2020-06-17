@@ -1,11 +1,13 @@
 class FacultadesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :authenticate_role_user, except: [:index , :show]
+  before_action :authenticate_role_user, only: [:create, :new, :update, :edit, :destroy]
+  before_action :set_facultad, only: [:show, :edit, :update, :destroy]
 
   def index
     @facultades = Facultad.all.page params[:page]
     if params[:q].present?
-      @facultades = @facultades.where("nombre like :q", q: "%#{params[:q]}%").page params[:page]
+      @facultades = @facultades.where('nombre like :q',
+                                      q: "%#{params[:q]}%").page params[:page]
     end
   end
 
@@ -14,61 +16,48 @@ class FacultadesController < ApplicationController
   end
 
   def show
-    begin
-      @facultad = Facultad.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to linea_path
-      flash[:alert] = "Este Facultad No Existe"
-    end
+  rescue ActiveRecord::RecordNotFound
+    redirect_to linea_path
+    flash[:alert] = 'Este Facultad No Existe'
   end
 
   def edit
-    @facultad = Facultad.find(params[:id])
   end
 
-  #PUT /facultad/:id
+  # PUT /facultad/:id
   def update
-    if @user.has_role? :Admin
-      @facultad = Facultad.find_by id: params[:id]
-      if @facultad.update(facultad_params)
-        flash[:success]="Facultad Actualizada!"
-        render :show
-      else
-        flash[:alert] = "Problemas con la grabación!"
-        render :edit
-      end
+    if @facultad.update(facultad_params)
+      flash[:success] = 'Facultad Actualizada!'
+      render :show
     else
-      flash[:info]="No tiene permisos para acceder a esa vista!"
+      flash[:alert] = 'Problemas con la grabación!'
       render :edit
     end
   end
 
   def destroy
-    if @user.has_role? :Admin
-      @facultad = Facultad.find(params[:id])
-      flash[:alert]="Facultad Eliminada!"
-      @facultad.destroy
-      redirect_to :action => :index
-    end
+    @facultad.destroy
+    flash[:alert] = 'Facultad Eliminada!'
+    redirect_to action: :index
   end
 
   def create
-    if @user.has_role? :Admin
-         @facultad = Facultad.new(facultad_params)
-      if @facultad.save!
-        flash[:success]="Facultad Registrada!"
-        render :show
-      else
-        flash[:alert]="Problemas con la grabación!"
-        render :new
-      end
+    @facultad = Facultad.new(facultad_params)
+    if @facultad.save
+      flash[:success] = 'Facultad Registrada!'
+      render :show
     else
-      flash[:info]="No tiene permisos para acceder a esa vista!"
-      render :index
+      flash[:alert] = 'Problemas con la grabación!'
+      render :new
     end
   end
 
   private
+
+  def set_facultad
+    @facultad = Facultad.find(params[:id])
+  end
+
   def facultad_params
     params.require(:facultad).permit(:nombre)
   end
@@ -77,8 +66,8 @@ class FacultadesController < ApplicationController
     @user = User.find(current_user.id)
     if @user.has_role? :Admin
     else
-      flash[:info]="No tiene permisos para acceder a esa vista!"
-      redirect_to facultads_path(@facultad)
+      flash[:info] = 'No tiene permisos para acceder a esa vista!'
+      redirect_to root_path
     end
   end
 end

@@ -1,0 +1,10 @@
+es-CO:
+  activerecord:
+    models:
+      linea:
+        one: Linea
+        other: Lineas
+    attributes:
+      linea:
+        nombre: Nombre
+        avatar: Foto

@@ -1,0 +1,18 @@
+es-CO:
+  activerecord:
+    models:
+      user:
+        one: Usuario
+        other: Usuarios
+    attributes:
+      user:
+        email: Email
+        nombre: Nombre
+        apellido: Apellido
+        telefono: Telefono
+        direccion: Direccion
+        documento: Documento
+        descripcion: Descripccion
+        perfil: Perfil
+        programa_id: Programa
+        username: Usuario

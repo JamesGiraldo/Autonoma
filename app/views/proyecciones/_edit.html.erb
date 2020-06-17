@@ -7,10 +7,11 @@
           <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
         </div>
         <div class="modal-body">
-          <%= simple_form_for @proyeccion, remote:true,html: { class: 'form-horizontal' } do |f| %>
-            <%= f.input :nombre , autofocus: true, placeholder:"Nombre De Proyeccion" , autocomplete: "nombre" %>
-            <%= f.input :descripcion, :as => :text, :input_html => { 'rows' => 8, 'cols' => 80 } %>
-            <%= f.button :submit, "Crear Proyeccion",  class: "btn-primary block full-width m-b" %>
+          <%= simple_form_for @proyeccion, html: { class: 'form-horizontal' } do |f| %>
+            <%= f.input :nombre , autofocus: true, placeholder:"Nombre De Proyeccion" , autocomplete: "nombre", required: true %>
+            <%= f.association :linea, collection: Linea.order(:nombre), label_method: :nombre, require:true, input_html: {class: "select2select", "data-placeholder": "Seleccione La Linea"} %>
+            <%= f.input :descripcion, :as => :text, required: true, :input_html => { 'rows' => 8, 'cols' => 80 } %>
+            <%= f.button :submit, "Modificar Proyeccion",  class: "btn-primary block full-width m-b" %>
           <% end %>
         </div>
     </div><!-- /.modal-content -->

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # WickedPDF Global Configuration
 #
 # Use this to set up shared configuration options for your entire application.
@@ -17,5 +19,5 @@ WickedPdf.config = {
 
   # Layout file to be used for all PDFs
   # (but can be overridden in `render :pdf` calls)
-  layout: 'pdf.html',
+  layout: 'pdf.html'
 }

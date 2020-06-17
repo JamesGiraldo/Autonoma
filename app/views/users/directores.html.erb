@@ -1,9 +1,8 @@
-<% breadcrumb :users_instructores %>
-<h1 class="text-center titulo-Narajanja">Listado de <strong>Docentes</strong></h1><hr />
-<div class="ibox-content m-b-sm border-bottom">
-    <h2 class="titulo-Narajanja">Docentes</h2>
+<% breadcrumb :users_vicerrectores %>
+<div class="ibox-content m-b-sm border-bottom buscador-complemnto">
+    <h2 class="titulo-Narajanja"><strong>Directores</strong></h2>
   <div class="search-form">
-    <%= form_tag(users_path, method: :get) do %>
+    <%= form_tag(directores_users_path, method: :get) do %>
       <div class="input-group">
         <input type="text" name="q" class="form-control input-lg" placeholder="Buscar..." type="text" value="<%= params[:q] %>"></input>
         <div class="input-group-btn">
@@ -18,11 +17,13 @@
     <table class="table table-striped table-bordered table-hover dataTables-example">
           <tr>
             <th class="">DOCUMENTO</th>
-            <th class="">Email</th>
             <th class="">NOMBRE</th>
             <th class="">APELLIDO</th>
+            <th class="">EMAIL</th>
             <th class="">TELEFONO</th>
             <th class="">DIRECCION</th>
+            <th class="">PROGRAMA</th>
+            <th class="">FACULTAD</th>
             <% if current_user.has_role? :Admin %>
               <th class="">ROL</th>
             <% end %>

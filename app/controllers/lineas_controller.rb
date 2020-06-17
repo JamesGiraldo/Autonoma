@@ -1,80 +1,90 @@
 class LineasController < ApplicationController
-    before_action :authenticate_user!, except: [:index]
-    respond_to :html, :json
-    def index
-      @lineas = Linea.all.page params[:page]
-      if params[:q].present?
-        @lineas = @lineas.where("nombre like :q", q: "%#{params[:q]}%").page params[:page]
-      end
-    end
+  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_role_user, except: %i[index show]
+  before_action :set_linea, only: [ :show, :edit, :update, :destroy]
+  respond_to :html, :json
 
-    def show
-      begin
-        @linea = Linea.find(params[:id])
-      rescue ActiveRecord::RecordNotFound
-        redirect_to linea_path
-        flash[:alert] = "Este linea No Existe"
-      end
+  def index
+    @lineas = Linea.all.page params[:page]
+    if params[:q].present?
+      @lineas = @lineas.where('nombre like :q',
+                              q: "%#{params[:q]}%").page params[:page]
     end
+  end
 
-    def new
-      @linea = Linea.new
-      respond_to do |f|
-        f.html
-        f.js
-      end
+  def show
+    rescue ActiveRecord::RecordNotFound
+      redirect_to linea_path
+      flash[:alert] = 'Este linea No Existe'
+  end
+
+  def new
+    @linea = Linea.new
+    respond_to do |f|
+      f.html
+      f.js
     end
+  end
 
-    def edit
-      @linea = Linea.find(params[:id])
-      respond_to do |f|
-        f.html
-        f.js
-      end
+  def edit
+    respond_to do |f|
+      f.html
+      f.js
     end
+  end
 
-    def update
-      @linea = Linea.find(params[:id])
-        respond_to do |format|
-          if @linea.update(linea_params)
-            flash[:success]="Linea Actualizada!"
-            format.html {redirect_to @linea}
-            format.json {render :index, status: :created, location: @lineas }
-            format.js
-          else
-            flash[:alert]="Problemas Con La Grabacion"
-            format.html {render :show}
-            format.json {render json: @linea.errors, status: :unprocessable_entity}
-          end
-        end
+  def update
+    if @linea.update(linea_params)
+      flash[:success] = 'Linea Actualizada!'
+      redirect_to action: :index
+    else
+      flash[:alert] = 'Problemas Con La Grabacion'
+      redirect_to action: :index
     end
+  end
 
-    def create
+  def create
+    if @user.has_role? :Admin
       @linea = Linea.new(linea_params)
-        respond_to do |format|
-          if @linea.save!
-            flash[:success]="Linea Registrado!"
-            format.html {redirect_to @linea}
-            format.json {render :index, status: :created, location: @linea }
-            format.js
-          else
-            flash[:alert]="Problemas Con La Grabacion"
-            format.html {render :show}
-            format.json {render json: @linea.errors, status: :unprocessable_entity}
-          end
-        end      
+      if @linea.save
+        flash[:success] = 'Linea Registrado!'
+        redirect_to action: :index
+      else
+        flash[:alert] = 'Problemas Con La Grabacion'
+        redirect_to action: :index
+      end
+    else
+      flash[:info] = 'No tiene permisos para acceder a esa vista!'
+      render :index
     end
+  end
 
-    def destroy
-        @linea = Linea.find(params[:id])
-        flash[:info]="No Puede Eliminar Esta Linea Por Que Contiene Cursos Relacionados!"
-        @linea.destroy
-        redirect_to :action => :index
+  def destroy
+    if @linea.destroy
+      flash[:alert] = "Linea #{@linea.nombre.upcase} Eliminada Correctamente!"
+      redirect_to action: :index
+    else
+      flash[:info] = 'No Puede Eliminar Esta Linea Por Que Contiene Cursos Relacionados!'
+      redirect_to action: :index
     end
+  end
 
-    private
-    def linea_params
-      params.require(:linea).permit(:nombre)
+  private
+
+  def set_linea
+    @linea = Linea.find(params[:id])
+  end
+
+  def linea_params
+    params.require(:linea).permit(:nombre, :avatar)
+  end
+
+  def authenticate_role_user
+    @user = User.find(current_user.id)
+    if @user.has_role? :Admin
+    else
+      flash[:info] = 'No tiene permisos para acceder a esa vista!'
+      redirect_to lineas_path(@linea)
     end
-
+  end
 end

@@ -1,0 +1,9 @@
+es-CO:
+  activerecord:
+    models:
+      facultad:
+        one: Facultad
+        other: Facultades
+    attributes:
+      facultad:
+        nombre: Nombre

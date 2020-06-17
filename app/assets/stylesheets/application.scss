@@ -23,10 +23,29 @@
   padding: 0;
   margin: 0;
 }
-
+#userTopnavBar{
+  color: white !important;
+}
 :root {
   --sombra: 0px 0px 15px 0px rgba(0,0,0,0.15);
   --verde: #56B495;
+}
+.buscador-complemnto{
+  margin-top: 20px;
+}
+.ir-arriba{
+  display: none;
+  padding: 20px;
+  background: #fcae70;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+  position: fixed;
+  bottom: 35px;
+  right: 20px;
+  border-radius: 35px;
+  background: url('flecha.png');
+  background-size: cover;
 }
 
 .mov-naranja{
@@ -67,9 +86,8 @@
 //botonContainer
 
 .botonContainer {
-  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 .botonContainer .botonSeguimiento {
   width: auto;

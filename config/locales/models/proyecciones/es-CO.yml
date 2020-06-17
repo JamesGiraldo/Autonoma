@@ -1,0 +1,11 @@
+es-CO:
+  activerecord:
+    models:
+      proyeccion:
+        one: Proyeccion
+        other: Proyecciones
+    attributes:
+      proyeccion:
+        nombre: Nombre
+        descripcion: Descripccion De La Proyeccion
+        user_id: Usuario

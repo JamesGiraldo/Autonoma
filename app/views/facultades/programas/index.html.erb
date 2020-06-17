@@ -1,20 +1,29 @@
-<% breadcrumb :programas %>
-<h1 class="text-center titulo-Narajanja">PROGRAMAS DE La FACULTAD<strong><%= @facultad.nombre %></strong></h1>
-<hr />
-<div class="row">
-  <%= form_tag(programas_path, class:"navbar-form-custom" , method: :get) do %>
-    <div class="form-group">
-      <input type="text" name="q" class="form-control" placeholder="Buscar..." type="text" value="<%= params[:q] %>">
+<% breadcrumb :facultad_programas, @facultad %>
+<div class="ibox-content m-b-sm border-bottom buscador-complemnto">
+  <div class="row">
+    <div class="container">
+      <h2 class="titulo-Narajanja">Programas De La facultad <strong><%= @facultad.nombre %></strong></h2>
     </div>
-  <%end%>
-</div><br>
+  </div>
+  <div class="search-form">
+    <%= form_tag(facultad_programas_path, method: :get) do %>
+      <div class="input-group">
+        <input type="text" name="q" class="form-control input-lg" placeholder="Buscar..." type="text" value="<%= params[:q] %>"></input>
+        <div class="input-group-btn">
+          <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>
 <div class="ibox-content m-b-sm border-bottom">
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover dataTables-example">
       <tr>
         <th class="active">NOMBRE</th>
+        <th class="active">ACCIONES</th>
       </tr>
-      <%= render partial: "programas", collection: @programas, as: :programa %>
+      <%= render partial: "programas", collection: @programas %>
     </table>
       <% unless @programas.present? %>
          <tr>
@@ -26,7 +35,7 @@
 <% if current_user.has_role? :Admin%>
   <div class="botonContainer">
     <div class="botonSeguimiento">
-      <%= link_to "Nuevo Programa", new_programa_path, class: "botonSeguimientoColor"%>
+      <%= link_to "Nuevo Programa", new_facultad_programa_path(@facultad), class: "botonSeguimientoColor"%>
     </div>
   </div>
 <%end%>

@@ -6,7 +6,7 @@
       <%= link_to edit_user_path do %>
          <div class="picture">
            <% if current_user.perfil? %>
-                <%= image_tag current_user.perfil.url(:thumb) %>
+                <%= image_tag current_user.perfil.url(:thumb), title: "Mi Perfil" %>
              <%else%>
                 <%= image_tag 'nophoto' , class: "imghome"%>
            <%end%>
@@ -35,42 +35,59 @@
   </div>
   <div class="informacion_general">
     <div class="container_box">
-      <div class="box card text-white bg-primary mb-3">
-         <div class="title">
-             <h3 class="title_box"><strong>Comentarios</strong></h3>
-         </div>
-         <div class="description">
-             <h1 class="description_box"><%= current_user.comentarios.count%></h1>
-         </div>
-         <div class="foot">
-             <h3 class="foot_box">Universidad Autonoma del caribe</h3>
-         </div>
-         <div class="ver_mas">
-           <a class="<%= is_active_controller('comentarios') %>">
-              <%= link_to comentarios_path do %>
-                <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
-              <% end %>
-           </a>
-         </div>
-      </div>
-       <div class="box card text-white bg-secondary mb-3">
+        <% unless current_user.has_role? :Docente %>
+          <div class="box card text-white bg-primary mb-3">
+             <div class="title">
+                 <h3 class="title_box"><strong>Docentes</strong></h3>
+             </div>
+             <div class="description">
+                 <h1 class="description_box"><%= @users %></h1>
+             </div>
+             <div class="foot">
+                 <h3 class="foot_box">Universidad Autonoma del caribe</h3>
+             </div>
+             <div class="ver_mas">
+               <a class="<%= is_active_controller('comentarios') %>">
+                  <%= link_to instructores_users_path do %>
+                    <i class="ver_mas_box"></i> <span data-i18n="nav.layouts" data-toggle="tooltip" title="Todo Sobre Comentarios">Ver más</span>
+                  <% end %>
+               </a>
+             </div>
+          </div>
+        <% end %>
+        <div class="box card text-white bg-danger mb-3">
           <div class="title">
-            <h3 class="title_box"><strong>Facultades</strong></h3>
+             <h3 class="title_box"><strong>Proyecciones</strong></h3>
           </div>
           <div class="description">
-            <h1 class="description_box"><%= Facultad.count %></h1>
+            <% if current_user.has_role? :Docente %>
+                <h1 class="description_box"><%= current_user.proyecciones.count%></h1>
+             <% elsif current_user.has_role? :Admin or current_user.has_role? :Director or current_user.has_role? :Vicerrector or current_user.has_role? :Decano %>
+                <h1 class="description_box"><%= Proyeccion.count%></h1>
+            <% end %>
           </div>
           <div class="foot">
-            <h3 class="foot_box">Universidad Autonoma del caribe</h3>
+             <h3 class="foot_box">Universidad Autonoma del caribe</h3>
           </div>
           <div class="ver_mas">
-            <a class="<%= is_active_controller('facultades') %>">
-               <%= link_to facultades_path do %>
-                 <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+            <a class="<%= is_active_controller('proyecciones') %>">
+               <%= link_to proyecciones_path do %>
+                 <i class="ver_mas_box"></i> <span data-i18n="nav.layouts"  data-toggle="tooltip" title="Todas Las Proyecciones">Ver más</span>
                <% end %>
             </a>
           </div>
-       </div>
+        </div>
+        <div class="box card text-white bg-secondary mb-3">
+          <div class="title">
+             <h3 class="title_box"><strong>Proyecciones</strong></h3>
+          </div>
+          <div class="description">
+              <h1 class="description_box">1%</h1>
+          </div>
+          <div class="foot">
+             <h3 class="foot_box">Universidad Autonoma del caribe</h3>
+          </div>
+        </div>
        <div class="box card text-white bg-success mb-3 ">
           <div class="title">
               <h3 class="title_box"><strong>Cursos</strong></h3>
@@ -84,7 +101,25 @@
           <div class="ver_mas">
             <a class="<%= is_active_controller('cursos') %>">
                <%= link_to cursos_path do %>
-                 <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+                 <i class="ver_mas_box"></i> <span data-i18n="nav.layouts"  data-toggle="tooltip" title="Todo Sobre Cursos">Ver más</span>
+               <% end %>
+            </a>
+          </div>
+       </div>
+       <div class="box card text-white bg-warning mb-3">
+          <div class="title">
+            <h3 class="title_box"><strong>Facultades</strong></h3>
+          </div>
+          <div class="description">
+            <h1 class="description_box"><%= Facultad.count %></h1>
+          </div>
+          <div class="foot">
+            <h3 class="foot_box">Universidad Autonoma del caribe</h3>
+          </div>
+          <div class="ver_mas">
+            <a class="<%= is_active_controller('facultades') %>">
+               <%= link_to facultades_path do %>
+                 <i class="ver_mas_box"></i> <span data-i18n="nav.layouts"  data-toggle="tooltip" title="Todo Sobre Facultades">Ver más</span>
                <% end %>
             </a>
           </div>
@@ -100,27 +135,9 @@
             <h3 class="foot_box">Universidad Autonoma del caribe</h3>
          </div>
          <div class="ver_mas">
-           <a class="<%= is_active_controller('users') %>">
+           <a class="<%= is_active_controller('programas') %>">
               <%= link_to programas_path do %>
-                <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
-              <% end %>
-           </a>
-         </div>
-       </div>
-       <div class="box card text-white bg-danger mb-3">
-         <div class="title">
-            <h3 class="title_box"><strong>Proyecciones</strong></h3>
-         </div>
-         <div class="description">
-            <h1 class="description_box"><%= current_user.proyecciones.count%></h1>
-         </div>
-         <div class="foot">
-            <h3 class="foot_box">Universidad Autonoma del caribe</h3>
-         </div>
-         <div class="ver_mas">
-           <a class="<%= is_active_controller('users') %>">
-              <%= link_to proyecciones_path do %>
-                <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
+                <i class="ver_mas_box"></i> <span data-i18n="nav.layouts"  data-toggle="tooltip" title="Todos Los Programas">Ver más</span>
               <% end %>
            </a>
          </div>
@@ -129,6 +146,10 @@
   </div>
 </div>
 <div class="">
-  <h2 class="subtitulo titulo-Narajanja"><strong>Cursos</strong></h2>
-  <%= column_chart @cursos, stacked: true, colors: ["#fcae70"]%><br><br><br>
+  <h2 class="subtitulo titulo-Narajanja"><strong>Lineas</strong></h2>
+  <div class="salto">
+    <%= column_chart @lineas, stacked: true, colors: ['#fcae70'], dataLabels: {
+      style: {colors: ['#4c4c54']}
+    }%>
+  </div>
 </div>

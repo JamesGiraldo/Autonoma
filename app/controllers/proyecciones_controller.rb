@@ -1,11 +1,12 @@
 class ProyeccionesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   respond_to :html, :json
-  
+  before_action :set_proyeccion,  only: [:show, :edit, :update, :destroy]
+
   def index
     @proyecciones = Proyeccion.where(user_id: current_user.id).page params[:page]
     if params[:q].present?
-      @proyecciones = @proyecciones.where("nombre like :q or descripcion ilike :q", q: "%#{params[:q]}%").page params[:page]
+      @proyecciones = @proyecciones.where('nombre like :q or descripcion like :q', q: "%#{params[:q]}%").page params[:page]
     end
   end
 
@@ -18,68 +19,56 @@ class ProyeccionesController < ApplicationController
   end
 
   def show
-    begin
-      @proyeccion = Proyeccion.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to linea_path
-      flash[:alert] = "Este Proyeccion No Existe"
-    end
+  rescue ActiveRecord::RecordNotFound
+    redirect_to linea_path
+    flash[:alert] = 'Este Proyeccion No Existe'
   end
 
   def edit
-    @proyeccion = Proyeccion.find(params[:id])
     respond_to do |f|
       f.html
       f.js
     end
   end
 
-  #PUT /proyeccion/:id
   def update
-     @proyeccion = Proyeccion.find_by id: params[:id]
-      respond_to do |format|
-        if @proyeccion.update(proyeccion_params)
-          flash[:success]="Proyeccion Actualizada!"
-          format.html {redirect_to @proyeccion}
-          format.json {render :index, status: :created, location: @proyecciones }
-          format.js
-        else
-          flash[:alert]="Problemas Con La Grabacion"
-          format.html {render :show}
-          format.json {render json: @proyeccion.errors, status: :unprocessable_entity}
-        end
-      end
+    if @proyeccion.update(proyeccion_params)
+      flash[:success] = 'Proyeccion Actualizada!'
+      redirect_to action: :index
+    else
+      flash[:alert] = 'Problemas Con La Grabacion'
+      redirect_to action: :index
+    end
   end
 
   def destroy
-      @proyeccion = Proyeccion.find(params[:id])
-    if  @proyeccion.destroy
-      flash[:alert]="Proyeccion Eliminada!"
-      redirect_to :action => :index
+    if @proyeccion.destroy
+      flash[:alert] = "Proyeccion #{@proyeccion.nombre.upcase} Eliminada!"
+      redirect_to action: :index
     else
-      flash[:info]="No Puede Eliminar Esta Proyeccion Por Que Contiene Cursos Relacionados!"
-      redirect_to :action => :index
+      flash[:info] = "No Puede Eliminar Esta Proyeccion Por Que Contiene Cursos Relacionados!"
+      redirect_to action: :index
     end
   end
 
   def create
     @proyeccion = current_user.proyecciones.new(proyeccion_params)
-      respond_to do |format|
-        if @proyeccion.save!
-          flash[:success]="Proyeccion Registrada!"
-          format.html {redirect_to @proyeccion}
-          format.json {render :index, status: :created, location: @proyeccion }
-          format.js
-        else
-          flash[:alert]="Problemas Con La Grabacion"
-          format.html {render :show}
-          format.json {render json: @proyeccion.errors, status: :unprocessable_entity}
-        end
-      end
+    if @proyeccion.save
+      flash[:success] = 'Proyeccion Registrada!'
+      redirect_to action: :index
+    else
+      flash[:alert] = 'Problemas Con La Grabacion'
+      redirect_to action: :index
+    end
   end
 
   private
+
+  def set_proyeccion
+      @proyeccion = Proyeccion.find(params[:id])
+  end
+
   def proyeccion_params
-    params.require(:proyeccion).permit(:nombre, :descripcion)
+    params.require(:proyeccion).permit(:nombre, :linea_id, :descripcion)
   end
 end

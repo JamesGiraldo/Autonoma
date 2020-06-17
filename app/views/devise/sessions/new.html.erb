@@ -1,15 +1,13 @@
 <h1 class="text-center titulo-Narajanja">Universidad <strong>Autonoma del caribe</strong></h1>
 <div class="container_session">
   <div class="session">
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <center><h2 class="titulo-Narajanja">Acceder</h2></center>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'm-t' }) do |f| %>
       <%= f.error_notification %>
       <p>Debe iniciar sesión o registrarse antes de continuar.<p>
-      <%= f.input :login, label: "Usuario O Email", placeholder:"Usuario O Email",  autofocus: true %>
-      <%= f.input :password, placeholder:"Contraseña",  autocomplete: "current-password" %>
-      <% if devise_mapping.rememberable? %>
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me, "Recuérdame" %>
-      <% end %>
+      <%= f.input :login, label: "Usuario", placeholder:"Usuario", required: true, autofocus: true %>
+      <%= f.input :password, placeholder:"Contraseña", required: true,  autocomplete: "current-password" %>
+      <%= f.input :remember_me, label: "Recuérdame", as: :boolean %>
       <%= f.button :submit, "Iniciar Sesion",  class: "btn-primary block full-width m-b" %>
       <a class="btn btn-sm btn-white btn-block" href="<%=new_user_registration_path%>">Crea una cuenta</a>
       <%= render "devise/shared/links" %>

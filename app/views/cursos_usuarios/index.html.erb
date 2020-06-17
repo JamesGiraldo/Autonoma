@@ -1,17 +1,15 @@
 <% breadcrumb :cursos_usuarios %>
-<br><div class="ibox-content m-b-sm border-bottom">
+<br><div class="ibox-content m-b-sm border-bottom buscador-complemnto">
   <div class="row">
-    <div class="col-md-10">
-        <h2 class="titulo-Narajanja">Mis Cursos</h2>
+    <div class="col-10">
+      <h2 class="titulo-Narajanja">Mis Cursos</h2>
     </div>
-    <div class="col-md-2">
-      <div class="input-group-btn">
-        <div class="botonContainer">
-            <%= link_to "", new_cursos_usuario_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
-          </div>
-        </div>
+    <div class="col-2">
+      <div class="botonContainer">
+        <%= link_to "", new_cursos_usuario_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
       </div>
-  </div>
+    </div>
+  </div>  
   <div class="search-form">
     <%= form_tag(cursos_usuarios_path, method: :get) do %>
       <div class="input-group">
@@ -27,9 +25,12 @@
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover dataTables-example">
       <tr>
-        <th class="active">Nombre</th>
-        <th class="active">Linea</th>
-        <th class="text-center active">Acciones</th>
+        <th class="active text-center">LINEA</th>
+        <th class="active text-center">NOMBRE</th>
+        <th class="active text-center">ESTADO</th>
+        <th class="active text-center">FECHA DE INICIO</th>
+        <th class="active text-center">FECHA FINALIZACION</th>
+        <th class="active text-center">ACCIONES</th>
       </tr>
       <%= render partial: "cursos_usuarios", collection: @cursosUsuarios, as: :cursos_usuario %>
       <tr>

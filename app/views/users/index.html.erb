@@ -1,7 +1,6 @@
 <% breadcrumb :users %>
-<h1 class="text-center titulo-Narajanja">Listado de <strong>Usuarios</strong> Del Sistema</h1><hr />
-<div class="ibox-content m-b-sm border-bottom">
-    <h2 class="titulo-Narajanja">Usuarios</h2>
+<div class="ibox-content m-b-sm border-bottom buscador-complemnto">
+    <h2 class="titulo-Narajanja"><strong>Usuarios</strong></h2>
   <div class="search-form">
     <%= form_tag(users_path, method: :get) do %>
       <div class="input-group">
@@ -18,11 +17,13 @@
     <table class="table table-striped table-bordered table-hover dataTables-example">
         <tr>
           <th class="">DOCUMENTO</th>
-          <th class="">Email</th>
           <th class="">NOMBRE</th>
           <th class="">APELLIDO</th>
+          <th class="">EMAIL</th>
           <th class="">TELEFONO</th>
           <th class="">DIRECCION</th>
+          <th class="">PROGRAMA</th>
+          <th class="">FACULTAD</th>
           <% if current_user.has_role? :Admin %>
             <th>ROL</th>
           <% end %>

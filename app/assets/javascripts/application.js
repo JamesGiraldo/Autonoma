@@ -19,6 +19,8 @@
 //= require popper
 //= require toastr/toastr.min.js
 //= require bootstrap
+//= require bootstrapvalidator/bootstrapValidator.js
+//= require bootstrapvalidator/language/es_ES.js
 //= require pace/pace.min.js
 //= require peity/jquery.peity.min.js
 //= require slimscroll/jquery.slimscroll.min.js
@@ -29,3 +31,20 @@
 //= require apexcharts
 //= require_tree .
 $('#datepicker').datepicker();
+
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+  $('#ir-arriba').click(function(e){
+    e.preventDefault();
+    $('body, html').animate({
+        scrollTop: '0px'
+      }, 300);
+    });
+    $(window).scroll(function(){
+      if( $(this).scrollTop() > 0 ){
+          $('#ir-arriba').slideDown(300);
+      } else {
+        $('#ir-arriba').slideUp(300);
+      }
+    });
+});

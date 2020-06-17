@@ -24,18 +24,24 @@
                     <span class="fa arrow"></span>
                     <% end %>
                     <ul class=" nav nav-second-level #{is_active_controller('user')">
-                      <li class="<%= 'active' if current_page?('/users') %>">
-                        <%= link_to "Docentes" , index_instructores_users_path   %>
-                      </li>
-                      <li class="<%= 'active' if current_page?('/users') %>">
-                        <%= link_to "Decanos" , decanos_users_path  %>
-                      </li>
-                      <li class="<%= 'active' if current_page?('/users') %>">
-                        <%= link_to "Usuarios" , users_path  %>
-                      </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Decanos" , decanos_users_path %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Directores" , directores_users_path  %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Docentes" , instructores_users_path   %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Vicerrectores" , vicerrectores_users_path  %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Usuarios" , users_path  %>
+                        </li>
                     </ul>
                 </li>
-              <% elsif current_user.has_role? :Decano %>
+              <% elsif current_user.has_role? :Vicerrector %>
                 <li class="<%= 'active' if current_page?('/users') %>">
                     <%= link_to users_path do %>
                     <i class="titulo-Narajanja fa fa-group"></i>
@@ -44,11 +50,49 @@
                     <span class="fa arrow"></span>
                     <% end %>
                     <ul class=" nav nav-second-level #{is_active_controller('user')">
-                      <li class="<%= 'active' if current_page?('/users') %>">
-                        <%= link_to "Docentes" , index_instructores_users_path   %>
-                      </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Decanos" , decanos_users_path   %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Directores" , directores_users_path   %>
+                        </li>
+                        <li class="<%= 'active' if current_page?('/users') %>">
+                          <%= link_to "Docentes" , instructores_users_path   %>
+                        </li>
                     </ul>
                 </li>
+              <%end%>
+              <% if current_user.has_role? :Decano %>
+                    <li class="<%= 'active' if current_page?('/users') %>">
+                        <%= link_to users_path do %>
+                        <i class="titulo-Narajanja fa fa-group"></i>
+                        <span class="nav-label">Usuarios</span>
+                        <!-- <span class="label label-info float-right">NEW</span> -->
+                        <span class="fa arrow"></span>
+                        <% end %>
+                        <ul class=" nav nav-second-level #{is_active_controller('user')">
+                            <li class="<%= 'active' if current_page?('/users') %>">
+                              <%= link_to "Directores" , directores_users_path   %>
+                            </li>
+                            <li class="<%= 'active' if current_page?('/users') %>">
+                              <%= link_to "Docentes" , instructores_users_path   %>
+                            </li>
+                        </ul>
+                    </li>
+              <% elsif current_user.has_role? :Director %>
+                  <li class="<%= 'active' if current_page?('/users') %>">
+                      <%= link_to users_path do %>
+                      <i class="titulo-Narajanja fa fa-group"></i>
+                      <span class="nav-label">Usuarios</span>
+                      <!-- <span class="label label-info float-right">NEW</span> -->
+                      <span class="fa arrow"></span>
+                      <% end %>
+                      <ul class=" nav nav-second-level #{is_active_controller('user')">
+                          <li class="<%= 'active' if current_page?('/users') %>">
+                            <%= link_to "Docentes" , instructores_users_path   %>
+                          </li>
+                      </ul>
+                  </li>
               <%end%>
                 <li class="<%= 'active' if current_page?('/cursos') %>">
                     <%= link_to cursos_path do %>
@@ -59,13 +103,16 @@
                     <% end %>
                     <ul class=" nav nav-second-level #{is_active_controller('curso')">
                       <% if current_user.has_role? :Admin %>
+                          <li class="<%= 'active' if current_page?('/lineas') %>">
+                            <%= link_to "Lineas" , lineas_path %>
+                          </li>
                           <li class="<%= 'active' if current_page?('/cursos') %>">
                             <%= link_to "Lista De Cursos" , cursos_path %>
                           </li>
                        <%else%>
-                         <li class="<%= 'active' if current_page?('/lineas') %>">
-                           <%= link_to "Lineas" , lineas_path %>
-                         </li>
+                          <li class="<%= 'active' if current_page?('/lineas') %>">
+                            <%= link_to "Lineas" , lineas_path %>
+                          </li>
                           <li class="<%= 'active' if current_page?('/cursos') %>">
                             <%= link_to "Cursos" , cursos_path %>
                           </li>
@@ -75,21 +122,6 @@
                       <% end %>
                     </ul>
                 </li>
-              <% if current_user.has_role? :Admin %>
-                <li class="<%= 'active' if current_page?('/lineas') %>">
-                    <%= link_to lineas_path do %>
-                    <i class="titulo-Narajanja fa fa-dashboard"></i>
-                    <span class="nav-label">lineas de Cursos</span>
-                    <!-- <span class="label label-info float-right">NEW</span> -->
-                    <span class="fa arrow"></span>
-                    <% end %>
-                    <ul class=" nav nav-second-level #{is_active_controller('linea')">
-                      <li class="<%= 'active' if current_page?('/lineas') %>">
-                        <%= link_to "Lineas" , lineas_path %>
-                      </li>
-                    </ul>
-                </li>
-              <%end%>
                 <li class="<%= 'active' if current_page?('/proyecciones') %>">
                     <%= link_to proyecciones_path do %>
                     <i class="titulo-Narajanja fa fa-dashboard"></i>
@@ -142,8 +174,6 @@
                         <%end%>
                       </ul>
                   </li>
-                <%end%>
-                <% if current_user.has_role? :Admin %>
                   <li class="<%= 'active' if current_page?('/programas') %>">
                       <%= link_to facultades_path do %>
                       <i class="titulo-Narajanja fa fa-opencart"></i>
@@ -152,11 +182,9 @@
                       <span class="fa arrow"></span>
                       <% end %>
                       <ul class=" nav nav-second-level #{is_active_controller('facultad')">
-                        <% if current_user.has_role? :Admin %>
                           <li class="<%= 'active' if current_page?('/programas') %>">
                             <%= link_to "Programas" , programas_path %>
                           </li>
-                        <% end %>
                       </ul>
                   </li>
                 <% end %>

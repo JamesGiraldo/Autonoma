@@ -7,9 +7,9 @@
           <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
         </div>
         <div class="modal-body">
-          <%= simple_form_for @programa, remotre: true, html: { class: 'form-horizontal' } do |f| %>
-            <%= f.input :nombre , autofocus: true, placeholder:"Nombre De la programa" , autocomplete: "nombre" %>
-            <%= f.association :facultad, label_method: :nombre, value_method: :id , prompt: 'Selecione Tipo De Facultad' , input_html: {min:"1"}  %>
+          <%= simple_form_for @programa, html: { class: 'form-horizontal' } do |f| %>
+            <%= f.input :nombre , autofocus: true, placeholder:"Nombre De la programa" , autocomplete: "nombre", require: true %>
+            <%= f.association :facultad, collection: Facultad.order(:nombre), label_method: :nombre, require:true, input_html: {class: "select2select", "data-placeholder": "Seleccione Facultad"} %>
             <%= f.button :submit, "Registrar Programa",  class: "btn-primary block full-width m-b" %>
           <% end %>
         </div>

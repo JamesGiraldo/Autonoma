@@ -31,10 +31,11 @@ test:
   timeout:  <%= ENV['BD_LOCAL_TIMEOUT'] %>
   ecoding:  <%= ENV['BD_LOCAL_ECODING'] %>
 
+
 production:
-  #adapter: postgresql
-  ecoding: utf-8
-  pool:    <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: Autonoma_production
-  username: Autonoma
-  password: <%= ENV['AUTONOMA_DATABASE_PASSWORD'] %>
+  adapter:  postgresql
+  encoding: unicode
+  pool:     <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: autonoma_production
+  username: autonoma
+  password: <%= ENV['autonoma_DATABASE_PASSWORD'] %>

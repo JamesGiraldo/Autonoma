@@ -38,4 +38,21 @@
     </div>
   </div>
 </div>
-<%= render 'cursos' %>
+<% if current_user.has_role? :Admin %>
+  <div class="salto">
+    <%= render 'cursos' %>
+  </div>
+  <% elsif current_user.has_role? :Vicerrector %>
+  <div class="salto">
+    <%= render 'cursos' %>
+  </div>
+<% end %>
+<% if current_user.has_role? :Decano %>
+  <div class="salto">
+    <%= render 'cursos' %>
+  </div>
+  <% elsif current_user.has_role? :Director %>
+  <div class="salto">
+    <%= render 'cursos' %>
+  </div>
+<% end %>

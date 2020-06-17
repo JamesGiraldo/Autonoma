@@ -7,10 +7,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   mount_uploader :perfil, PerfilUploader
-  has_many :cursosUsuario, :dependent => :restrict_with_error
-  has_many :proyecciones, :dependent => :restrict_with_error
+  has_many :cursosUsuario, dependent: :restrict_with_error
+  has_many :proyecciones, dependent: :restrict_with_error
   belongs_to :programa
-  has_many :comentarios, :dependent => :restrict_with_error
+  has_many :comentarios, dependent: :restrict_with_error
+  validates :username, :presence => true, :uniqueness => {
+                                          :case_sensitive => false }
+  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+  validate :validate_username
+
+  validates :email, presence: true
+  validates :email, uniqueness: true
 
   # def self.find_dor_database_authentication warden_condition
   #   conditions = warden_condition.dup
@@ -21,15 +28,25 @@ class User < ApplicationRecord
   # end
 
   def self.find_for_authentication(conditions)
-    login = conditions.delete(:login)
-    where(conditions).where(["username = :value OR email = :value", { :value => login }]).first
+    if login = conditions.delete(:login)
+     where(conditions.to_h).where(['username = :value OR email = :value', { value: login.downcase }]).first
+    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      where(conditions.to_h).first
+    end
   end
+
+  def validate_username
+    if User.where(email: username).exists?
+      errors.add(:username, :invalid)
+    end
+  end
+
   # "getter"
   #
   # def login
   #   @login
   # end
-  
+
   # "setter"
   # def login=(str)
   #    @login = str

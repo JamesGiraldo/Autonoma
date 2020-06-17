@@ -12,17 +12,7 @@
     <div class="container_details">
       <div class="info">
          <p class="details_info"><strong>Nombre:</strong> <%= @linea.nombre %></p>
-      </div>
-      <% if current_user.has_role? :Admin%>
-        <div class="botonContainer">
-          <div class="botonSeguimiento">
-            <%= link_to "Editar Linea", edit_linea_path(@linea), remote: true, class: "botonSeguimientoColor"%>
-          </div>
-          <div class="botonSeguimiento">
-            <%= link_to 'Eliminar', { :action => :destroy, :id => @linea.id }, :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar esta linea'} , class: "botonSeguimientoColor"%>
-          </div>
-        </div>
-      <%end%>
+      </div>  
     </div>
   </div>
 </div>

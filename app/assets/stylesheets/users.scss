@@ -1,3 +1,31 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.salto{
+  margin-bottom: 55px;
+}
+.actualizar{
+  margin-bottom: 10px;
+}
+.img{
+  vertical-align: middle;
+  border-style: none;
+  border-radius: 10px;
+}
+.circlo{
+  border-radius: 10%;
+  transform: translateX(10px);
+}
+.file{
+  padding: 0;
+  position: relative;
+  margin-bottom: 3px;
+  background: transparent;
+  border: none;
+  margin-top: 20px;
+}
+.eso{
+  margin-bottom: 80px;
+  border: 1px solid #ccc;
+  border-radius: 1%;
+}

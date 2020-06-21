@@ -90,3 +90,5 @@ gem 'truncate_html'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'yarn', '~> 0.1.1'
+# Editor trix
+gem 'trix', '~> 0.11.1'

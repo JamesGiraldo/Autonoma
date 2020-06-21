@@ -29,6 +29,7 @@
 //= require chartkick
 //= require Chart.bundle
 //= require apexcharts
+//= require trix
 //= require_tree .
 $('#datepicker').datepicker();
 

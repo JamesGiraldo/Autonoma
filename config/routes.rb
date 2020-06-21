@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[index ver_datos] do
     get :ver_datos, on: :member
+    resources :comments, except: %i[:show]
     collection do
       get :instructores
       get :decanos

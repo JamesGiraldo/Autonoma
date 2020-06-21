@@ -19,7 +19,11 @@
     <div class="container_details">
       <div class="col-md-6">
         <div class="info">
-           <p class="details_info"><strong>Rol:</strong> <%= @user.roles.collect(&:name).join(' , ').upcase %></p>
+           <p class="details_info"><strong>Rol:</strong>
+           <% @user.roles.each do |rol| %>
+               <span class="badge badge-primary show-badge-dark"><strong><%= rol.name.upcase %></strong></span>
+           <%end%>
+           </p>
            <p class="details_info"><strong>Correo:</strong> <%=  @user.email %></p>
            <p class="details_info"><strong>Nombre:</strong> <%=  @user.nombre %></p>
            <p class="details_info"><strong>Apellido:</strong> <%=  @user.apellido %></p>
@@ -38,21 +42,52 @@
     </div>
   </div>
 </div>
-<% if current_user.has_role? :Admin %>
+<% if current_user.has_role? :Admin or current_user.has_role? :Vicerrector %>
   <div class="salto">
-    <%= render 'cursos' %>
+    <%= render 'cursos' %><hr>
   </div>
-  <% elsif current_user.has_role? :Vicerrector %>
+  <% elsif current_user.has_role? :Decano or current_user.has_role? :Director %>
   <div class="salto">
-    <%= render 'cursos' %>
-  </div>
-<% end %>
-<% if current_user.has_role? :Decano %>
-  <div class="salto">
-    <%= render 'cursos' %>
-  </div>
-  <% elsif current_user.has_role? :Director %>
-  <div class="salto">
-    <%= render 'cursos' %>
+    <%= render 'cursos' %><hr>
   </div>
 <% end %>
+  <div class="container secion-comentario">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="comments-container">
+          <h1 class="Show-H1-dark"><i class="fa fa-comments"></i> Comentarios <a href="#" class="Show-H1-dark">Autonoma.com</a></h1>
+          <ul id="comments-list" class="comments-list UL">
+            <% @user.comments.each do |comment| %>
+              <li class="LI">
+                  <div class=" comment-main-level">
+                    <div class="comment-box">
+                      <div class=" comment-head">
+                        <h6 class="comment-name by-author card-title"><a href="#"></a><%= truncate_html(comment.user.email.html_safe) %></h6>
+                        <span><%= comment.created_at.strftime("%d-%m-%Y %H:%M") %></span>
+                        <% if user_signed_in? && current_user == comment.user %>
+                          <p class="I" data-toggle="tooltip" title="Eliminar" ><%= link_to '' , [@user, comment], data: { confirm: "Estas Seguro? "}, method: :delete , class: "caneca I fa fa-trash-o" %></p>
+                          <p class="I" data-toggle="tooltip" title="Editar"> <%= link_to '' , edit_user_comment_path(@user, comment), class: "lapiz I fa fa-pencil-square-o" %> </p>
+                        <%end%>
+                      </div>
+                      <div class=" comment-content">
+                        <p class="card-text"><%= truncate_html(comment.body.html_safe, length: 100) %></p>
+                      </div>
+                    </div>
+                  </div>
+              </li>
+            <%end%>
+          </ul>
+          <div class="space-b">
+            <% unless @user.comments.present? %>
+                <h2 class="text-center">No Hay Comentarios</h2>
+            <%end%>
+          </div>
+        </div><hr class="HR-dark">
+      </div>
+      <div class="col-md-7">
+        <div class="">
+          <%= render "comments/form" , comment: @comment%>
+        </div>
+      </div>
+    </div>
+  </div>

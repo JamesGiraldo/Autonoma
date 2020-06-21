@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="jumbotron category-form-dark space-a">
+      <div class="">
+        <%= simple_form_for([@user, @comment]) do |f| %>
+         <%= f.error_notification %>
+          <div class="table-responsive">
+            <%= f.input :body, label: false, require: true ,
+                :as => :trix_editor, :input_html => { placeholder:"Cuerpo Del Comentario Para Registrar" , 'rows' => 5, 'cols' => 29 } %>
+          </div>&nbsp;
+          <div class="from-group row">
+            <div class="container text-center">
+              <%= f.button :submit, "Comentar",  class: "btn btn-info col-md-3" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

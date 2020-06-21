@@ -28,6 +28,8 @@ Rails.application.config.assets.precompile += %w[cursos_usuarios.js]
 Rails.application.config.assets.precompile += %w[users.css]
 Rails.application.config.assets.precompile += %w[users.js]
 Rails.application.config.assets.precompile += %w( devise/sessions.js )
+Rails.application.config.assets.precompile += %w( comments.css )
+Rails.application.config.assets.precompile += %w( comments.js )
 # Rails.application.config.assets.precompile += %w( devise/sessions.css devise/sessions.js)
 # Rails.application.config.assets.precompile += %w( devise/registrations.css)
 # Precompile additional assets.

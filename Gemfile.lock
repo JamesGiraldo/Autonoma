@@ -345,6 +345,8 @@ GEM
     thread_safe (0.3.6)
     thread_safe (0.3.6-java)
     tilt (2.0.10)
+    trix (0.11.1)
+      rails (> 4.1, < 5.2)
     trollop (2.9.10)
     truncate_html (0.9.3)
     ttfunk (1.6.2.1)
@@ -429,6 +431,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   table_print
+  trix (~> 0.11.1)
   truncate_html
   turbolinks (~> 5)
   tzinfo-data

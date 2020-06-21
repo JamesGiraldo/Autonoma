@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :proyecciones, dependent: :restrict_with_error
   belongs_to :programa
   has_many :comentarios, dependent: :restrict_with_error
+  has_many :comments
   validates :username, :presence => true, :uniqueness => {
                                           :case_sensitive => false }
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true

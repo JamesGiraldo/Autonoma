@@ -17,3 +17,103 @@
 %>
 
 <%= line_chart(series, options) %>
+
+
+
+
+
+<div class="container">
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <h3 class="panel-title text-center">formulario de Prueba cv</h3>
+      </div>
+      <div class="panel-body">
+         <form class="form-horizontal signupForm">
+         <div class="form-group">
+             <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+             <div class="col-sm-10">
+                 <input type="text" name="nombre" class="form-control">
+             </div>
+         </div>
+        <div class="form-group">
+             <label for="email" class="col-sm-2 control-label">Email</label>
+             <div class="col-sm-10">
+                 <input type="text" id="email" name="email" class="form-control">
+             </div>
+         </div>
+        <div class="form-group">
+             <label for="password" class="col-sm-2 control-label">Password</label>
+             <div class="col-sm-10">
+                 <input type="password" id="password" name="password" class="form-control">
+             </div>
+         </div>
+        <div class="form-group">
+             <label for="confirm_password" class="col-sm-2 control-label">Confirm password</label>
+             <div class="col-sm-10">
+                 <input type="password" id="confirm_password" name="confirm_password" class="form-control">
+             </div>
+         </div>
+         <div class="form-group">
+             <label for="comments" class="col-sm-2 control-label">Comments</label>
+             <div class="col-sm-10">
+                 <textarea name="comments" id="comments" cols="40" rows="5" class="form-control"></textarea>
+             </div>
+         </div>
+         <div class="form-group">
+             <div class="col-sm-offset-2 col-sm-10">
+                 <label for="luckynumber">Lucky Number</label>
+                 <select name="luckynumber" id="luckynumber" class="form-control">
+                     <option value="">--Seleccionar--</option>
+                     <option value="double zero">double zero</option>
+                     <option value="seven">seven</option>
+                     <option value="thirteen">thirteen</option>
+                 </select>
+             </div>
+         </div>
+         <div class="form-group">
+             <div class="col-sm-offset-2 col-sm-10">
+                 <div class="checkbox">
+                     <label><input type="checkbox" value="dog">Own a dog</label>
+                 </div>
+                 <div class="checkbox">
+                     <label><input type="checkbox" value="cat">Cat</label>
+                 </div>
+                 <div class="checkbox">
+                     <label><input type="checkbox" value="Owned">Owned by a cat</label>
+                 </div>
+             </div>
+         </div>
+         <div class="form-group">
+             <div class="col-sm-offset-2 col-sm-10">
+                 <span>Your favorite weather?</span><br>
+                <div class="checkbox">
+                     <label><input type="checkbox" value="Owned">Owned by a cat</label>
+                 </div>
+                 <div class="radio">
+                     <label><input type="radio" name="count" value="hot">hot</label>
+                 </div>
+                 <div class="radio">
+                     <label><input type="radio" name="count" value="cold">cold</label>
+                 </div>
+                 <div class="radio">
+                     <label><input type="radio" name="count" value="rainy">rainy</label>
+                 </div>
+             </div>
+         </div>
+         <div class="form-group">
+           <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                 <label> <input type="checkbox" id="agree" name="agree" value="agree"> I have read and accept the Terms of Use.</label>
+              </div>
+              <em id="agree-error" class="help-block"></em>
+           </div>
+         </div>
+         <div class="form-group">
+             <div class="col-sm-offset-2 col-sm-10">
+                 <input type="submit" id="boton_envia" class="btn btn-primary" value="Submit"/>
+             </div>
+         </div>
+     </form>
+      </div>
+   </div>
+  </div>

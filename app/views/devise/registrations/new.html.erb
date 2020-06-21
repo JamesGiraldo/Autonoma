@@ -2,14 +2,14 @@
 <div class="container_session">
   <div class="session">
     <center><h2 class="titulo-Narajanja">Registrarse</h2></center>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= simple_form_for(resource, as: resource_name, id: "signupForm" , url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
         <p>Debe iniciar sesión o registrarse antes de continuar.<p>
-        <%= f.input :username, autofocus: true, placeholder:"Usario" ,autocomplete: "username" %>
-        <%= f.input :email, autofocus: true, placeholder:"Correo" ,autocomplete: "email" %>        
-        <%= f.association :programa, collection: Programa.order(:nombre), label_method: :nombre, input_html: {class: "select2select", "data-placeholder": "Seleccione Programa"} %>
-        <%= f.input :password,  placeholder:"Contraseña", autocomplete: "new-password" %>
-        <%= f.input :password_confirmation, placeholder:"Confirme contraseña", autocomplete: "new-password" %>
+        <%= f.input :username, id:"nombre", name:"nombre" %>
+        <%= f.input :email, placeholder:"Correo", id:"email", name:"email" %>
+        <%= f.association :programa, collection: Programa.order(:nombre) ,label_method: :nombre, input_html: {class: "select2select", "data-placeholder": "Seleccione Programa"} %>
+        <%= f.input :password,  placeholder:"Contraseña" %>
+        <%= f.input :password_confirmation, placeholder:"Confirme contraseña" %>
         <% if devise_mapping.rememberable? %>
             <%= f.check_box :remember_me %>
             <%= f.label :remember_me, "Recuérdame" %>

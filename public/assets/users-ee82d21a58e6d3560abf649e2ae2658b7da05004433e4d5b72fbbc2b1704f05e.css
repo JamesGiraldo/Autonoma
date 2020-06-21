@@ -1,0 +1,37 @@
+/* line 4, app/assets/stylesheets/users.scss */
+.salto {
+  margin-bottom: 55px;
+}
+
+/* line 7, app/assets/stylesheets/users.scss */
+.actualizar {
+  margin-bottom: 10px;
+}
+
+/* line 10, app/assets/stylesheets/users.scss */
+.userperfil {
+  border-radius: 10px;
+}
+
+/* line 13, app/assets/stylesheets/users.scss */
+.circlo {
+  border-radius: 10%;
+  transform: translateX(10px);
+}
+
+/* line 17, app/assets/stylesheets/users.scss */
+.file {
+  padding: 0;
+  position: relative;
+  margin-bottom: 3px;
+  background: transparent;
+  border: none;
+  margin-top: 20px;
+}
+
+/* line 25, app/assets/stylesheets/users.scss */
+.eso {
+  margin-bottom: 80px;
+  border: 1px solid #ccc;
+  border-radius: 1%;
+}

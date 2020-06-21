@@ -8,6 +8,7 @@ class HomeController < ApplicationController
       flash[:info] = 'Sugerencia Asegurese De Actualizar Su datos!'
     end
     @lineas = Linea.includes(:cursos).collect{|linea| [linea.nombre,
-                                                      linea.cursos.size]}       
+                                                      linea.cursos.size]}
+    @users = User.all.includes(:roles).where('roles.name' => 'Docente').size    
   end
 end

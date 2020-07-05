@@ -9,11 +9,10 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag    params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css")%>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div id="wrapper" class="<%= params[:controller] %>.<%= params[:action] %>">
-        <!-- Navigation -->        
+        <!-- Navigation -->
         <%= render "partials/navigation" %>
         <!-- Page wraper -->
         <div id="page-wrapper" class="gray-bg <%= @extra_class %>">
@@ -24,6 +23,7 @@
             <div class=" wrapper border-bottom white-bg page-heading "><br>
                 <%= breadcrumbs display_single_fragment: true ,separator: ' / ', class:""%>
             </div>
+             <span id="ir-arriba" class="ir-arriba"></span>
             <%= yield %>
             <!-- Footer -->
             <%= render "partials/footer" %>

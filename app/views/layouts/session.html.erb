@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="author" content="Teg. James Giraldo Escorcia">
+    <title>Autonoma</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css")%>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css") %>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   </head>
   <body class="gray-bg">
     <!-- <h1 class="mov-naranja">Bienvenido a Seguimiento</h1> -->
-    <div class="container">        
+    <div class="container">
         <!-- <div class="ibox-content"> -->
           <%=yield%>
         <!-- </div> -->

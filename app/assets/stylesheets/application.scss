@@ -65,7 +65,12 @@ body{
   background: url('flecha.png');
   background-size: cover;
 }
-
+.ir-arriba:hover{
+  border: 2px solid #fcae70;
+  -webkit-box-shadow: 13px 13px 31px -6px rgba(0,0,0,0.77);
+  -moz-box-shadow: 13px 13px 31px -6px rgba(0,0,0,0.77);
+  box-shadow: 13px 13px 31px -6px rgba(0,0,0,0.77);
+}
 .mov-naranja{
    color: #56B495;
 }
@@ -96,11 +101,17 @@ body{
 #user_foto{
    margin: 1em 1.5em;
 }
-
+.Veamos:hover{
+  -webkit-box-shadow: 13px 13px 31px -6px rgba(0,0,0,0.77);
+  -moz-box-shadow: 13px 13px 31px -6px rgba(0,0,0,0.77);
+  box-shadow: 13px 13px 31px -6px rgba(0,0,0,0.77);
+}
  //  .btn-primary{
  //     // margin: 0 1.5em;
  //  }
-
+.TituloHover:hover{
+  line-height: 40px;
+}
 //botonContainer
 
 .botonContainer {
@@ -314,6 +325,11 @@ body{
    margin: 2em auto;
    padding: 2em;
    box-shadow: var(--sombra);
+}
+.container_session .session:hover{
+  -webkit-box-shadow: 13px 13px 31px -6px rgba(0,0,0,0.77);
+  -moz-box-shadow: 13px 13px 31px -6px rgba(0,0,0,0.77);
+  box-shadow: 13px 13px 31px -6px rgba(0,0,0,0.77);
 }
 
  // REGISTRAR usuario

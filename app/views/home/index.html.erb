@@ -1,4 +1,4 @@
-<h1 class="text-center titulo-Narajanja">Universidad <strong>Autonoma del caribe</strong></h1>
+<h1 class="text-center titulo-Narajanja space">Universidad <strong>Autonoma del caribe</strong></h1>
 <h2 class="subtitulo titulo-Narajanja"><strong>Informacion</strong></h2>
 <div class="usuario informacion_general">
   <div class="informacion ">
@@ -12,24 +12,19 @@
            <%end%>
          </div>
       <%end%>
-    </div>
+    </div>    
     <div class="container_details">
       <div class="col-md-6">
-        <div class="info">
-           <p class="details_info"><strong>Nombre:</strong> <%= current_user.nombre %> <%= current_user.apellido%></p>
-           <p class="details_info"><strong>Rol:</strong> <%= current_user.roles.collect(&:name).join(' , ').upcase %></p>
-           <p class="details_info"><strong>Documento:</strong> <%=  current_user.documento%></p>
-           <p class="details_info"><strong>Correo:</strong> <%=  current_user.email %></p>
-           <p class="details_info"><strong>Teléfono:</strong> <%=  current_user.telefono %></p>
-        </div>
+         <p class="details_info"><strong>Nombre:</strong> <%= current_user.nombre %> <%= current_user.apellido%></p>
+         <p class="details_info"><strong>Rol:</strong> <span class="badge badge-primary show-badge-dark"><strong><%= current_user.roles.collect(&:name).join(' , ').upcase %></strong></span></p>
+         <p class="details_info"><strong>Documento:</strong> <%=  current_user.documento%></p>
+         <p class="details_info"><strong>Correo:</strong> <%=  current_user.email %></p>
       </div>
       <div class="col-md-6">
-        <% if current_user.programa.present? %>
-            <p class="details_info"><strong>Programa:</strong> <%= current_user.programa.nombre %></p>
-          <%else%>
-            <p class="details_info"><strong>Programa:</strong>NULL</p>
-        <% end %>
-        <p class="details_info"><strong>Descripcion:</strong> <%=  current_user.descripcion %></p>
+        <p class="details_info"><strong>Teléfono:</strong> <%= current_user.telefono %></p>
+        <p class="details_info"><strong>Direccion:</strong> <%= current_user.direccion %></p>
+        <p class="details_info"><strong>Programa:</strong> <%= current_user.programa.nombre %></p>
+        <p class="details_info"><strong>Descripcion:</strong> <%= current_user.descripcion %></p>
       </div>
     </div>
   </div>
@@ -38,7 +33,7 @@
         <% unless current_user.has_role? :Docente %>
           <div class="box card text-white bg-primary mb-3">
              <div class="title">
-                 <h3 class="title_box"><strong>Docentes</strong></h3>
+                 <h5 class="title_box"><strong>Docentes</strong></h5>
              </div>
              <div class="description">
                  <h1 class="description_box"><%= @users %></h1>
@@ -47,7 +42,7 @@
                  <h3 class="foot_box">Universidad Autonoma del caribe</h3>
              </div>
              <div class="ver_mas">
-               <a class="<%= is_active_controller('comentarios') %>">
+               <a class="<%= is_active_controller('users') %>">
                   <%= link_to instructores_users_path do %>
                     <i class="ver_mas_box"></i> <span data-i18n="nav.layouts" data-toggle="tooltip" title="Todo Sobre Comentarios">Ver más</span>
                   <% end %>
@@ -57,7 +52,7 @@
         <% end %>
         <div class="box card text-white bg-danger mb-3">
           <div class="title">
-             <h3 class="title_box"><strong>Proyecciones</strong></h3>
+             <h5 class="title_box"><strong> Proyecciones</strong></h5>
           </div>
           <div class="description">
             <% if current_user.has_role? :Docente %>
@@ -79,18 +74,25 @@
         </div>
         <div class="box card text-white bg-secondary mb-3">
           <div class="title">
-             <h3 class="title_box"><strong>Proyecciones</strong></h3>
+             <h5 class="title_box"><strong>Proyecciones</strong></h5>
           </div>
           <div class="description">
-              <h1 class="description_box">1%</h1>
+              <h1 class="description_box"> <%= @porsentaje %>%</h1>
           </div>
           <div class="foot">
              <h3 class="foot_box">Universidad Autonoma del caribe</h3>
           </div>
+          <div class="ver_mas">
+            <a class="<%= is_active_controller('proyecciones') %>">
+               <%= link_to proyecciones_path do %>
+                 <i class="ver_mas_box"></i> <span data-i18n="nav.layouts"  data-toggle="tooltip" title="Todas Las Proyecciones">Ver más</span>
+               <% end %>
+            </a>
+          </div>
         </div>
        <div class="box card text-white bg-success mb-3 ">
           <div class="title">
-              <h3 class="title_box"><strong>Cursos</strong></h3>
+              <h5 class="title_box"><strong>Cursos</strong></h5>
           </div>
           <div class="description">
               <h1 class="description_box"><%= Curso.count%></h1>
@@ -108,7 +110,7 @@
        </div>
        <div class="box card text-white bg-warning mb-3">
           <div class="title">
-            <h3 class="title_box"><strong>Facultades</strong></h3>
+            <h5 class="title_box"><strong>Facultades</strong></h5>
           </div>
           <div class="description">
             <h1 class="description_box"><%= Facultad.count %></h1>
@@ -126,7 +128,7 @@
        </div>
        <div class="box card bg-info">
          <div class="title">
-            <h3 class="title_box"><strong>Programas</strong></h3>
+            <h5 class="title_box"><strong>Programas</strong></h5>
          </div>
          <div class="description">
             <h1 class="description_box"><%= Programa.count%></h1>

@@ -22,12 +22,13 @@
   border: none;
   margin-top: 20px;
 }
-.eso{
-  margin-bottom: 80px;
+.eso{  
   border: 1px solid #ccc;
   border-radius: 1%;
 }
-
+.usuario {
+  overflow-x: auto;
+}
 
 // secion de comentarios de articulo
 .caneca {

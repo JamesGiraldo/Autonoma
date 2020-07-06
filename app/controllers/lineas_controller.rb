@@ -13,6 +13,7 @@ class LineasController < ApplicationController
   end
 
   def show
+    redirect_to linea_path
     rescue ActiveRecord::RecordNotFound
       redirect_to linea_path
       flash[:alert] = 'Este linea No Existe'

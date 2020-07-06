@@ -1,5 +1,5 @@
 <% breadcrumb :programas %>
-<div class="ibox-content m-b-sm border-bottom buscador-complemnto">
+<div class="jumbotron buscador-complemnto">
   <div class="row">
     <div class="col-10">
         <h2 class="titulo-Narajanja">Programas</h2>
@@ -15,7 +15,7 @@
   <div class="search-form">
     <%= form_tag(programas_path, method: :get) do %>
       <div class="input-group">
-        <input type="text" name="q" class="form-control input-lg" placeholder="Buscar..." type="text" value="<%= params[:q] %>"></input>
+        <input type="text" name="q" class="form-control Bucador input-lg" placeholder="Buscar..." type="text" value="<%= params[:q] %>"></input>
         <div class="input-group-btn">
           <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
         </div>
@@ -26,45 +26,55 @@
 <% unless @programas.present? %>
     <h2 class="text-center">No Hay Informacion Solicitada</h2>
 <%end%>
-<div class="usuario">
-  <div class="informacion_general">
-    <div class="container_box">
-       <% @programas.each do |programa| %>
-          <div class="box card text-white bg-secondary mb-3">
+<div class="row">
+ <% @programas.each do |programa| %>
+  <div class="col-md-4">
+    <div class="box card text-white bg-secondary mb-3 h-100">
+      <div class="category-container">
+        <div class="card-body">
+          <div class="description">
+             <h1 class="card-title description_box"><%=programa.nombre%></h1>
+          </div>
+          <div class="foot">
+             <h1 class="description_box text-center"><%= programa.users.includes(:roles).where('roles.name' => "Docente").count%></h1>
+          </div>
+          <div class="card-footer">
             <% if current_user.has_role? :Admin %>
               <div class="row">
-                <div class="col-6">
-                  <div class="botonContainer">
-                    <%= link_to "", edit_programa_path(programa), remote:true , class: "fa fa-pencil-square-o   btn btn-warning"%>
+                  <div class="col-4">
+                    <div class="botonContainer">
+                      <%= link_to edit_programa_path(programa), remote:true ,  class: "btn btn-warning" do %>
+                        <%= fa_icon 'pencil-square-o' %>
+                      <% end %>
+                    </div>
                   </div>
-                </div>
-                <div class="col-6">
-                  <div class="botonContainer">
-                      <%= link_to "", { :action => :destroy, :id => programa.id }, method: :delete, data: {confirm: "¿Esta Seguro De Eliminar La Linea #{programa.nombre}? ", mensaje: "La linea se borrara definitivamente"}, class: "fa fa-trash-o btn btn-danger" %>
+                  <div class="col-4">
+                    <div class="botonContainer">
+                      <%= link_to programa_users_path(programa), class: "btn btn-info" do %>
+                        <%= fa_icon 'eye' %>
+                      <% end %>
+                    </div>
                   </div>
-                </div>
+                  <div class="col-4">
+                    <div class="botonContainer">
+                      <%= link_to programa_path(programa), method: :delete, data: {confirm: "¿Esta Seguro De Eliminar La Linea #{programa.nombre}?",
+                                  mensaje: 'El Programa se borrara definitivamente'}, class: "btn btn-danger" do %>
+                        <%= fa_icon 'trash' %>
+                      <% end %>
+                    </div>
+                  </div>
               </div>
             <% end %>
-             <div class="description">
-                <h3 class="description_box"><%=programa.nombre%></h3>
-             </div>
-             <div class="foot">
-                <h1 class="description_box"><%= programa.users.includes(:roles).where('roles.name' => "Docente").count%></h1>
-             </div>
-             <% if current_user.has_role? :Admin %>
-                 <div class="ver_mas">
-                   <a class="<%= is_active_controller('programas') %>">
-                      <%= link_to programa_users_path(programa) do %>
-                        <i class="ver_mas_box"></i> <span data-i18n="nav.layouts">Ver más</span>
-                      <% end %>
-                   </a>
-                 </div>
-              <% end %>
           </div>
-       <%end%>
+        </div>
+      </div>
     </div>
   </div>
+ <%end%>
+</div><hr>
+<div class="paginacion">
+  <%= paginate @programas, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination float-right" %>
 </div>
-<hr><%= paginate @programas, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination float-right" %>
+<%= paginate @programas, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination float-right" %>
 <div id="new-programa"></div>
 <div id="edit-programa"></div>

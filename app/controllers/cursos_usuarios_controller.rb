@@ -11,6 +11,7 @@ class CursosUsuariosController < ApplicationController
   end
 
   def show
+    redirect_to cursos_usuarios_path
   rescue ActiveRecord::RecordNotFound
     redirect_to cursos_usuarios_path
     flash[:alert] = 'Este Curso No Existe'

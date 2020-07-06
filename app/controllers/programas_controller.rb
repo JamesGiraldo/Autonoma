@@ -17,6 +17,7 @@ class ProgramasController < ApplicationController
   end
 
   def show
+    redirect_to programas_path
   rescue ActiveRecord::RecordNotFound
     redirect_to linea_path
     flash[:alert] = 'Este Programa No Existe'
@@ -45,7 +46,7 @@ class ProgramasController < ApplicationController
     if @user.has_role? :Admin
       if @programa.destroy
         flash[:alert] = "Programa #{@programa.nombre.upcase} Eliminada!"
-        redirect_to action: :index      
+        redirect_to action: :index
       end
     end
   end

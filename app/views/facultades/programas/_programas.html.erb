@@ -1,7 +1,7 @@
 <tr>
   <td><%= link_to programas.nombre, programa_users_path(programas) %></td>
   <td>
-    <%= link_to "Editar", edit_facultad_programa_path(@facultad, programas) %>
-    <%= link_to "Eliminar", facultad_programa_path(@facultad, programas), method: :delete, data: {confirm: "¿Estas seguro?"} %>
+    <%= link_to "", edit_facultad_programa_path(@facultad, programas) , class: "fa fa-pencil-square-o  btn btn-warning"%>
+    <%= link_to '', facultad_programa_path(@facultad, programas), :method => :delete, :data => { :confirm => 'Estás seguro? de Eliminar Esta Facultad'} , class: " text-center fa fa-trash-o btn btn-danger"%>
   </td>
 </tr>

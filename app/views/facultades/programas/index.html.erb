@@ -1,14 +1,21 @@
 <% breadcrumb :facultad_programas, @facultad %>
-<div class="ibox-content m-b-sm border-bottom buscador-complemnto">
+<div class="jumbotron buscador-complemnto">
   <div class="row">
-    <div class="container">
-      <h2 class="titulo-Narajanja">Programas De La facultad <strong><%= @facultad.nombre %></strong></h2>
+    <div class="col-7">
+      <h2 class="titulo-Narajanja">Programas De <strong><%= @facultad.nombre.upcase %></strong></h2>
+    </div>
+    <div class="col-5">
+      <% if current_user.has_role? :Admin%>
+        <div class="botonContainer">
+          <%= link_to "Nuevo Programa", new_facultad_programa_path(@facultad), class: "btn btn-primary"%>
+        </div>
+      <%end%>
     </div>
   </div>
   <div class="search-form">
     <%= form_tag(facultad_programas_path, method: :get) do %>
       <div class="input-group">
-        <input type="text" name="q" class="form-control input-lg" placeholder="Buscar..." type="text" value="<%= params[:q] %>"></input>
+        <input type="text" name="q" class="form-control Bucador input-lg" placeholder="Buscar..." type="text" value="<%= params[:q] %>"></input>
         <div class="input-group-btn">
           <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
         </div>
@@ -16,27 +23,22 @@
     <%end%>
   </div>
 </div>
-<div class="ibox-content m-b-sm border-bottom">
-  <div class="table-responsive">
-    <table class="table table-striped table-bordered table-hover dataTables-example">
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover dataTables-example">
+    <thead>
       <tr>
         <th class="active">NOMBRE</th>
         <th class="active">ACCIONES</th>
       </tr>
-      <%= render partial: "programas", collection: @programas %>
-    </table>
-      <% unless @programas.present? %>
-         <tr>
-            <h2 class="text-center">No Hay Informacion Solicitada</h2
-         </tr>
-      <%end%>
-   </div>
+    </thead>
+    <%= render partial: "programas", collection: @programas %>
+  </table>
+  <% unless @programas.present? %>
+     <tr>
+        <h2 class="text-center">No Hay Informacion Solicitada</h2
+     </tr>
+  <%end%>
+</div><hr>
+<div class="paginacion">
+  <%= paginate @programas, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination float-right" %>
 </div>
-<% if current_user.has_role? :Admin%>
-  <div class="botonContainer">
-    <div class="botonSeguimiento">
-      <%= link_to "Nuevo Programa", new_facultad_programa_path(@facultad), class: "botonSeguimientoColor"%>
-    </div>
-  </div>
-<%end%>
-<hr><%= paginate @programas, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination float-right" %>

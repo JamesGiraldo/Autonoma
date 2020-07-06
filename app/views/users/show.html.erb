@@ -1,8 +1,8 @@
 <% breadcrumb :usuarios_show, @user %>
 <% if @user.nombre.present? %>
-    <h1 class="text-center titulo-Narajanja"><strong><%= @user.nombre %> <%= @user.apellido %></strong></h1><hr />
+    <h1 class="text-center titulo-Narajanja my-2"><strong><%= @user.nombre %> <%= @user.apellido %></strong></h1>
   <%else%>
-  <h1 class="text-center titulo-Narajanja"><strong><%= @user.email %></strong></h1><hr />
+  <h1 class="text-center titulo-Narajanja"><strong><%= @user.username %></strong></h1><hr />
 <% end %>
 <h2 class="subtitulo titulo-Narajanja"><strong>Informacion</strong></h2>
 <div class="usuario">
@@ -18,25 +18,19 @@
     </div>
     <div class="container_details">
       <div class="col-md-6">
-        <div class="info">
-           <p class="details_info"><strong>Rol:</strong>
-           <% @user.roles.each do |rol| %>
-               <span class="badge badge-primary show-badge-dark"><strong><%= rol.name.upcase %></strong></span>
-           <%end%>
-           </p>
-           <p class="details_info"><strong>Correo:</strong> <%=  @user.email %></p>
-           <p class="details_info"><strong>Nombre:</strong> <%=  @user.nombre %></p>
-           <p class="details_info"><strong>Apellido:</strong> <%=  @user.apellido %></p>
-           <p class="details_info"><strong>Telefono:</strong> <%=  @user.telefono %></p>
-           <p class="details_info"><strong>Direccion:</strong> <%=  @user.direccion %></p>
-        </div>
+        <p class="details_info"><strong>Rol:</strong>
+        <% @user.roles.each do |rol| %>
+            <span class="badge badge-primary show-badge-dark"><strong><%= rol.name.upcase %></strong></span>
+        <%end%>
+        </p>
+        <p class="details_info"><strong>Correo:</strong> <%=  @user.email %></p>
+        <p class="details_info"><strong>Nombre:</strong> <%=  @user.nombre %></p>
+        <p class="details_info"><strong>Apellido:</strong> <%=  @user.apellido %></p>
       </div>
-      <div class="col-m6">
-        <% if @user.programa.present? %>
-            <p class="details_info"><strong>Programa:</strong> <%= @user.programa.nombre %></p>
-          <% else %>
-          <p class="details_info"><strong>Programa:</strong>NULL</p>
-        <% end %>
+      <div class="col-md-6">
+        <p class="details_info"><strong>Telefono:</strong> <%=  @user.telefono %></p>
+        <p class="details_info"><strong>Direccion:</strong> <%=  @user.direccion %></p>
+        <p class="details_info"><strong>Programa:</strong> <%= @user.programa.nombre %></p>
         <p class="details_info"><strong>Descripcion:</strong> <%=  @user.descripcion %></p>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <% breadcrumb :cursos_usuarios %>
-<br><div class="ibox-content m-b-sm border-bottom buscador-complemnto">
+<br><div class="jumbotron buscador-complemnto">
   <div class="row">
     <div class="col-10">
       <h2 class="titulo-Narajanja">Mis Cursos</h2>
@@ -9,11 +9,11 @@
         <%= link_to "", new_cursos_usuario_path, remote:true , class: "fa fa-plus  btn btn-primary"%>
       </div>
     </div>
-  </div>  
+  </div>
   <div class="search-form">
     <%= form_tag(cursos_usuarios_path, method: :get) do %>
       <div class="input-group">
-        <input type="text" name="q" class="form-control input-lg" placeholder="Buscar..." type="text" value="<%= params[:q] %>"></input>
+        <input type="text" name="q" class="form-control Bucador input-lg" placeholder="Buscar..." type="text" value="<%= params[:q] %>"></input>
         <div class="input-group-btn">
           <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
         </div>
@@ -21,9 +21,9 @@
     <%end%>
   </div>
 </div>
-<div class="ibox-content m-b-sm border-bottom">
-  <div class="table-responsive">
-    <table class="table table-striped table-bordered table-hover dataTables-example">
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover dataTables-example">
+    <thead>
       <tr>
         <th class="active text-center">LINEA</th>
         <th class="active text-center">NOMBRE</th>
@@ -32,16 +32,18 @@
         <th class="active text-center">FECHA FINALIZACION</th>
         <th class="active text-center">ACCIONES</th>
       </tr>
-      <%= render partial: "cursos_usuarios", collection: @cursosUsuarios, as: :cursos_usuario %>
-      <tr>
-    </table>
-    <% unless @cursosUsuarios.present? %>
-       <tr>
-          <h2 class="text-center">No Hay Informacion Solicitada</h2
-       </tr>
-    <%end%>
-  </div>
+    </thead>
+    <%= render partial: "cursos_usuarios", collection: @cursosUsuarios, as: :cursos_usuario %>
+    <tr>
+  </table>
+  <% unless @cursosUsuarios.present? %>
+     <tr>
+        <h2 class="text-center">No Hay Informacion Solicitada</h2
+     </tr>
+  <%end%>
 </div><hr>
-<%= paginate @cursosUsuarios, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination float-right" %>
+<div class="paginacion">
+  <%= paginate @cursosUsuarios, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination float-right" %>
+</div>
 <div id="new-curso"></div>
 <div id="edit-curso"></div>

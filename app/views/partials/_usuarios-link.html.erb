@@ -1,0 +1,45 @@
+<% if current_user.has_role? :Admin %>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <% if current_user.has_role? :Admin %>
+        <%= link_to "Decanos", decanos_users_path, class: "dropdown-item" %>
+        <%= link_to "Directores", directores_users_path , class: "dropdown-item" %>
+        <%= link_to "Docentes" , instructores_users_path , class: "dropdown-item"  %>
+        <%= link_to "Vicerrectores" , vicerrectores_users_path , class: "dropdown-item" %>
+        <%= link_to "Usuarios" , users_path , class: "dropdown-item"  %>
+      <%end%>
+    </div>
+  </li>
+<% elsif current_user.has_role? :Vicerrector %>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <% if current_user.has_role? :Admin %>
+        <%= link_to "Decanos", decanos_users_path, class: "dropdown-item" %>
+        <%= link_to "Directores", directores_users_path , class: "dropdown-item" %>
+        <%= link_to "Docentes" , instructores_users_path , class: "dropdown-item"  %>
+      <%end%>
+    </div>
+  </li>
+<%end%>
+<% if current_user.has_role? :Decano %>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <% if current_user.has_role? :Admin %>
+        <%= link_to "Directores", directores_users_path , class: "dropdown-item" %>
+        <%= link_to "Docentes" , instructores_users_path , class: "dropdown-item"  %>
+      <%end%>
+    </div>
+  </li>
+<% elsif current_user.has_role? :Director %>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <% if current_user.has_role? :Admin %>
+        <%= link_to "Docentes" , instructores_users_path , class: "dropdown-item"  %>
+      <%end%>
+    </div>
+  </li>
+<%end%>

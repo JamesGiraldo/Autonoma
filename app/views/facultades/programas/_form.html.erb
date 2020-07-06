@@ -1,8 +1,9 @@
 <div class="container_session">
   <div class="session">
+    <h1 class="titulo-Narajanja text-center"><%= "#{titulo} programa" %> </h1>
     <%= simple_form_for [@facultad, @programa] do |f| %>
       <%= f.input :nombre , autofocus: true, placeholder:"Nombre De la programa" , autocomplete: "nombre",require:true %>
-      <%= f.button :submit, "Registrar Programa",  class: "btn-primary block full-width m-b" %>
+      <%= f.button :submit, "Enviar",  class: "btn-primary btn-block" %>
     <% end %>
   </div>
 </div>

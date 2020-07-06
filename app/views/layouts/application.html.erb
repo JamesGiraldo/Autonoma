@@ -10,25 +10,22 @@
     <%= stylesheet_link_tag    params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css")%>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body class="hold-transition skin-blue sidebar-mini">
-    <div id="wrapper" class="<%= params[:controller] %>.<%= params[:action] %>">
-        <!-- Navigation -->
-        <%= render "partials/navigation" %>
-        <!-- Page wraper -->
-        <div id="page-wrapper" class="gray-bg <%= @extra_class %>">
+  <body>
+    <div id="" class="<%= params[:controller] %>.<%= params[:action] %>">
             <!-- Page wrapper -->
             <%= render "partials/topnavbar" %><br>
             <!-- Main view  -->
             <%= custom_bootstrap_flash %>
-            <div class=" wrapper border-bottom white-bg page-heading "><br>
-                <%= breadcrumbs display_single_fragment: true ,separator: ' / ', class:""%>
+            <div class="container">
+                <%= breadcrumbs display_single_fragment: true ,separator: ' / ', class: "breadcrumbpropio"%>              
             </div>
              <span id="ir-arriba" class="ir-arriba"></span>
-            <%= yield %>
+             <div class="container">
+               <%= yield %>
+             </div>
             <!-- Footer -->
-            <%= render "partials/footer" %>
-        </div>
     </div>
+        <%= render "partials/footer" %>
     <%= javascript_include_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.js")%>
     <%= yield :javascript %>
   </body>

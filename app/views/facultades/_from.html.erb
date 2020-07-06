@@ -1,8 +1,10 @@
 <div class="container_session">
   <div class="session">
-    <%= simple_form_for @facultad, html: { class: 'signupForm form-horizontal' } do |f| %>
-      <%= f.input :nombre, placeholder:"Nombre De la Facultad", name: "nombre", class: "form-control"%>
-      <%= f.button :submit, "Registrar Facultad", class: "btn-primary block full-width m-b" %>
+    <h1 class="titulo-Narajanja text-center"><%= "#{titulo} facultad" %> </h1>
+    <%= simple_form_for @facultad, html: { class: 'signupForm' } do |f| %>
+      <%= f.label :Nombre ,  class: "form-control"%>
+      <%= f.input :nombre, label: false, placeholder:"Nombre De la Facultad", name: "nombre", class: "form-control"%>
+      <%= f.button :submit, "Enviar", class: "btn-primary btn-block" %>
     <% end %>
   </div>
 </div>

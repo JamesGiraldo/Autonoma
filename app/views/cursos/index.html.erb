@@ -1,5 +1,5 @@
 <% breadcrumb :cursos %>
-<div class="ibox-content m-b-sm border-bottom buscador-complemnto">
+<div class="jumbotron buscador-complemnto">
   <div class="row">
     <div class="col-10">
         <h2 class="titulo-Narajanja">Cursos</h2>
@@ -13,7 +13,7 @@
   <div class="search-form">
     <%= form_tag(cursos_path, method: :get) do %>
       <div class="input-group">
-        <input type="text" name="q" class="form-control input-lg" placeholder="Buscar..." type="text" value="<%= params[:q] %>"></input>
+        <input type="text" name="q" class="form-control Bucador input-lg" placeholder="Buscar..." type="text" value="<%= params[:q] %>"></input>
         <div class="input-group-btn">
           <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
         </div>
@@ -21,33 +21,32 @@
     <%end%>
   </div>
 </div>
-<div class="ibox-content m-b-sm border-bottom">
-  <div class="table-responsive">
-    <table class="table table-striped table-bordered table-hover dataTables-example">
-      <tr>
-        <th class="text-center  footable-visible footable-first-column footable-sortable active">Linea</th>
-        <th class="text-center  footable-visible footable-first-column footable-sortable active">Nombre</th>
-        <th class=" text-center footable-visible footable-first-column footable-sortable active">Registrado</th>
-        <th class="text-center  footable-visible footable-first-column footable-sortable active">Modificado</th>
-        <!-- <th class="footable-visible footable-first-column footable-sortable active">Incribirse</th> -->
-        <% if current_user.has_role? :Admin %>
-          <th class="footable-visible footable-first-column footable-sortable text-center active">Acciones</th>
-          <% else %>
-        <% end %>
-      </tr>
-      <tbody>
-        <%= render partial: "cursos", collection: @cursos, as: :curso %>
-        <% unless @cursos.present? %>
-           <tr>
-              <h2 class="text-center">No Hay Informacion Solicitada</h2
-           </tr>
-        <%end%>
-      </tbody>
-    </table>
-  </div>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover dataTables-example">
+    <tr>
+      <th class="text-center  footable-visible footable-first-column footable-sortable active">Linea</th>
+      <th class="text-center  footable-visible footable-first-column footable-sortable active">Nombre</th>
+      <th class=" text-center footable-visible footable-first-column footable-sortable active">Registrado</th>
+      <th class="text-center  footable-visible footable-first-column footable-sortable active">Modificado</th>
+      <!-- <th class="footable-visible footable-first-column footable-sortable active">Incribirse</th> -->
+      <% if current_user.has_role? :Admin %>
+        <th class="footable-visible footable-first-column footable-sortable text-center active">Acciones</th>
+        <% else %>
+      <% end %>
+    </tr>
+    <tbody>
+      <%= render partial: "cursos", collection: @cursos, as: :curso %>
+    </tbody>
+  </table>
+  <% unless @cursos.present? %>
+     <tr>
+        <h2 class="text-center">No Hay Informacion Solicitada</h2
+     </tr>
+  <%end%>
 </div><hr>
 <div class="paginacion">
   <%= paginate @cursos, :theme => 'twitter-bootstrap-3',:pagination_class => "pagination float-right" %>
 </div>
+
 <div id="new-curso"></div>
 <div id="edit-curso"></div><br><br>

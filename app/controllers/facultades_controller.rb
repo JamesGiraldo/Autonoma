@@ -16,6 +16,7 @@ class FacultadesController < ApplicationController
   end
 
   def show
+    redirect_to facultades_path
   rescue ActiveRecord::RecordNotFound
     redirect_to linea_path
     flash[:alert] = 'Este Facultad No Existe'

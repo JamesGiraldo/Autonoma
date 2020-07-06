@@ -1,7 +1,7 @@
 <% breadcrumb :user_edit, @user %>
-<div class="container">
-  <%= simple_form_for current_user, url: user_path , class:"formularioedit" do |f| %>
-      <div class="row">
+<div class="jumbotron my-3 buscador-complemnto">
+  <%= simple_form_for current_user, url: user_path , class:"" do |f| %>
+      <div class="row my-3">
         <div class="col-8">
           <h2 class="titulo-Narajanja">Editar Datos!</h2>
         </div>
@@ -13,14 +13,14 @@
          <div class="col-md-6">
            <div class="form-group">
              <div class="row">
-               <div class="col-md-6">
+               <div class="col-md-5 text-center">
                  <% if current_user.perfil? %>
                       <%= image_tag current_user.perfil.url(:thumb), class: " text-center userperfil" , title: "Mi Perfil" %>
                    <%else%>
                       <%= image_tag 'nophoto' , class: " text-center imghome circlo"%>
                  <%end%>
                </div>
-               <div class="col-md-6">
+               <div class="col-md-7">
                  <%= f.input :perfil, class: "form-control" %>
                </div>
              </div>

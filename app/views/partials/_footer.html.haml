@@ -1,0 +1,27 @@
+.py-5.bg-dark.text-white
+  .container
+    .row
+      .col-md-6.text-center.align-self-center
+        %p.mb-5
+          %strong Universidad Autonoma Del Caribe
+          = succeed "  Calle 90 # 46 - 112 " do
+            %br/
+          = succeed " Barranquilla / Colombia " do
+            %br/
+          %br/
+          %abbr{:title => "Teléfono"} Fijo:
+          +57 3853400
+          = succeed " Línea Gratuita 018000 918 286 " do
+            %br/
+        .my-3.row
+          .col-md-4
+            %a{:href => "https://www.facebook.com/uniautonoma", :target => "_blank"}
+              %i.fa.fa-fw.fa-facebook.fa-3x
+          .col-md-4
+            %a{:href => "https://twitter.com/uautonoma", :target => "_blank"}
+              %i.fa.fa-fw.fa-twitter.fa-3x
+          .col-md-4
+            %a{:href => "http://instagram.com/uniautonoma", :target => "_blank"}
+              %i.fa.fa-fw.fa-instagram.fa-3x
+      .col-md-6.p-0
+        %img.img-fluid{:src => "#{image_url 'desarrollo_web.jpg'}"}/

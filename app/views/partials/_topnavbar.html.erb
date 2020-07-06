@@ -1,38 +1,66 @@
-<div class="row border-bottom">
-    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-            <!-- <form role="search" class="navbar-form-custom" ">
-                <div class="form-group">
-                    <input type="text" placeholder="Buscar..." class="form-control" name="top-search" id="top-search">
-                </div>
-            </form> -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand titulo-Narajanja" href=" <%= root_path %> ">
+    <span class="titulo-Narajanja"> AUTÓNOMA</span>
+  </a>
+  <button class="navbar-toggler NAV-btn-dark" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cursos</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <%= link_to "Lineas", lineas_path, class: "dropdown-item" %>
+          <%= link_to "Cursos", cursos_path , class: "dropdown-item" %>
+          <% if current_user.has_role? :Docente %>
+            <%= link_to "Mis Cursos", cursos_usuarios_path , class: "dropdown-item" %>
+          <%end%>
         </div>
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-              <a data-toggle="dropdown" class="dropdown-toggle" href="#" title="Mi Perfil">
-                <span class="block m-t-xs font-bold"></span>
-                <% if current_user.username.present? %>
-                  <span class="text-muted text-xs block" id="userTopnavBar"><%= current_user.username %> <b class=" titulo-Narajanja caret"></b><br></span>
-                  <% else %>
-                  <span class="text-muted text-xs block" id="userTopnavBar"><%= current_user.email %> <b class=" titulo-Narajanja caret"></b><br></span>
-                <% end %>
-              </a>
-              <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                <% if current_user.nombre.present? || current_user.apellido.present? %>
-                    <li><a class="dropdown-item" href="<%= user_path %>"> <%= current_user.nombre %> <%= current_user.apellido %> </a></li>
-                <% else %>
-                    <li><a class="dropdown-item" href="<%= user_path %>"> <%= current_user.username %> </a></li>
-                <% end %>
-                 <li><a class="dropdown-item" href=" <%= edit_user_path %>" class="btn btn-nar">Mi Perfil</a></li>
-                 <li><a class="dropdown-item" href="<%= cambiar_password_user_path %>">Cambiar Contraseña</a></li>
-                 <li class="dropdown-divider"></li>
-                 <li><%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete, class:"btn btn-nar"%></li>
-              </ul>
-            </li>
-            <li>
-                <span class="text-center titulo-Narajanja"><strong></strong></span>
-            </li>
-        </ul>
-    </nav>
-</div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Comentarios</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <%= link_to "Mis Comentarios", comentarios_path, class: "dropdown-item" %>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Proyecciones</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <%= link_to "Mis Proyecciones", proyecciones_path, class: "dropdown-item" %>
+          <% if current_user.has_role? :Admin %>
+            <%= link_to "Proyecciones", proyecciones_path, class: "dropdown-item" %>
+          <%end%>
+        </div>
+      </li>
+      <% if current_user.has_role? :Admin %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facultades</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to "Facultades", facultades_path, class: "dropdown-item" %>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Programas</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to "Programas", programas_path, class: "dropdown-item" %>
+          </div>
+        </li>
+      <%end%>
+      <%= render "partials/usuarios-link" %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= "#{current_user.username}" %>  </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <%= link_to "#{current_user.username}", user_path, class: "dropdown-item" %>
+          <% if current_user.has_role? :Admin %>
+            <%= link_to "Administrador", root_path, class: "dropdown-item" %>
+          <%end%>
+          <%= link_to "Modificar Datos", edit_user_path, class: "dropdown-item" %>
+          <%= link_to "Cambiar Contraseña", cambiar_password_user_path, class: "dropdown-item" %>
+          <% if user_signed_in?  %>
+            <%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete, class:"dropdown-item"%>
+          <%end%>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

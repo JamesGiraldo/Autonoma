@@ -11,7 +11,6 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_self
- *= require animate/animate.css
  *= require style
  *= require trix
  *= require font-awesome
@@ -24,8 +23,23 @@
   padding: 0;
   margin: 0;
 }
+body{
+  background: #e2e2e2;
+}
 #userTopnavBar{
   color: white !important;
+}
+.breadcrumbpropio{
+  background: #ded9d9;
+  border-radius: 6px;
+  padding: 10px;
+  margin-top: 15px;
+}
+.buscador-complemnto{
+  background: #ded9d9;
+}
+.Bucador{
+  margin-right: 20px;
 }
 :root {
   --sombra: 0px 0px 15px 0px rgba(0,0,0,0.15);
@@ -141,7 +155,9 @@
   margin: 1em;
   display: flex;
   align-items: center;
-
+}
+.informacion{
+  overflow-x: auto;
 }
 
 .usuario .informacion .container_picture {
